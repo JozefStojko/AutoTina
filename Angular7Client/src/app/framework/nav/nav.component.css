@@ -1,0 +1,72 @@
+nav.navbar.navbar-expand-md.navbar-dark{
+  background-color: #b20000;
+}
+
+/* a {
+  color: white;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+a:active {
+  color: #640000;
+} */
+
+
+a.navbar-brand{
+  text-align:center
+}
+
+li,
+li a.nav-link,
+#buttonNavbarDropdown,
+button#navbarDropdown.btn.nav-link.dropdown-toggle {
+  color: #ffffff;
+}
+
+
+li a.nav-link:hover,
+#buttonNavbarDropdown:hover,
+#fas.fa-shopping-cart.fa-fw:hover,
+button#navbarDropdown.btn.nav-link.dropdown-toggle:hover {
+  color: #C0C0C0;
+  text-decoration: underline;
+}
+
+
+li:active,
+li a.nav-link:active,
+button#navbarDropdown.btn.nav-link.dropdown-toggle:active {
+  color:#640000;
+}
+
+#fas.fa-shopping-cart.fa-fw {
+  font-size: 120px;
+}
+
+a.dropdown-item:hover {
+  background-color: #C0C0C0;
+}
+
+#buttonNavbarDropdown{
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+
+/* button#navbarDropdown.btn.fas.fa-user.fa-fw.nav-link.dropdown-togle::after {
+  outline: 0;
+  box-shadow: 0 0 0 0;
+} */
+
+
+
+/* i.fas.fa-user.fa-fw::before,
+i.fas.fa-shopping-cart.fa-fw::before {
+  line-height: 100%;
+} */
+

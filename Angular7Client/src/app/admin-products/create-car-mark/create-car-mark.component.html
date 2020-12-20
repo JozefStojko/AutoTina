@@ -1,0 +1,82 @@
+<h5 style="text-align:center">Dodaj marku vozila</h5>
+
+<div class="container">
+
+  <!-- OVO JE VAZNO ZA CENTRIRANJE FORME bootstrap/4.0.0 -->
+    <div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <div *ngIf="fileUpload.status==='error'">
+      <div [innerHTML]="fileUpload.message"></div>
+  </div>
+  <div *ngIf="fileUpload.status==='progress'">
+      <div class="progress" style="height: 20px;margin-bottom:20px;">
+        <div class="progress-bar" role="progressbar" [style.width.%]="fileUpload.message" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{fileUpload.message}}%</div>
+      </div>
+  </div>
+
+    <form name="form" (ngSubmit)="carMarkForm.form.valid && OnSubmitMark(mark, image)" #carMarkForm="ngForm" novalidate>
+
+  <!-- Car mark -->
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+      </div>
+
+      <input 
+      id="mark" 
+      name="mark" 
+      class="form-control" 
+      required minlength="3" 
+      [(ngModel)]="carmarkService.carMark.Mark" 
+      ngModel 
+      #mark="ngModel"
+      placeholder="Upiši novu marku vozila" type="text" />
+
+    </div>
+    <div class="form-group">
+      <div *ngIf="mark.invalid && (mark.dirty || mark.touched)" class="alert alert-danger">
+        <div *ngIf="mark?.errors.required">
+          Mora se uneti tip automobila.
+        </div>
+        <div *ngIf="mark?.errors.minlength">
+          Tip mora imati minimalno 3 karaktera.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image -->
+  <div class="form-group">
+    <div class="input-group justify-content-center">
+<br>
+      <img [src]="imageUrl"  style="width:250px; height:200px"> 
+      <input type="file" name="image" ngModel #image="ngModel" accept="image/*" required (change)="handleFileInput($event.target.files)">
+      <!-- <div class="progress" *ngIf="progress">
+        <div class="progress-bar" [style.width]="progress + '%'">{{progress}}%</div>
+      </div> -->
+    </div>
+
+    <div class="form-group">
+     <div *ngIf="image.invalid && image.dirty" class="alert alert-danger">
+          <div *ngIf="image?.errors.required">
+           Morate odabrati sliku.
+         </div>
+       </div>
+     </div>
+
+     
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-block"
+      [disabled]="carMarkForm.form.invalid || buttondisabled"> Dodaj marku vozila </button>
+  </div>
+</form>
+<p>{{ error }}</p>
+</div>
+</div>
+</div>
+
+

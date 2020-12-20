@@ -1,0 +1,12 @@
+a {
+    color: white;
+  }
+  
+  a:hover {
+    color: #ffffff;
+  }
+  
+  a:active {
+    color: #640000;
+  }
+  

@@ -1,0 +1,39 @@
+/* a#tab-2.nav-link {
+    color: #C0C0C0;
+}
+
+a#tab-2.nav-link:hover {
+color: #C0C0C0;
+text-decoration: underline;
+}
+
+li.nav-item {
+    color: black;
+}
+
+a#tab-2.nav-link {
+    color: black;
+} */
+
+a {
+    color: #666565;
+  }
+  
+  a {
+      color: black;
+    }
+  
+  a:hover {
+      color: #666565;
+      text-decoration: underline;
+  }
+  
+  a:active {
+    color: #640000;
+  }
+  
+  .ngbTabTitle {
+      color: #666565;
+  }
+  
+  

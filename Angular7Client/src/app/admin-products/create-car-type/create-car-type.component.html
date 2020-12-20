@@ -1,0 +1,138 @@
+<h5 style="text-align:center">Dodaj model vozila</h5>
+
+<div class="container">
+
+  <!-- OVO JE VAZNO ZA CENTRIRANJE FORME bootstrap/4.0.0 -->
+    <div class="row justify-content-center">
+  <div class="col-md-6">
+
+<form name="form" (ngSubmit)="carTypeForm.form.valid && OnSubmitType(type, yearFrom, yearTo)" #carTypeForm="ngForm" novalidate>
+
+  <!-- Car type -->
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+      </div>
+
+      <select 
+      name="markSelect" 
+      id="markSelect" 
+      class="form-control"
+      [(ngModel)]="allCarMarks">
+      <option *ngFor="let mark of allCarMarks" [value]="mark.Id">{{ mark.Mark }}</option>
+    </select>
+  </div>
+  </div>
+
+
+  <!-- Car model -->
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+      </div>
+
+            <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+
+      <input 
+      id="type" 
+      name="type" 
+      class="form-control" 
+      required minlength="3" 
+      ngModel 
+
+      #type="ngModel"
+      placeholder="Upiši novi model" type="text" />
+
+    </div>
+    <div class="form-group">
+      <div *ngIf="type.invalid && (type.dirty || type.touched)" class="alert alert-danger">
+        <div *ngIf="type?.errors.required">
+          Mora se uneti tip automobila.
+        </div>
+        <div *ngIf="type?.errors.minlength">
+          Tip mora imati minimalno 3 karaktera.
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Car YearFrom -->
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="far fa-calendar-plus"></i> </span>
+        </div>
+  
+        <!-- [(ngModel)]="carTypeService.carType.YearFrom"  -->
+
+        <input 
+        id="yearFrom" 
+        name="godinaProizvodnjeOd" 
+        class="form-control" 
+        required 
+        minlength="3" 
+
+        ngModel 
+        #godinaProizvodnjeOd="ngModel"
+        placeholder="Upiši broj godine od koje ovaj model proizvodi." type="text" />
+    </div>
+
+      <div class="form-group">
+        <div *ngIf="godinaProizvodnjeOdValidna && (godinaProizvodnjeOd.dirty || godinaProizvodnjeOd.touched)" class="alert alert-danger">
+          <div *ngIf="godinaProizvodnjeOd?.errors.required">
+            Mora se uneti godina početka proizvodnje modela.
+          </div>
+          <div *ngIf="godinaProizvodnjeOdValidna">
+            Tip mora imati minimalno 3 karaktera.
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Car YearTo -->
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="far fa-calendar-minus"></i> </span>
+        </div>
+        
+        <!-- [(ngModel)]="carTypeService.carType.YearTo"  -->
+
+        <input 
+        id="yearTo" 
+        name="godinaProizvodnjeDo" 
+        class="form-control" 
+        required 
+        minlength="3" 
+
+        ngModel 
+        #godinaProizvodnjeDo="ngModel"
+        placeholder="Upiši broj godine do koje ovaj model proizvodio." type="text" />
+    </div>
+
+      <div class="form-group">
+        <div *ngIf="godinaProizvodnjeDoValidna && (godinaProizvodnjeDo.dirty || godinaProizvodnjeDo.touched)" class="alert alert-danger">
+          <div *ngIf="godinaProizvodnjeDo?.errors.required">
+            Mora se uneti godina početka proizvodnje modela.
+          </div>
+          <div *ngIf="godinaProizvodnjeDoValidna">
+            Tip mora imati minimalno 3 karaktera.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-block"
+      [disabled]="carTypeForm.form.invalid || buttondisabled"> Dodaj model vozila </button>
+  </div>
+</form>
+<p>{{ error }}</p>
+</div>
+</div>
+</div>
+
+

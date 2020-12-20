@@ -1,0 +1,93 @@
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <a class="navbar-brand" href="#">Auto Tina  <br> 023 528 401</a>
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
+    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{ 'show' : navbarOpen }">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="home">Početna<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="proizvodjaci">Pretraga po vozilu</a>
+      </li>
+
+      <li ngbDropdown  id="parentDropdown" class="nav-item dropdown">
+          <button ngbDropdownToggle class="btn nav-link dropdown-toggle" id="navbarDropdown"
+          data-toggle="dropdown" aria-haspopup="true">
+          Kategorije delova</button>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Rasveta</a>
+          <a class="dropdown-item" href="#">Retrovizori</a>
+          <a class="dropdown-item" href="#">Karoserija</a>
+          <a class="dropdown-item" href="#">Stakla</a>
+          <a class="dropdown-item" href="#">Rashladni sistemi</a>
+          <a class="dropdown-item" href="#">Vešanje i pogon</a>
+          <a class="dropdown-item" href="#">Motor</a>
+          <a class="dropdown-item" href="#">Dodatna oprema</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+
+    <!-- *ngIf="(!adminService.itsAdminSignIn)" -->
+    <ul class="navbar-nav">
+
+      <li *ngIf="(adminService.itsAdminSignIn)">
+        Hello {{admin}}!
+      </li>
+      <li *ngIf="!(adminService.itsAdminSignIn)">
+        Hello
+      </li>
+
+      &nbsp;&nbsp;
+
+      <li *ngIf="(!adminService.itsAdminSignIn)" ngbDropdown id="parentDropdown" class="nav-item dropdown">
+        <button ngbDropdownToggle class="btn fas fa-user fa-fw nav-link dropdown-toggle" id="buttonNavbarDropdown"
+        data-toggle="dropdown" aria-haspopup="true">
+        </button>
+
+        <!-- <a href=""><i class="fas fa-user fa-fw" style="color:white; font-size:20px"></i></a> -->
+        <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" (click)="signInUser()" [routerLink]="['/user-sign-in']"><i class="fas fa-sign-in-alt"></i>&nbsp;Sign In</a>
+          <a class="dropdown-item" (click)="signUpUser()" [routerLink]="['/user-sign-up']"><i class="fas fa-user-plus"></i>&nbsp;Sign Up</a>
+        </div>
+      </li>
+     
+    <li *ngIf="(adminService.itsAdminSignIn)" ngbDropdown  id="parentDropdown" class="nav-item dropdown">
+      <div class="btn-group">
+        <button ngbDropdownToggle class="btn fas fa-user fa-fw nav-link dropdown-toggle" id="buttonNavbarDropdown"
+        data-toggle="dropdown" aria-haspopup="true">
+        </button>
+
+        <!-- <a href=""><i ngbDropdownToggle class="fas fa-user fa-fw" style="color:white; font-size:20px" id="navbarDropdown3"
+          data-toggle="dropdown" aria-haspopup="true"></i></a> -->
+          <!-- <a class="dropdown-item" (click)="signOut()" [routerLink]="['/home']"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{admin}}</a> -->
+
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" [routerLink]="['/admin']"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{admin}}</a>
+        <a class="dropdown-item" [routerLink]="['/edit-admin']"><i class="fas fa-cogs"></i>&nbsp;Edit my profile</a>
+        <a class="dropdown-item" (click)="signOut()" [routerLink]="['/home']"><i class="fas fa-sign-out-alt"></i>&nbsp;Sign Out</a>
+      </div>
+    </div>
+    </li>
+    &nbsp;&nbsp;
+    <li class="nav-item active">
+      <a href="" style="color: #ffffff"><i class="fas fa-shopping-cart fa-fw"></i></a>
+    </li>
+
+      &nbsp;&nbsp;
+    
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    </form>
+
+</div>
+</nav>
+

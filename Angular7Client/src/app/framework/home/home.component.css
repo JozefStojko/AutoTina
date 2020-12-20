@@ -1,0 +1,14 @@
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.responsive-text {
+  font-size:4vw;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
