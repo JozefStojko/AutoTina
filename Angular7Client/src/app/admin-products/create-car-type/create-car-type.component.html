@@ -15,13 +15,17 @@
         <span class="input-group-text"> <i class="fas fa-car"></i> </span>
       </div>
 
-      <select 
-      name="markSelect" 
-      id="markSelect" 
-      class="form-control"
-      [(ngModel)]="allCarMarks">
-      <option *ngFor="let mark of allCarMarks" [value]="mark.Id">{{ mark.Mark }}</option>
-    </select>
+    <select 
+    name="markSelect" 
+    id="markSelect" 
+    type="number" 
+    [(ngModel)]="carMarkId" 
+    class="form-control" 
+    [(ngModel)]="carMarkId" 
+    (ngModelChange)="markToNumber()">
+      <option value="" disabled>Choose your mark</option>
+      <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
+   </select>
   </div>
   </div>
 

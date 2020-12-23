@@ -1,5 +1,5 @@
 export class CarMark {
-    Id?: string;
+    Id?: number;
     Mark: string;
     Image: string;
     }

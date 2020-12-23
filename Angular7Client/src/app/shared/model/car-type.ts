@@ -1,5 +1,5 @@
 export class CarType {
-    Id?: string;
+    Id?: number;
     MarkId: string;
     Type: string;
     YearFrom: number;

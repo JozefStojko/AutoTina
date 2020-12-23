@@ -91,7 +91,7 @@ export class CreateCarMarkComponent implements OnInit {
       form.reset();
     }
     this.carmarkService.carMark = {
-      Id: '',
+      Id: null,
       Mark: '',
       Image: null
     };

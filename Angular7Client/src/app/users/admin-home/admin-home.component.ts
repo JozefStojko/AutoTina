@@ -76,7 +76,7 @@ export class AdminHomeComponent implements OnInit {
         CarName: ''
       };
       this.carmarkService.carMark = {
-        Id: '',
+        Id: null,
         Mark: '',
         Image: null
       };
@@ -88,7 +88,7 @@ export class AdminHomeComponent implements OnInit {
     //ovo treba da radi i add i edit
     //edit radi samo za ime marke ali ne radi za sliku, ne menja sliku u frameu
         OnSubmitMark(mark, image) {
-          if (this.carmarkService.carMark.Id == '') {
+          if (this.carmarkService.carMark.Id.toString() == '') {
             console.log('mark: ', mark.value, 'this.fileToUpload: ', this.fileToUpload);
             this.carmarkService.saveCarMark(mark.value, this.fileToUpload).subscribe(
              data =>{
@@ -113,7 +113,7 @@ export class AdminHomeComponent implements OnInit {
             if (this.fileToUpload.name !== '') {
               console.log('this.fileToUpload.name not null: ', this.fileToUpload.name);
 
-              this.carmarkService.putCarMark(this.carmarkService.carMark.Id, mark.value, this.fileToUpload).subscribe(
+              this.carmarkService.putCarMark(this.carmarkService.carMark.Id.toString(), mark.value, this.fileToUpload).subscribe(
                 data =>{
                   console.log('done');
                   mark = '';
@@ -222,7 +222,7 @@ export class AdminHomeComponent implements OnInit {
 
      
           deleteCarMark(carMark: CarMark) {
-            this.carmarkService.removeCarMark(carMark.Id).subscribe(() => {  
+            this.carmarkService.removeCarMark(carMark.Id.toString()).subscribe(() => {  
               this.loadAllCarMarks();  
             });  
           }

@@ -42,7 +42,7 @@ export class UpdateCarMarkComponent implements OnInit {
   }
 
   OnUpdateCarMark(mark) {
-    this.carmarkService.putCarMarkNoImage(this.carmarkService.carMark.Id, mark.value, this.carmarkService.carMark.Image).subscribe(
+    this.carmarkService.putCarMarkNoImage(this.carmarkService.carMark.Id.toString(), mark.value, this.carmarkService.carMark.Image).subscribe(
       res => console.log('done'),
       err => this.error = err,
       () => {
@@ -72,7 +72,7 @@ export class UpdateCarMarkComponent implements OnInit {
       form.reset();
     }
     this.carmarkService.carMark = {
-      Id: '',
+      Id: null,
       Mark: '',
       Image: null
     };

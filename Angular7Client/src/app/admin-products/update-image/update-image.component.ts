@@ -46,7 +46,7 @@ export class UpdateImageComponent implements OnInit {
   OnUpdateCarMark(image) {
     console.log(this.fileToUpload);
     console.log(this.carMark);
-    this.carmarkService.putCarMark(this.carMark.Id, this.carMark.Mark, this.fileToUpload).subscribe(
+    this.carmarkService.putCarMark(this.carMark.Id.toString(), this.carMark.Mark, this.fileToUpload).subscribe(
       res => console.log('done'),
       err => this.error = err,
       () => {
@@ -77,7 +77,7 @@ export class UpdateImageComponent implements OnInit {
       form.reset();
     }
     this.carmarkService.carMark = {
-      Id: '',
+      Id: null,
       Mark: '',
       Image: null
     };

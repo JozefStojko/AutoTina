@@ -15,6 +15,7 @@ export class CreateCarTypeComponent implements OnInit {
   godinaProizvodnjeOdValidna: boolean = true;
   godinaProizvodnjeDoValidna: boolean = true;
   allCarMarks: CarMark[];
+  carMarkId: number = null;
 
 
 
@@ -28,6 +29,7 @@ export class CreateCarTypeComponent implements OnInit {
 
   ngOnInit() {
     this.loadAllCarMarks(); 
+    // this.carMarkId = this.allCarMarks[0];
   }
 
   loadAllCarMarks() {  
@@ -37,5 +39,10 @@ export class CreateCarTypeComponent implements OnInit {
       () => console.log('done!', this.allCarMarks)
     )}; 
 
+ // Choose mark using select dropdown
+  markToNumber(){
+  this.carMarkId = +this.carMarkId;
+  console.log(this.carMarkId);
+}
 
 }

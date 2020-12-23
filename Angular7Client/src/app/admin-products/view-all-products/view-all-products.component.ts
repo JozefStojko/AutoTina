@@ -71,7 +71,7 @@ export class ViewAllProductsComponent implements OnInit {
         CarName: ''
       };
       this.carmarkService.carMark = {
-        Id: '',
+        Id: null,
         Mark: '',
         Image: null
       };
@@ -114,7 +114,7 @@ export class ViewAllProductsComponent implements OnInit {
           }
      
           deleteCarMark(carMark: CarMark) {
-            this.carmarkService.removeCarMark(carMark.Id).subscribe(() => {  
+            this.carmarkService.removeCarMark(carMark.Id.toString()).subscribe(() => {  
               this.loadAllCarMarks();  
             });  
           }

@@ -51,12 +51,28 @@ namespace WebApiAuthCrud.Controllers
             //{
             //    return BadRequest();
             //}
-            string imageName = null;
-            string markName = null;
 
             var httpRequest = HttpContext.Current.Request;
 
-            
+            string imageName = null;
+            string markName = null;
+
+            //Create id from carMarkId
+            string idNameString = httpRequest.Params["carMarkId"];
+            idNameString = idNameString.Remove(0, 1);
+            idNameString = idNameString.Remove(idNameString.Length - 1);
+
+            int idName = (int)Int64.Parse(idNameString);
+
+            //CarMark carMarkFromDb = await db.CarMarks.FindAsync(idName);
+            //if (carMarkFromDb == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //string imageNameFromDb = carMarkFromDb.Image;
+
+
             var mark = httpRequest.Params["markName"];
 
             if (mark.Contains("mark"))
@@ -79,6 +95,10 @@ namespace WebApiAuthCrud.Controllers
             //Create custom filename
             if (postedFile != null)
             {
+                //delete image
+                //var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageNameFromDb);
+                //File.Delete(filePath);
+
                 imageName = new String(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
                 imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
                 var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
@@ -91,10 +111,12 @@ namespace WebApiAuthCrud.Controllers
                 //imageName = HttpContext.Current.Server.MapPath("~/image/") + imageName;
             }
 
+
             CarMark carMark = new CarMark()
             {
                 //Mark = httpRequest["mark"],
-                Id = (int)Int64.Parse(httpRequest.Params["carMarkId"]),
+                //Id = (int)Int64.Parse(httpRequest.Params["carMarkId"]),
+                Id = idName,
                 Mark = markName,
                 Image = imageName
             };
@@ -223,6 +245,12 @@ namespace WebApiAuthCrud.Controllers
             {
                 return NotFound();
             }
+
+            //delete image
+            string imageName = carMark.Image;
+            var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
+            File.Delete(filePath);
+
 
             db.CarMarks.Remove(carMark);
             await db.SaveChangesAsync();
