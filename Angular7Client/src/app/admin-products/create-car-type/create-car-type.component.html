@@ -80,16 +80,18 @@
 
         ngModel 
         #godinaProizvodnjeOd="ngModel"
+        (keyup)="onKeyYearFrom($event)"
+        (keypress)="stripTextyearFrom($event)"
         placeholder="Upiši broj godine od koje ovaj model proizvodi." type="text" />
     </div>
 
       <div class="form-group">
         <div *ngIf="godinaProizvodnjeOdValidna && (godinaProizvodnjeOd.dirty || godinaProizvodnjeOd.touched)" class="alert alert-danger">
-          <div *ngIf="godinaProizvodnjeOd?.errors.required">
+          <div *ngIf="!godinaProizvodnjeOd.valid">
             Mora se uneti godina početka proizvodnje modela.
           </div>
-          <div *ngIf="godinaProizvodnjeOdValidna">
-            Tip mora imati minimalno 3 karaktera.
+          <div *ngIf="godinaProizvodnjeOdValidna"  >
+            Godina mora biti veća od 1900 i manja ili jednaka sa aktuelnom godinom.
           </div>
         </div>
       </div>
@@ -113,16 +115,19 @@
 
         ngModel 
         #godinaProizvodnjeDo="ngModel"
+        (keyup)="onKeyYearTo($event)"
+        [disabled]="godinaProizvodnjeOdValidna"
+        (keypress)="stripTextyearTo($event)"
         placeholder="Upiši broj godine do koje ovaj model proizvodio." type="text" />
     </div>
 
       <div class="form-group">
         <div *ngIf="godinaProizvodnjeDoValidna && (godinaProizvodnjeDo.dirty || godinaProizvodnjeDo.touched)" class="alert alert-danger">
-          <div *ngIf="godinaProizvodnjeDo?.errors.required">
+          <div *ngIf="!godinaProizvodnjeDo.valid">
             Mora se uneti godina početka proizvodnje modela.
           </div>
           <div *ngIf="godinaProizvodnjeDoValidna">
-            Tip mora imati minimalno 3 karaktera.
+            Godina mora biti veća poéetka proizvodnje i manja ili jednaka sa aktuelnom godinom.
           </div>
         </div>
       </div>
