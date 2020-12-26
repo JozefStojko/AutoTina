@@ -20,7 +20,11 @@ namespace WebApiAuthCrud.Controllers
         // GET: api/CarModels
         public IQueryable<CarModel> GetCarModels()
         {
-            return db.CarModels;
+            //var models = db.CarModels.Include(c => c.CarMark).Where(p => p.CarMark.Id.Contains(tip));
+
+            //return db.CarModels;
+            return db.CarModels.Include(m => m.CarMark);
+
         }
 
         // GET: api/CarModels/5

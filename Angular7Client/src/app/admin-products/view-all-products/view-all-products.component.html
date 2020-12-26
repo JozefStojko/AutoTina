@@ -30,25 +30,26 @@
             <hr>
 
 
-          <!-- <div class="col-md-12">
+          <div class="col-md-12">
             <table class="table table-striped table-hover table-bordered">
             <tr>
-              <th style="text-align:center">Znak</th>
-              <th style="text-align:center">Putanja</th>
-              <th style="text-align:center">Ime</th>
+              <th style="text-align:center">Marka</th>
+              <th style="text-align:center">Tip</th>
+              <th style="text-align:center">Početak proizvodnje</th>
+              <th style="text-align:center">Kraj proizvodnje</th>
               <th colspan="3" style="text-align:center">Komande</th>
 
             </tr>
-              <tr *ngFor="let carMark of allCarMarks">
-                <td (click)="populateMarkForm(carMark)"><img [src]="createImagePath(carMark.Image)" style="width:40px; height:40px"></td>
-                <td (click)="populateMarkForm(carMark)">{{carMark.Image}}</td>
-                <td (click)="populateMarkForm(carMark)">{{carMark.Mark}}</td>
-                <td style="text-align:center"><button (click)="updateImage(carMark)" class="btn btn-sm btn-outline-primary">Change image</button></td>
-                <td style="text-align:center"><button (click)="updateCarMark(carMark)" class="btn btn-sm btn-outline-primary">Edit</button></td>
-                <td style="text-align:center"><button (click)="deleteCarMark(carMark)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+              <tr *ngFor="let carType of allCarTypes">
+                <td style="text-align:center">{{carType.CarMark.Mark}}</td>
+                <td style="text-align:center">{{carType.Model}}</td>
+                <td style="text-align:center">{{carType.YearFrom}}</td>
+                <td style="text-align:center">{{carType.YearTo}}</td>
+                <td style="text-align:center"><button (click)="updateCarType(carType)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+                <td style="text-align:center"><button (click)="deleteCarType(carType)" class="btn btn-sm btn-outline-danger">Delete</button></td>
               </tr>
             </table>
-          </div> -->
+          </div>
 
           </ng-template>
         </ngb-tab>
@@ -76,9 +77,9 @@
 
             </tr>
               <tr *ngFor="let carMark of allCarMarks">
-                <td (click)="populateMarkForm(carMark)"><img [src]="createImagePath(carMark.Image)" style="width:40px; height:40px"></td>
-                <td (click)="populateMarkForm(carMark)">{{carMark.Image}}</td>
-                <td (click)="populateMarkForm(carMark)">{{carMark.Mark}}</td>
+                <td><img [src]="createImagePath(carMark.Image)" style="width:40px; height:40px"></td>
+                <td style="text-align:center">{{carMark.Image}}</td>
+                <td style="text-align:center">{{carMark.Mark}}</td>
                 <td style="text-align:center"><button (click)="updateImage(carMark)" class="btn btn-sm btn-outline-primary">Change image</button></td>
                 <td style="text-align:center"><button (click)="updateCarMark(carMark)" class="btn btn-sm btn-outline-primary">Edit</button></td>
                 <td style="text-align:center"><button (click)="deleteCarMark(carMark)" class="btn btn-sm btn-outline-danger">Delete</button></td>

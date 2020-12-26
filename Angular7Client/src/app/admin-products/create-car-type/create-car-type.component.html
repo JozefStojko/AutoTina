@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
   <div class="col-md-6">
 
-<form name="form" (ngSubmit)="carTypeForm.form.valid && OnSubmitType(type, yearFrom, yearTo)" #carTypeForm="ngForm" novalidate>
+<form name="form" (ngSubmit)="carTypeForm.form.valid && OnSubmitType(carMarkId, type.value, godinaProizvodnjeOd.value, godinaProizvodnjeDo.value)" #carTypeForm="ngForm" novalidate>
 
   <!-- Car type -->
   <div class="form-group">
@@ -81,8 +81,9 @@
         ngModel 
         #godinaProizvodnjeOd="ngModel"
         (keyup)="onKeyYearFrom($event)"
-        (keypress)="stripTextyearFrom($event)"
-        placeholder="Upiši broj godine od koje ovaj model proizvodi." type="text" />
+        (keypress)="stripText($event)"
+        placeholder="Upiši broj godine od koje ovaj model proizvodi." 
+        type="number" />
     </div>
 
       <div class="form-group">
@@ -117,8 +118,9 @@
         #godinaProizvodnjeDo="ngModel"
         (keyup)="onKeyYearTo($event)"
         [disabled]="godinaProizvodnjeOdValidna"
-        (keypress)="stripTextyearTo($event)"
-        placeholder="Upiši broj godine do koje ovaj model proizvodio." type="text" />
+        (keypress)="stripText($event)"
+        placeholder="Upiši broj godine do koje ovaj model proizvodio." 
+        type="number" />
     </div>
 
       <div class="form-group">

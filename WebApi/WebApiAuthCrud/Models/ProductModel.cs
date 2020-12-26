@@ -27,7 +27,7 @@ namespace WebApiAuthCrud.Models
 
         public string Description { get; set; }
 
-        public IList<CarModel> Cars { get; set; }
+        //public IList<CarModel> Cars { get; set; }
 
         public ProductTypeModel ProductTypeModelId { get; set; }
 

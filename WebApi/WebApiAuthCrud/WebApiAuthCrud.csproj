@@ -299,6 +299,14 @@
     <Compile Include="Migrations\202011201026331_DeleteCarIdFormCarModelsAndCarMarks.Designer.cs">
       <DependentUpon>202011201026331_DeleteCarIdFormCarModelsAndCarMarks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012252058571_Adding CarType propertie to CarType.cs" />
+    <Compile Include="Migrations\202012252058571_Adding CarType propertie to CarType.Designer.cs">
+      <DependentUpon>202012252058571_Adding CarType propertie to CarType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012252114484_comments IList CarModel Cars i products model.cs" />
+    <Compile Include="Migrations\202012252114484_comments IList CarModel Cars i products model.Designer.cs">
+      <DependentUpon>202012252114484_comments IList CarModel Cars i products model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounting.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -445,6 +453,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011201026331_DeleteCarIdFormCarModelsAndCarMarks.resx">
       <DependentUpon>202011201026331_DeleteCarIdFormCarModelsAndCarMarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012252058571_Adding CarType propertie to CarType.resx">
+      <DependentUpon>202012252058571_Adding CarType propertie to CarType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012252114484_comments IList CarModel Cars i products model.resx">
+      <DependentUpon>202012252114484_comments IList CarModel Cars i products model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

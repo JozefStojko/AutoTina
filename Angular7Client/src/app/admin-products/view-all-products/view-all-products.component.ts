@@ -2,10 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CarType } from 'src/app/shared/model/car-type.model';
 import { Car } from 'src/app/shared/model/car.model';
 import { CarMark } from 'src/app/shared/model/carMark.model';
 import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
+import { CarTypeService } from 'src/app/shared/service/car-type.service';
 import { CarService } from 'src/app/shared/service/car.service';
 import { DataService } from 'src/app/shared/service/data.service';
 
@@ -22,6 +24,7 @@ export class ViewAllProductsComponent implements OnInit {
   car: Car;
   allCarMarks: CarMark[];
   allCars: Car[];
+  allCarTypes: CarType[];
   carMarkService: any;
   setImageValue: any = null;
 
@@ -33,7 +36,8 @@ export class ViewAllProductsComponent implements OnInit {
     private dataAdmin: DataService,
     public adminService: AdminService,
     public carmarkService: CarMarkService,
-    public carService: CarService
+    public carService: CarService,
+    public carTypeService: CarTypeService
     ) { }
 
     @ViewChild('image') image;
@@ -56,6 +60,8 @@ export class ViewAllProductsComponent implements OnInit {
       this.resetForm();
       // this.loadAllCars();
       this.loadAllCarMarks(); 
+      this.loadAllCarTypes(); 
+
     // } else {
     //   this.router.navigate(['users/admin-sign-in']);
     // }
@@ -75,12 +81,33 @@ export class ViewAllProductsComponent implements OnInit {
         Mark: '',
         Image: null
       };
+      this.carTypeService.carType = {
+          Id: null,
+          CarMarkId: null,
+          Model: '',
+          YearFrom: null,
+          YearTo: null
+      };
       this.imageUrl = "/assets/img/default-image.png";
     }
+
+    //working with carType data
 
     createCarType() {
       this.router.navigate(['/admin-products/create-car-type']);
     }
+
+    loadAllCarTypes() {  
+      this.carTypeService.getAllCarTypes().subscribe(
+        result => this.allCarTypes = result,
+        error => console.log("Error :: " + error),
+        () => console.log('done!', this.allCarTypes)
+      )}; 
+
+
+
+    //working with carMark data
+
 
     createCarMark() {
       this.router.navigate(['/admin-products/create-car-mark']);
@@ -108,10 +135,10 @@ export class ViewAllProductsComponent implements OnInit {
     
     
 
-          populateMarkForm(carMark: CarMark) {
-            this.imageUrl = "http://localhost:52866/image/"+carMark.Image;
-            this.carmarkService.carMark = Object.assign({}, carMark);
-          }
+          // populateMarkForm(carMark: CarMark) {
+          //   this.imageUrl = "http://localhost:52866/image/"+carMark.Image;
+          //   this.carmarkService.carMark = Object.assign({}, carMark);
+          // }
      
           deleteCarMark(carMark: CarMark) {
             this.carmarkService.removeCarMark(carMark.Id.toString()).subscribe(() => {  
@@ -133,6 +160,9 @@ export class ViewAllProductsComponent implements OnInit {
           public createImagePath(serverPath: string) {
             return 'http://localhost:52866/image/'+serverPath;
           } 
+
+
+   //working with car data
 
         // Proizvođač samo ime CRUD
       //Ovo radi / 
@@ -204,8 +234,5 @@ export class ViewAllProductsComponent implements OnInit {
       this.dataAdmin.adminSignInFunction('');
       this.router.navigate(['/users/admin-sign-in']);
     }
-  
-
-        
 
 }

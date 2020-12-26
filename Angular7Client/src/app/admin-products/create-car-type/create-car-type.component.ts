@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CarType } from 'src/app/shared/model/car-type.model';
 import { CarMark } from 'src/app/shared/model/carMark.model';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
@@ -18,7 +19,8 @@ export class CreateCarTypeComponent implements OnInit {
   allCarMarks: CarMark[];
   carMarkId: number = null;
   currentYear: number=new Date().getFullYear();
-  godinaPocetkaProizvodnje: number = new Date().getFullYear();;
+  godinaPocetkaProizvodnje: number = new Date().getFullYear();
+  carType: CarType;
 
 
 
@@ -34,6 +36,36 @@ export class CreateCarTypeComponent implements OnInit {
     this.loadAllCarMarks(); 
     // this.carMarkId = this.allCarMarks[0];
   }
+
+  OnSubmitType( markId, type, yearFrom, yearTo) {
+    console.log(markId, "tipus: ", type, yearFrom, yearTo);
+    this.carType = {
+      CarMarkId: markId,
+      Model: type,
+      YearFrom: yearFrom,
+      YearTo: yearTo
+    }
+    console.log('carType: ', this.carType);
+    this.carTypeService.saveCarType(this.carType).subscribe(       
+      res => console.log('done'), //this.fileUpload = res,
+      err => console.log('err'), // this.error = err,
+      () => {
+        // markId = null;
+        // type = '';
+        // yearFrom = null
+        // yearTo = null;
+        this.toastr.success(
+         'Uspešan unos!',
+         'Unet je novi tip u bazu.',
+          {
+           timeOut: 5000,
+           progressBar: true,
+          });
+          this.router.navigate(['/admin-products/list-products']);
+      }
+    );
+}
+
 
   loadAllCarMarks() {  
     this.carMarkService.getAllCarMarks().subscribe(
@@ -71,17 +103,12 @@ onKeyYearTo(event: any) { // without type info
   console.log(event.target.value);
 }
 
-stripTextyearTo(event) {
+stripText(event) {
   const seperator  = '^([0-9])';
   const maskSeperator =  new RegExp(seperator , 'g');  
-  let result =maskSeperator.test(event.key);   return result;
+  let result = maskSeperator.test(event.key);   return result;
    }
 
-   stripTextyearFrom(event) {
-    const seperator  = '^([0-9])';
-    const maskSeperator =  new RegExp(seperator , 'g');  
-    let result =maskSeperator.test(event.key);   return result;
-     }
   
    
 

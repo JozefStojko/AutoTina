@@ -52,13 +52,13 @@ namespace WebApiAuthCrud.Controllers
         };
 
         // GET: GetProductsBySearch
-        [AllowAnonymous]
-        [Route("api/products/GetProductsBySearch")]
-        public IQueryable<ProductModel> GetProductsBySearch(string search, string sortType = "Naziv", int page = 1)
-        {
-            SortTypes sortBy = SortTypeDict[sortType];
+        //[AllowAnonymous]
+        //[Route("api/products/GetProductsBySearch")]
+        //public IQueryable<ProductModel> GetProductsBySearch(string search, string sortType = "Naziv", int page = 1)
+        //{
+        //    SortTypes sortBy = SortTypeDict[sortType];
 
-            IQueryable<ProductModel> product = db.ProductModels.Include(p => p.Cars);
+            //IQueryable<ProductModel> product = db.ProductModels.Include(p => p.Cars);
 
             //IQueryable<ProductModel> product = db.ProductModels;
 
@@ -84,20 +84,20 @@ namespace WebApiAuthCrud.Controllers
             //        break;
             //}
 
-            if (!search.IsNullOrWhiteSpace())
-            {
-                product = product.Where(
-                    p => p.ProductTypeModelId.ProductType.Contains(search) ||
-                    p.CatalogNumber.ToString().Contains(search) ||
-                    p.ProductName.Contains(search));
-            }
+            //if (!search.IsNullOrWhiteSpace())
+            //{
+            //    product = product.Where(
+            //        p => p.ProductTypeModelId.ProductType.Contains(search) ||
+            //        p.CatalogNumber.ToString().Contains(search) ||
+            //        p.ProductName.Contains(search));
+            //}
 
             //ViewBag.sortTypes = new SelectList(SortTypeDict, "Key", "Key", sortType);
             //ViewBag.CurrentSortType = sortType;
 
             //return View(festival.ToPagedList(page, FestsPerPage));
-            return product;
-        }
+        //    return product;
+        //}
 
         //[HttpPost]
         //public ActionResult Filter(Fest filter)
