@@ -6,6 +6,7 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { OrdersComponent } from './orders/orders.component';
 import { UpdateCarMarkComponent } from './update-car-mark/update-car-mark.component';
+import { UpdateCarTypeComponent } from './update-car-type/update-car-type.component';
 import { UpdateImageComponent } from './update-image/update-image.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { ViewAllProductsByCategoryComponent } from './view-all-products-by-category/view-all-products-by-category.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'update-car-mark', component: UpdateCarMarkComponent },
   { path: 'update-image', component: UpdateImageComponent },
   { path: 'orders', component: OrdersComponent },
+  { path: 'update-car-type', component: UpdateCarTypeComponent },
   { path: '', component: ViewAllProductsComponent }
 
 ];

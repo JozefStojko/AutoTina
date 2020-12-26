@@ -29,7 +29,6 @@ export class UpdateCarMarkComponent implements OnInit {
     public carmarkService: CarMarkService
     ) { }
 
-    //@ViewChild('mark') mark;
 
   ngOnInit() {
     console.log(this.carmarkService.carMark);
@@ -48,23 +47,15 @@ export class UpdateCarMarkComponent implements OnInit {
       () => {
         this.imageUrl = "/assets/img/default-image.png";
         this.toastr.success(
-         'Update succesfuly!',
-         'The record in Carmark base',
-          {
+          'Uspešna promena!',
+          'Marka je uspešno promenjena.',
+           {
            timeOut: 5000,
            progressBar: true,
           });
           this.router.navigate(['/admin-products/list-products']);
       }
     );
-    // this.toastr.success(
-    //   'Save succesfuly!',
-    //   'The record in Carmark base',
-    //    {
-    //     timeOut: 5000,
-    //     progressBar: true,
-    //    });
-    //    this.router.navigate(['/admin-products/list-products']);
     }
 
   resetForm(form?: NgForm) {

@@ -23,5 +23,15 @@ export class CarTypeService {
     return this.http.get<CarType[]>(this.rootUrl + '/api/carmodels');
   }  
 
+  putCarType(carType: CarType) {  
+    console.log(carType);
+    return this.http.put(this.rootUrl + '/api/carmodels/' + carType.Id, carType);
+  }  
+
+  removeCarType(id: string) {
+    return this.http.delete(this.rootUrl + '/api/carmodels/' + id);
+  }
+
+
 
 }

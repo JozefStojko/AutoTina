@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateCarMarkComponent } from './create-car-mark/create-car-mark.component';
 import { CreateCarTypeComponent } from './create-car-type/create-car-type.component';
 import { UpdateCarMarkComponent } from './update-car-mark/update-car-mark.component';
+import { UpdateCarTypeComponent } from './update-car-type/update-car-type.component';
 
 
 
@@ -31,7 +32,8 @@ import { UpdateCarMarkComponent } from './update-car-mark/update-car-mark.compon
     OrdersComponent,
     CreateCarMarkComponent,
     CreateCarTypeComponent,
-    UpdateCarMarkComponent
+    UpdateCarMarkComponent,
+    UpdateCarTypeComponent
   ],
   imports: [
     CommonModule,

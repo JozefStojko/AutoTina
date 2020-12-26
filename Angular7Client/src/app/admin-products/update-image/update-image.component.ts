@@ -61,14 +61,6 @@ export class UpdateImageComponent implements OnInit {
           this.router.navigate(['/admin-products/list-products']);
       }
   );
-    // this.toastr.success(
-    //   'Save succesfuly!',
-    //   'The record in Carmark base',
-    //    {
-    //     timeOut: 5000,
-    //     progressBar: true,
-    //    });
-    //    this.router.navigate(['/admin-products/list-products']);
 
     }
 

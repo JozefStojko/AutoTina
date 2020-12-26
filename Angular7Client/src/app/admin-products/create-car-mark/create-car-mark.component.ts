@@ -39,7 +39,6 @@ export class CreateCarMarkComponent implements OnInit {
   }
 
   OnSubmitMark(mark, image) {
-      console.log('mark: ', mark.value, 'this.fileToUpload: ', this.fileToUpload);
       this.carmarkService.saveCarMark(mark.value, this.fileToUpload).subscribe(       
         res => this.fileUpload = res,          // console.log('done');
         err => this.error = err,

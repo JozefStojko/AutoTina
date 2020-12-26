@@ -19,11 +19,10 @@
     name="markSelect" 
     id="markSelect" 
     type="number" 
-    [(ngModel)]="carMarkId" 
     class="form-control" 
     [(ngModel)]="carMarkId" 
     (ngModelChange)="markToNumber()">
-      <option value="" disabled>Choose your mark</option>
+      <option value="Choose your mark" disabled>Choose your mark</option>
       <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
    </select>
   </div>

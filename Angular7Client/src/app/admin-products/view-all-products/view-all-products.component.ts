@@ -61,10 +61,6 @@ export class ViewAllProductsComponent implements OnInit {
       // this.loadAllCars();
       this.loadAllCarMarks(); 
       this.loadAllCarTypes(); 
-
-    // } else {
-    //   this.router.navigate(['users/admin-sign-in']);
-    // }
       }
 
 
@@ -91,7 +87,7 @@ export class ViewAllProductsComponent implements OnInit {
       this.imageUrl = "/assets/img/default-image.png";
     }
 
-    //working with carType data
+    //working with carType data (car models)
 
     createCarType() {
       this.router.navigate(['/admin-products/create-car-type']);
@@ -104,6 +100,18 @@ export class ViewAllProductsComponent implements OnInit {
         () => console.log('done!', this.allCarTypes)
       )}; 
 
+  updateCarType(carType: CarType) {
+      this.carTypeService.carType = Object.assign({}, carType);
+      this.router.navigate(['/admin-products/update-car-type']);
+  }
+
+  deleteCarType(carType: CarType) {
+    this.carTypeService.removeCarType(carType.Id.toString()).subscribe(() => {  
+      this.loadAllCarTypes();  
+    });  
+  }
+
+  
 
 
     //working with carMark data
@@ -114,13 +122,11 @@ export class ViewAllProductsComponent implements OnInit {
     }
 
     updateImage(carMark: CarMark) {
-      console.log(carMark);
       this.carmarkService.carMark = Object.assign({}, carMark);
       this.router.navigate(['/admin-products/update-image']);
     }
 
     updateCarMark(carMark: CarMark) {
-      console.log(carMark);
       this.carmarkService.carMark = Object.assign({}, carMark);
       this.router.navigate(['/admin-products/update-car-mark']);
     }

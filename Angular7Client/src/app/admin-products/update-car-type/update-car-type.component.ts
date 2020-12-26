@@ -1,57 +1,71 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarType } from 'src/app/shared/model/car-type.model';
 import { CarMark } from 'src/app/shared/model/carMark.model';
+import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
 
 @Component({
-  selector: 'app-create-car-type',
-  templateUrl: './create-car-type.component.html',
-  styleUrls: ['./create-car-type.component.css']
+  selector: 'app-update-car-type',
+  templateUrl: './update-car-type.component.html',
+  styleUrls: ['./update-car-type.component.css']
 })
-export class CreateCarTypeComponent implements OnInit {
-  
+export class UpdateCarTypeComponent implements OnInit {
+
+  carType: CarType;
+  carMark: CarMark;
+  allCarTypes: CarType[];
+  allCarMarks: CarMark[];
+  error: string;
+  carMarkId: number = null;
   godinaProizvodnjeOdValidna: boolean = true;
   godinaProizvodnjeOdValidnaDisabled: boolean = true;
   godinaProizvodnjeDoValidna: boolean = true;
-  allCarMarks: CarMark[];
-  carMarkId: number = null;
   currentYear: number=new Date().getFullYear();
-  godinaPocetkaProizvodnje: number = new Date().getFullYear();
-  carType: CarType;
+  // godinaPocetkaProizvodnje: number = new Date().getFullYear();
+  godinaPocetkaProizvodnje: number;
 
-
-
+ 
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    public carTypeService: CarTypeService,
-    public carMarkService: CarMarkService
+    public adminService: AdminService,
+    public carMarkService: CarMarkService,
+    public carTypeService: CarTypeService
+    ) { }
 
-  ) { }
 
   ngOnInit() {
+    this.carType = {
+      Id: this.carTypeService.carType.Id,
+      CarMarkId: this.carTypeService.carType.CarMarkId,
+      Model: this.carTypeService.carType.Model,
+      YearFrom: this.carTypeService.carType.YearFrom,
+      YearTo: this.carTypeService.carType.YearTo,
+      CarMark: this.carTypeService.carType.CarMark.Mark
+    };
     this.loadAllCarMarks(); 
-    // this.carMarkId = this.allCarMarks[0];
+    this.godinaPocetkaProizvodnje = this.carType.YearFrom;
   }
 
-  OnSubmitType(markId, type, yearFrom, yearTo) {
+  OnUpdateCarType(markId, type, yearFrom, yearTo) {
     this.carType = {
+      Id: this.carTypeService.carType.Id,
       CarMarkId: markId,
       Model: type,
       YearFrom: yearFrom,
       YearTo: yearTo
     }
-    console.log('carType: ', this.carType);
-    this.carTypeService.saveCarType(this.carType).subscribe(       
-      res => console.log('done'), //this.fileUpload = res,
-      err => console.log('err'), // this.error = err,
+    this.carTypeService.putCarType(this.carType).subscribe(
+      res => console.log('done'),
+      err => this.error = err,
       () => {
         this.toastr.success(
-         'Uspešan unos!',
-         'Unet je novi tip u bazu.',
+         'Uspešna promena!',
+         'Model je uspešno promenjen.',
           {
            timeOut: 5000,
            progressBar: true,
@@ -59,18 +73,17 @@ export class CreateCarTypeComponent implements OnInit {
           this.router.navigate(['/admin-products/list-products']);
       }
     );
-}
-
+    }
 
   loadAllCarMarks() {  
-    this.carMarkService.getAllCarMarks().subscribe(
-      result => this.allCarMarks = result,
-      error => console.log("Error :: " + error),
-      () => console.log('done!', this.allCarMarks)
-    )}; 
-
+   this.carMarkService.getAllCarMarks().subscribe(
+     result => this.allCarMarks = result,
+     error => console.log("Error :: " + error),
+     () => console.log('done!', this.allCarMarks)
+   )}; 
+  
  // Choose mark using select dropdown
-  markToNumber(){
+ markToNumber(){
   this.carMarkId = +this.carMarkId;
   console.log(this.carMarkId);
 }
@@ -104,7 +117,17 @@ stripText(event) {
   let result = maskSeperator.test(event.key);   return result;
    }
 
-  
-   
+  resetForm(form?: NgForm) {
+    if (form != null) {
+      form.reset();
+    }
+    this.carTypeService.carType = {
+      CarMarkId: null,
+      Model: '',
+      YearFrom: null,
+      YearTo: null,
+      CarMark: ''
+    };
+  }
 
 }
