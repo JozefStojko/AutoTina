@@ -1,0 +1,55 @@
+<h5 style="text-align:center">Izmeni tip delova</h5>
+
+<div class="container">
+
+  <!-- OVO JE VAZNO ZA CENTRIRANJE FORME bootstrap/4.0.0 -->
+    <div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <form name="form" (ngSubmit)="partTypeForm.form.valid && OnUpdatePartType(productType.value)" #partTypeForm="ngForm" novalidate>
+
+    
+      <!-- Part Type -->
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+          </div>
+    
+                <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+    
+          <input 
+          id="productType" 
+          name="productType" 
+          class="form-control" 
+          required minlength="3" 
+          ngModel 
+          [(ngModel)]="partTypeService.partType.ProductType"
+          #productType="ngModel"
+          placeholder="Upiši novi tip deloa" type="text" />
+    
+        </div>
+        <div class="form-group">
+          <div *ngIf="productType.invalid && (type.dirty || type.touched)" class="alert alert-danger">
+            <div *ngIf="productType?.errors.required">
+              Mora se uneti tip delova.
+            </div>
+            <div *ngIf="type?.errors.minlength">
+              Tip mora imati minimalno 3 karaktera.
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"
+          [disabled]="partTypeForm.form.invalid || buttondisabled"> Izmeni tip delova </button>
+      </div>
+    </form>
+    </div>
+</div>
+</div>
+
+

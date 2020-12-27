@@ -1,5 +1,5 @@
 export class Product {
-  Id: string;
+  Id: number;
   ProductName: string;
   ProductType: string;
   OnLager: number;

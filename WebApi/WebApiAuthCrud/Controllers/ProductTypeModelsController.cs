@@ -26,7 +26,7 @@ namespace WebApiAuthCrud.Controllers
 
         // GET: api/ProductTypeModels/5
         [ResponseType(typeof(ProductTypeModel))]
-        public async Task<IHttpActionResult> GetProductTypeModel(string id)
+        public async Task<IHttpActionResult> GetProductTypeModel(int id)
         {
             ProductTypeModel productTypeModel = await db.ProductTypeModels.FindAsync(id);
             if (productTypeModel == null)
@@ -39,7 +39,7 @@ namespace WebApiAuthCrud.Controllers
 
         // PUT: api/ProductTypeModels/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutProductTypeModel(string id, ProductTypeModel productTypeModel)
+        public async Task<IHttpActionResult> PutProductTypeModel(int id, ProductTypeModel productTypeModel)
         {
             if (!ModelState.IsValid)
             {
@@ -82,29 +82,31 @@ namespace WebApiAuthCrud.Controllers
             }
 
             db.ProductTypeModels.Add(productTypeModel);
+            await db.SaveChangesAsync();
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (ProductTypeModelExists(productTypeModel.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+
+            //try
+            //{
+            //    await db.SaveChangesAsync();
+            //}
+            //catch (DbUpdateException)
+            //{
+            //    if (ProductTypeModelExists(productTypeModel.Id))
+            //    {
+            //        return Conflict();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
             return CreatedAtRoute("DefaultApi", new { id = productTypeModel.Id }, productTypeModel);
         }
 
         // DELETE: api/ProductTypeModels/5
         [ResponseType(typeof(ProductTypeModel))]
-        public async Task<IHttpActionResult> DeleteProductTypeModel(string id)
+        public async Task<IHttpActionResult> DeleteProductTypeModel(int id)
         {
             ProductTypeModel productTypeModel = await db.ProductTypeModels.FindAsync(id);
             if (productTypeModel == null)
@@ -127,7 +129,7 @@ namespace WebApiAuthCrud.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProductTypeModelExists(string id)
+        private bool ProductTypeModelExists(int id)
         {
             return db.ProductTypeModels.Count(e => e.Id == id) > 0;
         }

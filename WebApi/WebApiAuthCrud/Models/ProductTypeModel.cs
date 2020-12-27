@@ -9,7 +9,7 @@ namespace WebApiAuthCrud.Models
     public class ProductTypeModel
     {
         [Key]
-        public string Id { get; set; }
+        public int  Id { get; set; }
 
         [Required]
         public string ProductType { get; set; }

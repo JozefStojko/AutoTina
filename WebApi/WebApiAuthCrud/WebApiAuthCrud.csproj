@@ -307,6 +307,18 @@
     <Compile Include="Migrations\202012252114484_comments IList CarModel Cars i products model.Designer.cs">
       <DependentUpon>202012252114484_comments IList CarModel Cars i products model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012271615006_Set_to-back-string_to_int.cs" />
+    <Compile Include="Migrations\202012271615006_Set_to-back-string_to_int.Designer.cs">
+      <DependentUpon>202012271615006_Set_to-back-string_to_int.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012271645366_Change_id_string_to_int.cs" />
+    <Compile Include="Migrations\202012271645366_Change_id_string_to_int.Designer.cs">
+      <DependentUpon>202012271645366_Change_id_string_to_int.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012271653518_Add_id_increase.cs" />
+    <Compile Include="Migrations\202012271653518_Add_id_increase.Designer.cs">
+      <DependentUpon>202012271653518_Add_id_increase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounting.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -459,6 +471,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012252114484_comments IList CarModel Cars i products model.resx">
       <DependentUpon>202012252114484_comments IList CarModel Cars i products model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012271615006_Set_to-back-string_to_int.resx">
+      <DependentUpon>202012271615006_Set_to-back-string_to_int.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012271645366_Change_id_string_to_int.resx">
+      <DependentUpon>202012271645366_Change_id_string_to_int.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012271653518_Add_id_increase.resx">
+      <DependentUpon>202012271653518_Add_id_increase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

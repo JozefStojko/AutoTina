@@ -5,11 +5,13 @@ import { ToastrService } from 'ngx-toastr';
 import { CarType } from 'src/app/shared/model/car-type.model';
 import { Car } from 'src/app/shared/model/car.model';
 import { CarMark } from 'src/app/shared/model/carMark.model';
+import { PartType } from 'src/app/shared/model/part-type.model';
 import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
 import { CarService } from 'src/app/shared/service/car.service';
 import { DataService } from 'src/app/shared/service/data.service';
+import { PartTypeService } from 'src/app/shared/service/part-type.service';
 
 @Component({
   selector: 'app-view-all-products',
@@ -25,8 +27,9 @@ export class ViewAllProductsComponent implements OnInit {
   allCarMarks: CarMark[];
   allCars: Car[];
   allCarTypes: CarType[];
+  allPartTypes: PartType[];
   carMarkService: any;
-  setImageValue: any = null;
+    setImageValue: any = null;
 
   
   
@@ -37,7 +40,8 @@ export class ViewAllProductsComponent implements OnInit {
     public adminService: AdminService,
     public carmarkService: CarMarkService,
     public carService: CarService,
-    public carTypeService: CarTypeService
+    public carTypeService: CarTypeService,
+    public partTypeService: PartTypeService
     ) { }
 
     @ViewChild('image') image;
@@ -61,6 +65,7 @@ export class ViewAllProductsComponent implements OnInit {
       // this.loadAllCars();
       this.loadAllCarMarks(); 
       this.loadAllCarTypes(); 
+      this.loadAllPartTypes(); 
       }
 
 
@@ -84,8 +89,39 @@ export class ViewAllProductsComponent implements OnInit {
           YearFrom: null,
           YearTo: null
       };
+      this.partTypeService.partType = {
+        Id: null,
+        ProductType: ''
+    };
+
       this.imageUrl = "/assets/img/default-image.png";
     }
+  
+    //working with product (part) type
+    createPartType() {
+      this.router.navigate(['/admin-products/create-part-type']);
+    }
+
+    loadAllPartTypes() {  
+      this.partTypeService.getAllPartTypes().subscribe(
+        result => this.allPartTypes = result,
+        error => console.log("Error :: " + error),
+        () => console.log('done!', this.allPartTypes)
+      )}; 
+
+      updatePartType(partType: PartType) {
+        this.partTypeService.partType = Object.assign({}, partType);
+        this.router.navigate(['/admin-products/update-part-type']);
+    }
+  
+    deletePartType(partType: CarType) {
+      this.partTypeService.removePartType(partType.Id.toString()).subscribe(() => {  
+        this.loadAllPartTypes();  
+      });  
+    }
+  
+
+
 
     //working with carType data (car models)
 
