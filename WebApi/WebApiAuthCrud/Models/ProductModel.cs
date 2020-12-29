@@ -16,7 +16,7 @@ namespace WebApiAuthCrud.Models
 
         [Required]
         public int CarModelId { get; set; }
-
+        
         [Required]
         public string CatalogNumber { get; set; }
 

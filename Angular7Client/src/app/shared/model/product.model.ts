@@ -2,6 +2,7 @@ export class Product {
   Id?: number;
   ProductTypeId: number;
   CarModelId: number;
+  CarMarkId: number;
   CatalogNumber: string;
   ProductName: string;
   OnLager: number;
