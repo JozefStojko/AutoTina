@@ -2,6 +2,9 @@ export class User {
   Id?: string;
   UserName: string;
   Password: string;
+  CompanyName?: string;
+  PIB?: number;
+  IdNumber?: string;
   Email: string;
   FirstName: string;
   LastName: string;

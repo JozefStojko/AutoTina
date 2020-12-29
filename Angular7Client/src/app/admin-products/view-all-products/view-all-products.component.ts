@@ -74,7 +74,7 @@ export class ViewAllProductsComponent implements OnInit {
         form.reset();
       }
       this.carService.car = {
-        Id: '',
+        Id: null,
         CarName: ''
       };
       this.carmarkService.carMark = {
@@ -97,7 +97,13 @@ export class ViewAllProductsComponent implements OnInit {
       this.imageUrl = "/assets/img/default-image.png";
     }
   
-    //working with product (part) type
+    // workig with product
+    createProduct() {
+      this.router.navigate(['/admin-products/create-product']);
+    }
+
+
+    //working with product type
     createPartType() {
       this.router.navigate(['/admin-products/create-part-type']);
     }
@@ -209,7 +215,7 @@ export class ViewAllProductsComponent implements OnInit {
         // Proizvođač samo ime CRUD
       //Ovo radi / 
       OnSubmit(form: NgForm) {
-        if (this.carService.car.Id == '') {
+        if (this.carService.car.Id == null) {
           this.saveCar(form.value); 
           this.loadAllCars();
         }

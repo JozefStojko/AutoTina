@@ -319,6 +319,26 @@
     <Compile Include="Migrations\202012271653518_Add_id_increase.Designer.cs">
       <DependentUpon>202012271653518_Add_id_increase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012290654426_change_models_two.cs" />
+    <Compile Include="Migrations\202012290654426_change_models_two.Designer.cs">
+      <DependentUpon>202012290654426_change_models_two.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012290656456_change_in_product_model_from_string_to_in.cs" />
+    <Compile Include="Migrations\202012290656456_change_in_product_model_from_string_to_in.Designer.cs">
+      <DependentUpon>202012290656456_change_in_product_model_from_string_to_in.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012290700292_Add_Car_model_to_product_model.cs" />
+    <Compile Include="Migrations\202012290700292_Add_Car_model_to_product_model.Designer.cs">
+      <DependentUpon>202012290700292_Add_Car_model_to_product_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012290701110_Add_Car_mark_model_to_product_model.cs" />
+    <Compile Include="Migrations\202012290701110_Add_Car_mark_model_to_product_model.Designer.cs">
+      <DependentUpon>202012290701110_Add_Car_mark_model_to_product_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012290702135_Add_Product_model_to_Accounting_model.cs" />
+    <Compile Include="Migrations\202012290702135_Add_Product_model_to_Accounting_model.Designer.cs">
+      <DependentUpon>202012290702135_Add_Product_model_to_Accounting_model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounting.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -480,6 +500,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012271653518_Add_id_increase.resx">
       <DependentUpon>202012271653518_Add_id_increase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290654426_change_models_two.resx">
+      <DependentUpon>202012290654426_change_models_two.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290656456_change_in_product_model_from_string_to_in.resx">
+      <DependentUpon>202012290656456_change_in_product_model_from_string_to_in.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290700292_Add_Car_model_to_product_model.resx">
+      <DependentUpon>202012290700292_Add_Car_model_to_product_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290701110_Add_Car_mark_model_to_product_model.resx">
+      <DependentUpon>202012290701110_Add_Car_mark_model_to_product_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290702135_Add_Product_model_to_Accounting_model.resx">
+      <DependentUpon>202012290702135_Add_Product_model_to_Accounting_model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

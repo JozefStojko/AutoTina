@@ -72,7 +72,7 @@ export class AdminHomeComponent implements OnInit {
         form.reset();
       }
       this.carService.car = {
-        Id: '',
+        Id: null,
         CarName: ''
       };
       this.carmarkService.carMark = {
@@ -248,7 +248,7 @@ export class AdminHomeComponent implements OnInit {
         // Proizvođač samo ime CRUD
       //Ovo radi / 
     OnSubmit(form: NgForm) {
-      if (this.carService.car.Id == '') {
+      if (this.carService.car.Id == null) {
         this.saveCar(form.value); 
         this.loadAllCars();
       }

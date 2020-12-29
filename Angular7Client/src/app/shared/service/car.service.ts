@@ -28,7 +28,7 @@ export class CarService {
     return this.http.put(this.rootUrl + '/api/cars/' + car.Id, car);
   }  
 
-  removeCar(id: string) {
+  removeCar(id: number) {
     return this.http.delete(this.rootUrl + '/api/cars/' + id);
   }
 

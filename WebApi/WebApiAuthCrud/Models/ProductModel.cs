@@ -9,7 +9,13 @@ namespace WebApiAuthCrud.Models
     public class ProductModel
     {
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
+
+        [Required]
+        public int ProductTypeId { get; set; }
+
+        [Required]
+        public int CarModelId { get; set; }
 
         [Required]
         public string CatalogNumber { get; set; }
@@ -26,10 +32,12 @@ namespace WebApiAuthCrud.Models
         public string Image { get; set; }
 
         public string Description { get; set; }
+        public string ComparativeNumbers { get; set; }
+        public CarModel CarModel { get; set; }
 
-        public IList<CarModel> Cars { get; set; }
+        public CarMark CarMark { get; set; }
 
-        public ProductTypeModel ProductTypeModelId { get; set; }
+        public ProductTypeModel ProductTypeModel { get; set; }
 
 
 

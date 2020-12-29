@@ -1,5 +1,5 @@
 export class Car {
-    Id?: string;
+    Id?: number;
     CarName: string;
     }
   
