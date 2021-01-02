@@ -32,8 +32,11 @@ namespace WebApiAuthCrud.Models
         public string Image { get; set; }
 
         public string Description { get; set; }
+        
         public string ComparativeNumbers { get; set; }
+        
         public CarModelType CarModelType { get; set; }
+        
         public CarModel CarModel { get; set; }
 
         public CarMark CarMark { get; set; }
