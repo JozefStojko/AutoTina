@@ -16,13 +16,6 @@ namespace WebApiAuthCrud.Models
 
         [Required]
         public string Model { get; set; }
-
-        [Required]
-        public int YearFrom { get; set; }
-
-        [Required]
-        public int YearTo { get; set; }
-
         public CarMark CarMark { get; set; }
 
 

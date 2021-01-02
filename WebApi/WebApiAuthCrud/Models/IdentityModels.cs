@@ -63,5 +63,6 @@ namespace WebApiAuthCrud.Models
                 .ToTable("UserLogin");
         }
 
+        public System.Data.Entity.DbSet<WebApiAuthCrud.Models.CarModelType> CarModelTypes { get; set; }
     }
 }

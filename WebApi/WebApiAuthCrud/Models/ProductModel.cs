@@ -15,7 +15,7 @@ namespace WebApiAuthCrud.Models
         public int ProductTypeId { get; set; }
 
         [Required]
-        public int CarModelId { get; set; }
+        public int CarModelTypeId { get; set; }
 
         [Required]
         public string CatalogNumber { get; set; }
@@ -33,6 +33,7 @@ namespace WebApiAuthCrud.Models
 
         public string Description { get; set; }
         public string ComparativeNumbers { get; set; }
+        public CarModelType CarModelType { get; set; }
         public CarModel CarModel { get; set; }
 
         public CarMark CarMark { get; set; }

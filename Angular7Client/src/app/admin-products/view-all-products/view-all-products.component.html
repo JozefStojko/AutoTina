@@ -16,14 +16,14 @@
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </ng-template>
         </ngb-tab>
-  
+
         <!-- 2. tab -->
         <ngb-tab title="Modeli vozila" class="ngbTabTitle">
           <ng-template ngbTabContent>
             <!-- <h5 style="text-align:center">Marke vozila</h5> -->
             <hr>
 
-            <div class="row">
+            <!-- <div class="row">
                 <button type="button" style="text-align:center" class="btn btn-primary btn-block"
                 (click)="createCarType()"> Dodaj novi tip vozila</button>
             </div>
@@ -49,12 +49,50 @@
                 <td style="text-align:center"><button (click)="deleteCarType(carType)" class="btn btn-sm btn-outline-danger">Delete</button></td>
               </tr>
             </table>
+          </div> -->
+
+          </ng-template>
+        </ngb-tab>
+
+  
+        <!-- 3. tab -->
+        <ngb-tab title="Modeli vozila" class="ngbTabTitle">
+          <ng-template ngbTabContent>
+            <!-- <h5 style="text-align:center">Marke vozila</h5> -->
+            <hr>
+
+            <div class="row">
+                <button type="button" style="text-align:center" class="btn btn-primary btn-block"
+                (click)="createCarType()"> Dodaj novi tip vozila</button>
+            </div>
+            <hr>
+
+
+          <div class="col-md-12">
+            <table class="table table-striped table-hover table-bordered">
+            <tr>
+              <th style="text-align:center">Marka</th>
+              <th style="text-align:center">Tip</th>
+              <!-- <th style="text-align:center">Početak proizvodnje</th>
+              <th style="text-align:center">Kraj proizvodnje</th> -->
+              <th colspan="3" style="text-align:center">Komande</th>
+
+            </tr>
+              <tr *ngFor="let carType of allCarTypes">
+                <td style="text-align:center">{{carType.CarMark.Mark}}</td>
+                <td style="text-align:center">{{carType.Model}}</td>
+                <!-- <td style="text-align:center">{{carType.YearFrom}}</td>
+                <td style="text-align:center">{{carType.YearTo}}</td> -->
+                <td style="text-align:center"><button (click)="updateCarType(carType)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+                <td style="text-align:center"><button (click)="deleteCarType(carType)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+              </tr>
+            </table>
           </div>
 
           </ng-template>
         </ngb-tab>
 
-                <!-- 3. tab -->
+                <!-- 4. tab -->
         <ngb-tab title="Marke vozila" class="ngbTabTitle">
           <ng-template ngbTabContent>
             <!-- <h5 style="text-align:center">Marke vozila</h5> -->
@@ -90,7 +128,7 @@
           </ng-template>
         </ngb-tab>
 
-                <!-- 4. tab -->
+                <!-- 5. tab -->
         <ngb-tab title="Tipovi delova" class="ngbTabTitle">
           <ng-template ngbTabContent>
             <!-- <h5 style="text-align:center">Marke vozila</h5> -->
