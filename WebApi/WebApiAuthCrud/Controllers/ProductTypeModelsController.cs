@@ -21,7 +21,7 @@ namespace WebApiAuthCrud.Controllers
         [AllowAnonymous]
         public IQueryable<ProductTypeModel> GetProductTypeModels()
         {
-            return db.ProductTypeModels;
+            return db.ProductTypeModels.OrderBy(x => x.ProductType);
         }
 
         // GET: api/ProductTypeModels/5

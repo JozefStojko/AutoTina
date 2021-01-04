@@ -1,4 +1,4 @@
-<h5 style="text-align:center">Izmeni marku vozila</h5>
+<h5 style="text-align:center">Izmeni model vozila</h5>
 
 <div class="container">
 
@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
   <div class="col-md-6">
 
-    <form name="form" (ngSubmit)="carTypeForm.form.valid && OnUpdateCarType(carMarkId, type.value, godinaProizvodnjeOd.value, godinaProizvodnjeDo.value)" #carTypeForm="ngForm" novalidate>
+    <form name="form" (ngSubmit)="carTypeForm.form.valid && OnUpdateCarType(carMarkId, type.value)" #carTypeForm="ngForm" novalidate>
 
       <!-- Car type -->
       <div class="form-group">
@@ -61,78 +61,6 @@
         </div>
       </div>
     
-        <!-- Car YearFrom -->
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="far fa-calendar-plus"></i> </span>
-            </div>
-      
-            <!-- [(ngModel)]="carTypeService.carType.YearFrom"  -->
-    
-            <input 
-            id="yearFrom" 
-            name="godinaProizvodnjeOd" 
-            class="form-control" 
-            required 
-            minlength="3" 
-            [(ngModel)]="carTypeService.carType.YearFrom"
-            ngModel 
-            #godinaProizvodnjeOd="ngModel"
-            (keyup)="onKeyYearFrom($event)"
-            (keypress)="stripText($event)"
-            placeholder="Upiši broj godine od koje ovaj model proizvodi." 
-            type="number" />
-        </div>
-    
-          <div class="form-group">
-            <div *ngIf="godinaProizvodnjeOdValidna && (godinaProizvodnjeOd.dirty || godinaProizvodnjeOd.touched)" class="alert alert-danger">
-              <div *ngIf="!godinaProizvodnjeOd.valid">
-                Mora se uneti godina početka proizvodnje modela.
-              </div>
-              <div *ngIf="godinaProizvodnjeOdValidna"  >
-                Godina mora biti veća od 1900 i manja ili jednaka sa aktuelnom godinom.
-              </div>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Car YearTo -->
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="far fa-calendar-minus"></i> </span>
-            </div>
-            
-            <!-- [(ngModel)]="carTypeService.carType.YearTo"  -->
-    
-            <input 
-            id="yearTo" 
-            name="godinaProizvodnjeDo" 
-            class="form-control" 
-            required 
-            minlength="3" 
-            [(ngModel)]="carTypeService.carType.YearTo"
-            ngModel 
-            #godinaProizvodnjeDo="ngModel"
-            (keyup)="onKeyYearTo($event)"
-
-            (keypress)="stripText($event)"
-            placeholder="Upiši broj godine do koje ovaj model proizvodio." 
-            type="number" />
-        </div>
-    
-          <div class="form-group">
-            <div *ngIf="godinaProizvodnjeDoValidna && (godinaProizvodnjeDo.dirty || godinaProizvodnjeDo.touched)" class="alert alert-danger">
-              <div *ngIf="!godinaProizvodnjeDo.valid">
-                Mora se uneti godina početka proizvodnje modela.
-              </div>
-              <div *ngIf="godinaProizvodnjeDoValidna">
-                Godina mora biti veća početka proizvodnje i manja ili jednaka sa aktuelnom godinom.
-              </div>
-            </div>
-          </div>
-        </div>
     
     
       <div class="form-group">

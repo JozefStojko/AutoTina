@@ -22,7 +22,7 @@ namespace WebApiAuthCrud.Controllers
         // GET: api/CarMarks
         public IQueryable<CarMark> GetCarMarks()
         {
-            return db.CarMarks;
+            return db.CarMarks.OrderBy(x => x.Mark);
         }
 
         // GET: api/CarMarks/5

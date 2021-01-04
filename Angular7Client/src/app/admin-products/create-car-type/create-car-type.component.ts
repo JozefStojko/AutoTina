@@ -13,13 +13,8 @@ import { CarTypeService } from 'src/app/shared/service/car-type.service';
 })
 export class CreateCarTypeComponent implements OnInit {
   
-  godinaProizvodnjeOdValidna: boolean = true;
-  godinaProizvodnjeOdValidnaDisabled: boolean = true;
-  godinaProizvodnjeDoValidna: boolean = true;
   allCarMarks: CarMark[];
   carMarkId: number = null;
-  currentYear: number=new Date().getFullYear();
-  godinaPocetkaProizvodnje: number = new Date().getFullYear();
   carType: CarType;
 
 
@@ -37,12 +32,10 @@ export class CreateCarTypeComponent implements OnInit {
     // this.carMarkId = this.allCarMarks[0];
   }
 
-  OnSubmitType(markId, type, yearFrom, yearTo) {
+  OnSubmitType(markId, type) {
     this.carType = {
       CarMarkId: markId,
-      Model: type,
-      YearFrom: yearFrom,
-      YearTo: yearTo
+      Model: type
     }
     console.log('carType: ', this.carType);
     this.carTypeService.saveCarType(this.carType).subscribe(       
@@ -75,34 +68,6 @@ export class CreateCarTypeComponent implements OnInit {
   console.log(this.carMarkId);
 }
 
-onKeyYearFrom(event: any) { // without type info
-  if (1900 < event.target.value && event.target.value <= this.currentYear){
-    this.godinaProizvodnjeOdValidna = false;
-    this.godinaProizvodnjeOdValidnaDisabled = true;
-  }
-  else {
-    this.godinaProizvodnjeOdValidna = true;
-    this.godinaProizvodnjeOdValidnaDisabled = false;
-  }
-  this.godinaPocetkaProizvodnje = event.target.value
-  console.log(event.target.value);
-}
-
-onKeyYearTo(event: any) { // without type info
-  if (this.godinaPocetkaProizvodnje <= event.target.value && event.target.value <= this.currentYear){
-    this.godinaProizvodnjeDoValidna = false;
-  }
-  else {
-    this.godinaProizvodnjeDoValidna = true;
-  }
-  console.log(event.target.value);
-}
-
-stripText(event) {
-  const seperator  = '^([0-9])';
-  const maskSeperator =  new RegExp(seperator , 'g');  
-  let result = maskSeperator.test(event.key);   return result;
-   }
 
   
    

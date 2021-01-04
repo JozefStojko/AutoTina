@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateCarMarkComponent } from './create-car-mark/create-car-mark.component';
+import { CreateCarModelTypeComponent } from './create-car-model-type/create-car-model-type.component';
 import { CreateCarTypeComponent } from './create-car-type/create-car-type.component';
 import { CreatePartTypeComponent } from './create-part-type/create-part-type.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { OrdersComponent } from './orders/orders.component';
 import { UpdateCarMarkComponent } from './update-car-mark/update-car-mark.component';
+import { UpdateCarModelTypeComponent } from './update-car-model-type/update-car-model-type.component';
 import { UpdateCarTypeComponent } from './update-car-type/update-car-type.component';
 import { UpdateImageComponent } from './update-image/update-image.component';
 import { UpdatePartTypeComponent } from './update-part-type/update-part-type.component';
@@ -32,8 +34,9 @@ const routes: Routes = [
   { path: 'update-car-type', component: UpdateCarTypeComponent },
   { path: 'create-part-type', component: CreatePartTypeComponent },
   { path: 'update-part-type', component: UpdatePartTypeComponent },
+  { path: 'create-car-model-type', component: CreateCarModelTypeComponent },
+  { path: 'update-car-model-type', component: UpdateCarModelTypeComponent },
   { path: '', component: ViewAllProductsComponent }
-
 ];
 
 @NgModule({

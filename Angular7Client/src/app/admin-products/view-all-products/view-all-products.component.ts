@@ -2,12 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CarModelType } from 'src/app/shared/model/car-model-type.model';
 import { CarType } from 'src/app/shared/model/car-type.model';
 import { Car } from 'src/app/shared/model/car.model';
 import { CarMark } from 'src/app/shared/model/carMark.model';
 import { PartType } from 'src/app/shared/model/part-type.model';
 import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
+import { CarModelTypeService } from 'src/app/shared/service/car-model-type.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
 import { CarService } from 'src/app/shared/service/car.service';
 import { DataService } from 'src/app/shared/service/data.service';
@@ -28,7 +30,9 @@ export class ViewAllProductsComponent implements OnInit {
   allCars: Car[];
   allCarTypes: CarType[];
   allPartTypes: PartType[];
-  carMarkService: any;
+  allCarModelTypes: CarModelType[];
+  
+
     setImageValue: any = null;
 
   
@@ -41,7 +45,9 @@ export class ViewAllProductsComponent implements OnInit {
     public carmarkService: CarMarkService,
     public carService: CarService,
     public carTypeService: CarTypeService,
+    public carModelTypeService: CarModelTypeService,
     public partTypeService: PartTypeService
+    
     ) { }
 
     @ViewChild('image') image;
@@ -66,6 +72,7 @@ export class ViewAllProductsComponent implements OnInit {
       this.loadAllCarMarks(); 
       this.loadAllCarTypes(); 
       this.loadAllPartTypes(); 
+      this.loadAllCarModelTypes(); 
       }
 
 
@@ -85,10 +92,16 @@ export class ViewAllProductsComponent implements OnInit {
       this.carTypeService.carType = {
           Id: null,
           CarMarkId: null,
-          Model: '',
-          YearFrom: null,
-          YearTo: null
+          Model: ''
       };
+      this.carModelTypeService.carModelType = {
+        Id: null,
+        CarModelId: null,
+        CarModelType: '',
+        YearFrom: null,
+        YearTo: null
+    };
+
       this.partTypeService.partType = {
         Id: null,
         ProductType: ''
@@ -96,11 +109,30 @@ export class ViewAllProductsComponent implements OnInit {
 
       this.imageUrl = "/assets/img/default-image.png";
     }
+
+
+
   
     // workig with product
     createProduct() {
       this.router.navigate(['/admin-products/create-product']);
     }
+
+  
+    // Working with Tipovi modela vozila
+
+    loadAllCarModelTypes() {  
+      this.carModelTypeService.getAllCarModelTypes().subscribe(
+        result => this.allCarModelTypes = result,
+        error => console.log("Error :: " + error),
+        () => console.log('done!', this.allCarModelTypes)
+      )}; 
+
+      createCarModelType() {
+        this.router.navigate(['/admin-products/create-car-model-type']);
+      }
+  
+
 
 
     //working with product type

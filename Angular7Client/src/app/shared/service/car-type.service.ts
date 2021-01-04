@@ -23,6 +23,10 @@ export class CarTypeService {
     return this.http.get<CarType[]>(this.rootUrl + '/api/carmodels');
   }  
 
+  getCarMarkIdTypes(carMarkId: number): Observable<CarType[]> {  
+    return this.http.get<CarType[]>(this.rootUrl + '/api/carmodels/GetCarModelsByCarMarkIdSearch/' + carMarkId);
+  }  
+
   putCarType(carType: CarType) {  
     console.log(carType);
     return this.http.put(this.rootUrl + '/api/carmodels/' + carType.Id, carType);

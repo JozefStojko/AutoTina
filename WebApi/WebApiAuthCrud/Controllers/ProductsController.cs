@@ -24,7 +24,7 @@ namespace WebApiAuthCrud.Controllers
         [AllowAnonymous]
         public IQueryable<ProductModel> GetProducts()
         {
-            return db.ProductModels;
+            return db.ProductModels.OrderBy(x => x.ProductName);
         }
 
         public enum SortTypes
