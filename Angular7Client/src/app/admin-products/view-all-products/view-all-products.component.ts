@@ -104,7 +104,8 @@ export class ViewAllProductsComponent implements OnInit {
 
       this.partTypeService.partType = {
         Id: null,
-        ProductType: ''
+        ProductType: '',
+        ProductTypeImage: null
     };
 
       this.imageUrl = "/assets/img/default-image.png";
@@ -147,6 +148,12 @@ export class ViewAllProductsComponent implements OnInit {
         () => console.log('done!', this.allPartTypes)
       )}; 
 
+      updatePartTypeImage(partType: PartType) {
+        this.partTypeService.partType = Object.assign({}, partType);
+        this.router.navigate(['/admin-products/update-part-type-image']);
+      }
+  
+
       updatePartType(partType: PartType) {
         this.partTypeService.partType = Object.assign({}, partType);
         this.router.navigate(['/admin-products/update-part-type']);
@@ -157,6 +164,11 @@ export class ViewAllProductsComponent implements OnInit {
         this.loadAllPartTypes();  
       });  
     }
+
+    public createPartTypeImagePath(serverPath: string) {
+      return 'http://localhost:52866/image/'+serverPath;
+    } 
+
   
 
 

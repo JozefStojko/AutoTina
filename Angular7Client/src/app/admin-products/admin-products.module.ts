@@ -20,6 +20,7 @@ import { CreatePartTypeComponent } from './create-part-type/create-part-type.com
 import { UpdatePartTypeComponent } from './update-part-type/update-part-type.component';
 import { CreateCarModelTypeComponent } from './create-car-model-type/create-car-model-type.component';
 import { UpdateCarModelTypeComponent } from './update-car-model-type/update-car-model-type.component';
+import { UpdatePartTypeImageComponent } from './update-part-type-image/update-part-type-image.component';
 
 
 
@@ -41,7 +42,8 @@ import { UpdateCarModelTypeComponent } from './update-car-model-type/update-car-
     CreatePartTypeComponent,
     UpdatePartTypeComponent,
     CreateCarModelTypeComponent,
-    UpdateCarModelTypeComponent
+    UpdateCarModelTypeComponent,
+    UpdatePartTypeImageComponent
   ],
   imports: [
     CommonModule,

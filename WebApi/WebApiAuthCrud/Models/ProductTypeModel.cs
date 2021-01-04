@@ -13,5 +13,7 @@ namespace WebApiAuthCrud.Models
 
         [Required]
         public string ProductType { get; set; }
+        
+        public string ProductTypeImage { get; set; }
     }
 }

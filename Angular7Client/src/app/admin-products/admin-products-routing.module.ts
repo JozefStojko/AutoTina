@@ -11,6 +11,7 @@ import { UpdateCarMarkComponent } from './update-car-mark/update-car-mark.compon
 import { UpdateCarModelTypeComponent } from './update-car-model-type/update-car-model-type.component';
 import { UpdateCarTypeComponent } from './update-car-type/update-car-type.component';
 import { UpdateImageComponent } from './update-image/update-image.component';
+import { UpdatePartTypeImageComponent } from './update-part-type-image/update-part-type-image.component';
 import { UpdatePartTypeComponent } from './update-part-type/update-part-type.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { ViewAllProductsByCategoryComponent } from './view-all-products-by-category/view-all-products-by-category.component';
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'update-car-type', component: UpdateCarTypeComponent },
   { path: 'create-part-type', component: CreatePartTypeComponent },
   { path: 'update-part-type', component: UpdatePartTypeComponent },
+  { path: 'update-part-type-image', component: UpdatePartTypeImageComponent },
   { path: 'create-car-model-type', component: CreateCarModelTypeComponent },
   { path: 'update-car-model-type', component: UpdateCarModelTypeComponent },
   { path: '', component: ViewAllProductsComponent }

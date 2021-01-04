@@ -226,6 +226,7 @@
     <Compile Include="Controllers\AccountingsController.cs" />
     <Compile Include="Controllers\CarMarksController.cs" />
     <Compile Include="Controllers\CarModelsController.cs" />
+    <Compile Include="Controllers\CarModelTypeEnginesController.cs" />
     <Compile Include="Controllers\CarModelTypesController.cs" />
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -348,12 +349,21 @@
     <Compile Include="Migrations\202101020941022_Adding_yeras_propertie_to_CarModelType.Designer.cs">
       <DependentUpon>202101020941022_Adding_yeras_propertie_to_CarModelType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101040812565_Adding_CarModelTypeEngine_model.cs" />
+    <Compile Include="Migrations\202101040812565_Adding_CarModelTypeEngine_model.Designer.cs">
+      <DependentUpon>202101040812565_Adding_CarModelTypeEngine_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101040825585_Add_ProductTypeImage_to_ProductTypeModel.cs" />
+    <Compile Include="Migrations\202101040825585_Add_ProductTypeImage_to_ProductTypeModel.Designer.cs">
+      <DependentUpon>202101040825585_Add_ProductTypeImage_to_ProductTypeModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounting.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\CarMark.cs" />
     <Compile Include="Models\CarModel.cs" />
+    <Compile Include="Models\CarModelTypeEngine.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\CarModelType.cs" />
     <Compile Include="Models\ProductModel.cs" />
@@ -531,6 +541,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101020941022_Adding_yeras_propertie_to_CarModelType.resx">
       <DependentUpon>202101020941022_Adding_yeras_propertie_to_CarModelType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101040812565_Adding_CarModelTypeEngine_model.resx">
+      <DependentUpon>202101040812565_Adding_CarModelTypeEngine_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101040825585_Add_ProductTypeImage_to_ProductTypeModel.resx">
+      <DependentUpon>202101040825585_Add_ProductTypeImage_to_ProductTypeModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

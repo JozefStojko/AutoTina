@@ -27,9 +27,12 @@ export class UpdatePartTypeComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.partTypeService.partType);
+
     this.partType = {
       Id: this.partTypeService.partType.Id,
-      ProductType: this.partTypeService.partType.ProductType
+      ProductType: this.partTypeService.partType.ProductType,
+      ProductTypeImage: this.partTypeService.partType.ProductTypeImage
     };
     this.loadAllPartTypes(); 
   }
@@ -37,9 +40,10 @@ export class UpdatePartTypeComponent implements OnInit {
   OnUpdatePartType(partType) {
     this.partType = {
       Id: this.partTypeService.partType.Id,
-      ProductType: partType
+      ProductType: partType.value,
+      ProductTypeImage: this.partTypeService.partType.ProductTypeImage
     }
-    this.partTypeService.putPartType(this.partType).subscribe(
+    this.partTypeService.putPartTypeNoImage(this.partTypeService.partType.Id.toString(), partType.value, this.partTypeService.partType.ProductTypeImage).subscribe(
       res => console.log('done'),
       err => this.error = err,
       () => {
@@ -69,7 +73,8 @@ export class UpdatePartTypeComponent implements OnInit {
     }
     this.partTypeService.partType = {
       Id: null,
-      ProductType: ''
+      ProductType: '',
+      ProductTypeImage: null
     };
   }
 

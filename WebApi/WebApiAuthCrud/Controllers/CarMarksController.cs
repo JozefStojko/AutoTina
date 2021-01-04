@@ -42,15 +42,6 @@ namespace WebApiAuthCrud.Controllers
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutCarMark()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
-            //if (id != carMark.Id)
-            //{
-            //    return BadRequest();
-            //}
 
             var httpRequest = HttpContext.Current.Request;
 
@@ -63,14 +54,6 @@ namespace WebApiAuthCrud.Controllers
             idNameString = idNameString.Remove(idNameString.Length - 1);
 
             int idName = (int)Int64.Parse(idNameString);
-
-            //CarMark carMarkFromDb = await db.CarMarks.FindAsync(idName);
-            //if (carMarkFromDb == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //string imageNameFromDb = carMarkFromDb.Image;
 
 
             var mark = httpRequest.Params["markName"];

@@ -64,5 +64,7 @@ namespace WebApiAuthCrud.Models
         }
 
         public System.Data.Entity.DbSet<WebApiAuthCrud.Models.CarModelType> CarModelTypes { get; set; }
+
+        public System.Data.Entity.DbSet<WebApiAuthCrud.Models.CarModelTypeEngine> CarModelTypeEngines { get; set; }
     }
 }

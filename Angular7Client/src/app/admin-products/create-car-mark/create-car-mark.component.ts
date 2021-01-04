@@ -28,7 +28,6 @@ export class CreateCarMarkComponent implements OnInit {
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    //private dataAdmin: DataService,
     public adminService: AdminService,
     public carmarkService: CarMarkService
     ) { }
@@ -47,9 +46,9 @@ export class CreateCarMarkComponent implements OnInit {
           image = '';
           this.imageUrl = "/assets/img/default-image.png";
           this.toastr.success(
-           'Save succesfuly!',
-           'The record in Carmark base',
-            {
+            'Uspešan unos!',
+            'Unet je nova marka vozila u bazu.',
+               {
              timeOut: 5000,
              progressBar: true,
             });
