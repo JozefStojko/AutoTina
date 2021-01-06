@@ -9,7 +9,6 @@ import { CarType } from '../model/car-type.model';
 export class CarTypeService {
   carType: CarType;
   readonly rootUrl = 'http://localhost:52866';
-  progress: number;
 
 
   constructor(private http: HttpClient) { }

@@ -6,9 +6,9 @@
     <div class="row justify-content-center">
   <div class="col-md-6">
 
-    <form name="form" (ngSubmit)="carTypeForm.form.valid && OnUpdateCarType(carMarkId, type.value, godinaProizvodnjeOd.value, godinaProizvodnjeDo.value)" #carTypeForm="ngForm" novalidate>
+    <form name="form" (ngSubmit)="carTypeForm.form.valid && OnUpdateCarType(type.value, carTypeId, godinaProizvodnjeOd.value, godinaProizvodnjeDo.value)" #carTypeForm="ngForm" novalidate>
 
-      <!-- Car type -->
+      <!-- Car mark -->
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -22,14 +22,35 @@
         class="form-control" 
         [(ngModel)]="carMarkId" 
         (ngModelChange)="markToNumber()">
-          <option disabled value="">{{ carType.CarMark }}</option>
+          <option disabled value="">{{ carModelType.CarMark }}</option>
           <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
        </select>
       </div>
       </div>
     
+       <!-- Car model -->
+       <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+          </div>
     
-      <!-- Car model -->
+        <select 
+        name="carTypeSelect" 
+        id="carTypeSelect" 
+        type="number" 
+        class="form-control" 
+        disabled="{{markaValidna}}"
+        [(ngModel)]="carTypeId" 
+        (ngModelChange)="typeToNumber()">
+          <option disabled value="">{{ carModelType.CarModel }}</option>
+          <option *ngFor="let carType of allCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
+       </select>
+      </div>
+      </div>
+     
+    
+      <!-- Car type -->
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -44,7 +65,7 @@
           class="form-control" 
           required minlength="3" 
           ngModel 
-          [(ngModel)]="carTypeService.carType.Model"
+          [(ngModel)]="carModelType.CarModelTypeName"
           #type="ngModel"
           placeholder="Upiši novi model" type="text" />
     
@@ -76,7 +97,7 @@
             class="form-control" 
             required 
             minlength="3" 
-            [(ngModel)]="carTypeService.carType.YearFrom"
+            [(ngModel)]="carModelType.YearFrom"
             ngModel 
             #godinaProizvodnjeOd="ngModel"
             (keyup)="onKeyYearFrom($event)"
@@ -112,7 +133,7 @@
             class="form-control" 
             required 
             minlength="3" 
-            [(ngModel)]="carTypeService.carType.YearTo"
+            [(ngModel)]="carModelType.YearTo"
             ngModel 
             #godinaProizvodnjeDo="ngModel"
             (keyup)="onKeyYearTo($event)"

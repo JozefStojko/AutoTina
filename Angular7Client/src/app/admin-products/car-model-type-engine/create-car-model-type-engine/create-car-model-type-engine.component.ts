@@ -5,26 +5,29 @@ import { CarModelType } from 'src/app/shared/model/car-model-type.model';
 import { CarType } from 'src/app/shared/model/car-type.model';
 import { CarMark } from 'src/app/shared/model/carMark.model';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
+import { CarModelTypeEngineService } from 'src/app/shared/service/car-model-type-engine.service';
 import { CarModelTypeService } from 'src/app/shared/service/car-model-type.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
 
 @Component({
-  selector: 'app-create-car-model-type',
-  templateUrl: './create-car-model-type.component.html',
-  styleUrls: ['./create-car-model-type.component.css']
+  selector: 'app-create-car-model-type-engine',
+  templateUrl: './create-car-model-type-engine.component.html',
+  styleUrls: ['./create-car-model-type-engine.component.css']
 })
-export class CreateCarModelTypeComponent implements OnInit {
+export class CreateCarModelTypeEngineComponent implements OnInit {
 
   godinaProizvodnjeOdValidna: boolean = true;
   markaValidna: boolean = true;
+  tipValidan: boolean = true;
   godinaProizvodnjeOdValidnaDisabled: boolean = true;
   godinaProizvodnjeDoValidna: boolean = true;
   allCarMarks: CarMark[];
   allCarTypes: CarType[];
+  allCarModelTypes: CarModelType[];
   carMarkId: number = null;
   carTypeId: number = null;
-  currentYear: number=new Date().getFullYear();
-  godinaPocetkaProizvodnje: number = new Date().getFullYear();
+  carModelTypeId: number = null;
+  carMark: CarMark;
   carType: CarType;
   carModelType: CarModelType;
 
@@ -35,19 +38,19 @@ export class CreateCarModelTypeComponent implements OnInit {
     private toastr: ToastrService,
     public carTypeService: CarTypeService,
     public carMarkService: CarMarkService,
-    public carModelTypeService: CarModelTypeService
+    public carModelTypeService: CarModelTypeService,
+    public carModelTypeEngineService: CarModelTypeEngineService
 
   ) { }
 
   ngOnInit() {
     this.loadAllCarMarks(); 
-    // this.carMarkId = this.allCarMarks[0];
   }
 
-  OnSubmitType(carModelId, carModelType, yearFrom, yearTo) {
+  OnSubmitCreateCarModelTypeEngine(carModelId, CarModelTypeName, yearFrom, yearTo) {
     this.carModelType = {
       CarModelId: carModelId,
-      CarModelType: carModelType,
+      CarModelTypeName: CarModelTypeName,
       YearFrom: yearFrom,
       YearTo: yearTo
     }
@@ -76,12 +79,20 @@ export class CreateCarModelTypeComponent implements OnInit {
       () => console.log('done!', this.allCarMarks)
     )}; 
 
-    loadCarMarkIdTypes(carMarkId: number) {  
+    loadCarTypesIdMark(carMarkId: number) {  
       this.carTypeService.getCarMarkIdTypes(carMarkId).subscribe(
         result => this.allCarTypes = result,
         error => console.log("Error :: " + error),
         () => console.log('done!', this.allCarTypes)
       )}; 
+
+      loadCarModelIdTypes(carTypeId: number) {  
+        this.carModelTypeService.getCarModelType(carTypeId).subscribe(
+          result => this.allCarModelTypes = result,
+          error => console.log("Error :: " + error),
+          () => console.log('done!', this.allCarModelTypes)
+        )}; 
+  
   
 
 
@@ -89,40 +100,22 @@ export class CreateCarModelTypeComponent implements OnInit {
    markToNumber(){
     this.carMarkId = +this.carMarkId;
     console.log(this.carMarkId);
-    this.loadCarMarkIdTypes(this.carMarkId); 
+    this.loadCarTypesIdMark(this.carMarkId);
     this.markaValidna = false;
-
   }
 
      // Choose type using select dropdown
      typeToNumber(){
       this.carTypeId = +this.carTypeId;
-      console.log(this.carTypeId);
+      this.loadCarModelIdTypes(this.carTypeId); 
+      this.markaValidna = false;
     }
-  
-  
-  onKeyYearFrom(event: any) { // without type info
-    if (1900 < event.target.value && event.target.value <= this.currentYear){
-      this.godinaProizvodnjeOdValidna = false;
-      this.godinaProizvodnjeOdValidnaDisabled = true;
+
+       // Choose model type using select dropdown
+       carModelTypeToNumber(){
+      this.carModelTypeId = +this.carModelTypeId;
     }
-    else {
-      this.godinaProizvodnjeOdValidna = true;
-      this.godinaProizvodnjeOdValidnaDisabled = false;
-    }
-    this.godinaPocetkaProizvodnje = event.target.value
-    console.log(event.target.value);
-  }
-  
-  onKeyYearTo(event: any) { // without type info
-    if (this.godinaPocetkaProizvodnje <= event.target.value && event.target.value <= this.currentYear){
-      this.godinaProizvodnjeDoValidna = false;
-    }
-    else {
-      this.godinaProizvodnjeDoValidna = true;
-    }
-    console.log(event.target.value);
-  }
+
   
   stripText(event) {
     const seperator  = '^([0-9])';

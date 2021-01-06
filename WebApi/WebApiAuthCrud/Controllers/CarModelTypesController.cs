@@ -20,8 +20,14 @@ namespace WebApiAuthCrud.Controllers
         // GET: api/CarModelTypes
         public IQueryable<CarModelType> GetCarModelTypes()
         {
+            IQueryable<CarModel> carModels = db.CarModels.Include(p => p.CarMark);
+            IQueryable<CarModelType> carModelsType = db.CarModelTypes.Include(p => p.CarModel.CarMark);
+
+            //models = models.Where(p => p.CarMarkId == carMarkId);
+
             //return db.CarModelTypes;
-            return db.CarModelTypes.OrderBy(m => m.CarMark.Mark);
+            //return db.CarModelTypes.Include(m => m.CarModel).OrderBy(p => p.CarMark.Mark);
+            return carModelsType.OrderBy(p => p.CarModel.CarMark.Mark);
 
         }
 
@@ -37,6 +43,20 @@ namespace WebApiAuthCrud.Controllers
 
             return Ok(carModelType);
         }
+
+        // GET: GetcarmodeltypeenginesByCarModelTypeEngineIdSearch
+        [Route("api/CarModelTypes/GetCarModelTypesByCarModelTypeIdSearch/{carModelTypeEngineId:int}")]
+        public IQueryable<CarModelType> GetCarModelTypeEnginesByCarModelTypeEngineIdSearch(int carModelTypeId)
+        {
+
+            IQueryable<CarModelType> models = db.CarModelTypes.Include(p => p.CarModel);
+
+            models = models.Where(p => p.CarModelId == carModelTypeId);
+
+            return models.OrderBy(x => x.CarModelTypeName);
+
+        }
+
 
         // PUT: api/CarModelTypes/5
         [ResponseType(typeof(void))]

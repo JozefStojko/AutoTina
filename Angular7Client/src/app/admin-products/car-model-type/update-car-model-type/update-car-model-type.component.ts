@@ -32,6 +32,8 @@ export class UpdateCarModelTypeComponent implements OnInit {
   currentYear: number=new Date().getFullYear();
   // godinaPocetkaProizvodnje: number = new Date().getFullYear();
   godinaPocetkaProizvodnje: number;
+  markaValidna: boolean = true;
+
 
  
   constructor(
@@ -45,24 +47,27 @@ export class UpdateCarModelTypeComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.carModelTypeService.carModelType.CarModelTypeName);
+
     this.carModelType = {
       Id: this.carModelTypeService.carModelType.Id,
       CarModelId: this.carModelTypeService.carModelType.CarModelId,
-      CarModelType: this.carModelTypeService.carModelType.CarModelType,
+      CarModelTypeName: this.carModelTypeService.carModelType.CarModelTypeName,
       YearFrom: this.carModelTypeService.carModelType.YearFrom,
       YearTo: this.carModelTypeService.carModelType.YearTo,
-      CarMark: this.carModelTypeService.carModelType.CarMark.Mark,
+      CarMark: this.carModelTypeService.carModelType.CarModel.CarMark.Mark,
       CarModel: this.carModelTypeService.carModelType.CarModel.Model
     };
     this.loadAllCarMarks(); 
     this.godinaPocetkaProizvodnje = this.carModelType.YearFrom;
+    console.log(this.carModelType);
   }
 
-  OnUpdateCarType(carModelId, carModelType, yearFrom, yearTo) {
+  OnUpdateCarType(carModelTypeName, carModelId, yearFrom, yearTo) {
     this.carModelType = {
       Id: this.carModelTypeService.carModelType.Id,
+      CarModelTypeName: carModelTypeName,
       CarModelId: carModelId,
-      CarModelType: carModelType,
       YearFrom: yearFrom,
       YearTo: yearTo
     }
@@ -89,17 +94,20 @@ export class UpdateCarModelTypeComponent implements OnInit {
      () => console.log('done!', this.allCarMarks)
    )}; 
 
-  loadAllCarTypes() {  
-    this.carTypeService.getAllCarTypes().subscribe(
-      result => this.allCarTypes = result,
-      error => console.log("Error :: " + error),
-      () => console.log('done!', this.allCarTypes)
-    )}; 
+
+  // loadAllCarTypes() {  
+  //   this.carTypeService.getAllCarTypes().subscribe(
+  //     result => this.allCarTypes = result,
+  //     error => console.log("Error :: " + error),
+  //     () => console.log('done!', this.allCarTypes)
+  //   )}; 
  
   
  // Choose mark using select dropdown
  markToNumber(){
   this.carMarkId = +this.carMarkId;
+  this.loadCarMarkIdTypes(this.carMarkId); 
+  this.markaValidna = false;
   console.log(this.carMarkId);
 }
 
@@ -108,6 +116,14 @@ export class UpdateCarModelTypeComponent implements OnInit {
   this.carTypeId = +this.carTypeId;
   console.log(this.carTypeId);
 }
+
+loadCarMarkIdTypes(carMarkId: number) {  
+  this.carTypeService.getCarMarkIdTypes(carMarkId).subscribe(
+    result => this.allCarTypes = result,
+    error => console.log("Error :: " + error),
+    () => console.log('done!', this.allCarTypes)
+  )}; 
+
 
 onKeyYearFrom(event: any) { // without type info
   if (1900 < event.target.value && event.target.value <= this.currentYear){
@@ -144,7 +160,7 @@ stripText(event) {
     }
     this.carModelTypeService.carModelType = {
       CarModelId: null,
-      CarModelType: '',
+      CarModelTypeName: '',
       YearFrom: null,
       YearTo: null,
       CarMark: '',

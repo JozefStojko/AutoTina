@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CarModelTypeEngine } from 'src/app/shared/model/car-model-type-engine.model';
 import { CarModelType } from 'src/app/shared/model/car-model-type.model';
 import { CarType } from 'src/app/shared/model/car-type.model';
 import { Car } from 'src/app/shared/model/car.model';
@@ -9,6 +10,7 @@ import { CarMark } from 'src/app/shared/model/carMark.model';
 import { PartType } from 'src/app/shared/model/part-type.model';
 import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
+import { CarModelTypeEngineService } from 'src/app/shared/service/car-model-type-engine.service';
 import { CarModelTypeService } from 'src/app/shared/service/car-model-type.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
 import { CarService } from 'src/app/shared/service/car.service';
@@ -31,6 +33,8 @@ export class ViewAllProductsComponent implements OnInit {
   allCarTypes: CarType[];
   allPartTypes: PartType[];
   allCarModelTypes: CarModelType[];
+  allCarModelTypeEngines: CarModelTypeEngine[];
+
   
 
     setImageValue: any = null;
@@ -46,6 +50,7 @@ export class ViewAllProductsComponent implements OnInit {
     public carService: CarService,
     public carTypeService: CarTypeService,
     public carModelTypeService: CarModelTypeService,
+    public carModelTypeEngineService: CarModelTypeEngineService,
     public partTypeService: PartTypeService
     
     ) { }
@@ -97,7 +102,7 @@ export class ViewAllProductsComponent implements OnInit {
       this.carModelTypeService.carModelType = {
         Id: null,
         CarModelId: null,
-        CarModelType: '',
+        CarModelTypeName: '',
         YearFrom: null,
         YearTo: null
     };
@@ -119,20 +124,46 @@ export class ViewAllProductsComponent implements OnInit {
       this.router.navigate(['/admin-products/create-product']);
     }
 
+
+    // Working with CarModelTypeEngine
+
+    loadAllCarModelTypeEngines() {  
+      this.carModelTypeEngineService.getAllCarModelTypeEngines().subscribe(
+        result => this.allCarModelTypeEngines = result,
+        error => console.log("Error :: " + error),
+        () => console.log('done!', this.allCarModelTypeEngines)
+      )}; 
+
+      createCarModelTypeEngine() {
+        this.router.navigate(['/admin-products/create-car-model-type-engine']);
+      }
+
   
-    // Working with Tipovi modela vozila
+    // Working with Tipovi modela vozila CarModelType
 
     loadAllCarModelTypes() {  
       this.carModelTypeService.getAllCarModelTypes().subscribe(
         result => this.allCarModelTypes = result,
         error => console.log("Error :: " + error),
         () => console.log('done!', this.allCarModelTypes)
-      )}; 
+      )} 
+        
 
       createCarModelType() {
         this.router.navigate(['/admin-products/create-car-model-type']);
       }
+
+      updateCarModelType(carModelType: CarModelType) {
+        this.carModelTypeService.carModelType = Object.assign({}, carModelType);
+        this.router.navigate(['/admin-products/update-car-model-type']);
+    }
   
+    deleteCarModelType(carModelType: CarModelType) {
+      this.carModelTypeService.removeCarModelType(carModelType.Id).subscribe(() => {  
+        this.loadAllCarModelTypes();  
+      });  
+    }
+
 
 
 

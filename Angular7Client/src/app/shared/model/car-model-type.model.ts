@@ -1,7 +1,7 @@
 export class CarModelType {
     Id?: number;
+    CarModelTypeName: string;
     CarModelId: number;
-    CarModelType: string;
     YearFrom: number;
     YearTo: number;
     CarMark?: any;

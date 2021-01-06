@@ -357,6 +357,10 @@
     <Compile Include="Migrations\202101040825585_Add_ProductTypeImage_to_ProductTypeModel.Designer.cs">
       <DependentUpon>202101040825585_Add_ProductTypeImage_to_ProductTypeModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101041252151_[Required].cs" />
+    <Compile Include="Migrations\202101041252151_[Required].Designer.cs">
+      <DependentUpon>202101041252151_[Required].cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounting.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -547,6 +551,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101040825585_Add_ProductTypeImage_to_ProductTypeModel.resx">
       <DependentUpon>202101040825585_Add_ProductTypeImage_to_ProductTypeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101041252151_[Required].resx">
+      <DependentUpon>202101041252151_[Required].cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

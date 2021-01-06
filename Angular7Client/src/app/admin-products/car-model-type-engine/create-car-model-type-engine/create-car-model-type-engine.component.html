@@ -1,0 +1,130 @@
+<h5 style="text-align:center">Dodaj novi deo</h5>
+
+<div class="container">
+
+  <!-- OVO JE VAZNO ZA CENTRIRANJE FORME bootstrap/4.0.0 -->
+    <div class="row justify-content-center">
+  <div class="col-md-6">
+
+<form name="form" (ngSubmit)="createCarModelTypeEngineForm.form.valid && OnSubmitCreateCarModelTypeEngine(
+  carMarkSelect,
+  carTypeSelect,
+  carModelTypeSelect,
+  carModelTypeEngineName.value)" 
+   #createCarModelTypeEngineForm="ngForm" novalidate>
+
+  <!-- Car mark -->
+  <div class="form-group">
+    <div>Izaberi marku vozila</div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+      </div>
+
+    <select 
+    name="carMarkSelect" 
+    id="carMarkSelect" 
+    type="number" 
+    class="form-control" 
+    [(ngModel)]="carMarkSelect" 
+    (ngModelChange)="markToNumber()">
+      <option select  disabled value="">Izaberi marku vozila</option>
+      <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
+   </select>
+  </div>
+  </div>
+
+    <!-- Car type -->
+    <div class="form-group">
+      <div *ngIf="carTypeSelect !== ''">
+        Izaberi model vozila
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+        </div>
+  
+      <select 
+      name="carTypeSelect" 
+      id="carTypeSelect" 
+      type="number" 
+      class="form-control" 
+      disabled="{{markaValidna}}"
+      [(ngModel)]="carTypeSelect" 
+      (ngModelChange)="carTypeToNumber()">
+        <option select  disabled value="">Izaberi model vozila</option>
+        <option *ngFor="let carType of allCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
+     </select>
+    </div>
+    </div>
+  
+
+    <!-- Car Model type -->
+    <div class="form-group">
+      <div>Izaberi tip modela</div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+        </div>
+  
+      <select 
+      name="carModelTypeSelect" 
+      id="carModelTypeSelect" 
+      type="number" 
+      class="form-control" 
+      disabled="{{tipValidan}}"
+      [(ngModel)]="carModelTypeSelect" 
+      (ngModelChange)="carModelTypeToNumber()">
+        <option select  disabled value="">Izberi tip modela</option>
+        <option *ngFor="let carModelType of allcarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelType}}</option>
+     </select>
+    </div>
+    </div>
+
+
+  <!-- Car Model Type Engine Name -->
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+      </div>
+
+
+      <input 
+      id="carModelTypeEngineName" 
+      name="carModelTypeEngineName" 
+      class="form-control" 
+      required minlength="3" 
+      ngModel 
+
+      #carModelTypeEngineName="ngModel"
+      placeholder="Upiši motor za odabrano vozilo " 
+      type="text" />
+
+    </div>
+    <div class="form-group">
+      <div *ngIf="carModelTypeEngineName.invalid && (carModelTypeEngineName.dirty || carModelTypeEngineName.touched)" class="alert alert-danger">
+        <div *ngIf="carModelTypeEngineName?.errors.required">
+          Mora se uneti motor za odabrano vozilo.
+        </div>
+        <div *ngIf="carModelTypeEngineName?.errors.minlength">
+          Vozilo mora imati minimalno 3 karaktera.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-block"
+      [disabled]="createCarModelTypeEngineForm.form.invalid || buttondisabled"> Dodaj novi motor za odabrano vozilo </button>
+  </div>
+</form>
+<p>{{ error }}</p>
+</div>
+</div>
+</div>

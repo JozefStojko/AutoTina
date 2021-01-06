@@ -18,7 +18,45 @@
           </ng-template>
         </ngb-tab>
 
-        <!-- 2. tab -->
+        <!-- 2. tab CarModelTypeEngine -->
+        <ngb-tab title="Motori tipova modela vozila" class="ngbTabTitle">
+          <ng-template ngbTabContent>
+            <!-- <h5 style="text-align:center">Marke vozila</h5> -->
+            <hr>
+
+            <div class="row">
+                <button type="button" style="text-align:center" class="btn btn-primary btn-block"
+                (click)="createCarModelTypeEngine()"> Dodaj motor tipu modela vozila </button>
+            </div>
+            <hr>
+
+
+          <div class="col-md-12">
+            <table class="table table-striped table-hover table-bordered">
+            <tr>
+              <th style="text-align:center">Marka</th>
+              <th style="text-align:center">Model</th>
+              <th style="text-align:center">Tip modela</th>
+              <th style="text-align:center">Motor tipa modela</th>
+              <th colspan="2" style="text-align:center">Komande</th>
+
+            </tr>
+              <tr *ngFor="let carModelTypeEngine of allCarModelTypeEngine">
+                <td style="text-align:center">{{carModelTypeEngine.CarMark.Mark}}</td>
+                <td style="text-align:center">{{carModelTypeEngine.CarModel.Model}}</td>
+                <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModelType}}</td>
+                <td style="text-align:center">{{carModelTypeEngine.CarModelTypeEngineName}}</td>
+                <td style="text-align:center"><button (click)="updateCarModelTypeEngine(carModelTypeEngine)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+                <td style="text-align:center"><button (click)="deleteCarModelTypeEngine(carModelTypeEngine)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+              </tr>
+            </table>
+          </div>
+
+          </ng-template>
+        </ngb-tab>
+
+
+        <!-- 3. tab -->
         <ngb-tab title="Tipovi modela vozila" class="ngbTabTitle">
           <ng-template ngbTabContent>
             <!-- <h5 style="text-align:center">Marke vozila</h5> -->
@@ -43,9 +81,9 @@
 
             </tr>
               <tr *ngFor="let carModelType of allCarModelTypes">
-                <td style="text-align:center">{{carModelType.CarMark.Mark}}</td>
+                <td style="text-align:center">{{carModelType.CarModel.CarMark.Mark}}</td>
                 <td style="text-align:center">{{carModelType.CarModel.Model}}</td>
-                <td style="text-align:center">{{carModelType.CarModelType}}</td>
+                <td style="text-align:center">{{carModelType.CarModelTypeName}}</td>
                 <td style="text-align:center">{{carModelType.YearFrom}}</td>
                 <td style="text-align:center">{{carModelType.YearTo}}</td>
                 <td style="text-align:center"><button (click)="updateCarModelType(carModelType)" class="btn btn-sm btn-outline-primary">Edit</button></td>
@@ -58,7 +96,7 @@
         </ngb-tab>
 
   
-        <!-- 3. tab -->
+        <!-- 4. tab -->
         <ngb-tab title="Modeli vozila" class="ngbTabTitle">
           <ng-template ngbTabContent>
             <!-- <h5 style="text-align:center">Marke vozila</h5> -->
@@ -95,7 +133,7 @@
           </ng-template>
         </ngb-tab>
 
-                <!-- 4. tab -->
+                <!-- 5. tab -->
         <ngb-tab title="Marke vozila" class="ngbTabTitle">
           <ng-template ngbTabContent>
             <!-- <h5 style="text-align:center">Marke vozila</h5> -->
@@ -131,7 +169,7 @@
           </ng-template>
         </ngb-tab>
 
-                <!-- 5. tab -->
+                <!-- 6. tab -->
         <ngb-tab title="Tipovi delova" class="ngbTabTitle">
           <ng-template ngbTabContent>
             <!-- <h5 style="text-align:center">Marke vozila</h5> -->

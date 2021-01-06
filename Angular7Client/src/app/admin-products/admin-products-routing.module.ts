@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateCarMarkComponent } from './create-car-mark/create-car-mark.component';
-import { CreateCarModelTypeComponent } from './create-car-model-type/create-car-model-type.component';
-import { CreateCarTypeComponent } from './create-car-type/create-car-type.component';
-import { CreatePartTypeComponent } from './create-part-type/create-part-type.component';
-import { CreateProductComponent } from './create-product/create-product.component';
-import { DeleteProductComponent } from './delete-product/delete-product.component';
+import { CreateCarModelTypeEngineComponent } from './car-model-type-engine/create-car-model-type-engine/create-car-model-type-engine.component';
+import { UpdateCarModelTypeEngineComponent } from './car-model-type-engine/update-car-model-type-engine/update-car-model-type-engine.component';
+import { CreateCarMarkComponent } from './car-mark/create-car-mark/create-car-mark.component';
+import { CreateCarModelTypeComponent } from './car-model-type/create-car-model-type/create-car-model-type.component';
+import { CreateCarTypeComponent } from './car-type/create-car-type/create-car-type.component';
+import { CreatePartTypeComponent } from './part-type/create-part-type/create-part-type.component';
+import { CreateProductComponent } from './product/create-product/create-product.component';
+import { DeleteProductComponent } from './product/delete-product/delete-product.component';
 import { OrdersComponent } from './orders/orders.component';
-import { UpdateCarMarkComponent } from './update-car-mark/update-car-mark.component';
-import { UpdateCarModelTypeComponent } from './update-car-model-type/update-car-model-type.component';
-import { UpdateCarTypeComponent } from './update-car-type/update-car-type.component';
-import { UpdateImageComponent } from './update-image/update-image.component';
-import { UpdatePartTypeImageComponent } from './update-part-type-image/update-part-type-image.component';
-import { UpdatePartTypeComponent } from './update-part-type/update-part-type.component';
-import { UpdateProductComponent } from './update-product/update-product.component';
+import { UpdateCarMarkComponent } from './car-mark/update-car-mark/update-car-mark.component';
+import { UpdateCarModelTypeComponent } from './car-model-type/update-car-model-type/update-car-model-type.component';
+import { UpdateCarTypeComponent } from './car-type/update-car-type/update-car-type.component';
+import { UpdateImageComponent } from './car-mark/update-image/update-image.component';
+import { UpdatePartTypeImageComponent } from './part-type/update-part-type-image/update-part-type-image.component';
+import { UpdatePartTypeComponent } from './part-type/update-part-type/update-part-type.component';
+import { UpdateProductComponent } from './product/update-product/update-product.component';
 import { ViewAllProductsByCategoryComponent } from './view-all-products-by-category/view-all-products-by-category.component';
 import { ViewAllProductsByDateComponent } from './view-all-products-by-date/view-all-products-by-date.component';
 import { ViewAllProductsComponent } from './view-all-products/view-all-products.component';
@@ -38,6 +40,8 @@ const routes: Routes = [
   { path: 'update-part-type-image', component: UpdatePartTypeImageComponent },
   { path: 'create-car-model-type', component: CreateCarModelTypeComponent },
   { path: 'update-car-model-type', component: UpdateCarModelTypeComponent },
+  { path: 'create-car-model-type-engine', component: CreateCarModelTypeEngineComponent },
+  { path: 'update-car-model-type-engine', component: UpdateCarModelTypeEngineComponent },
   { path: '', component: ViewAllProductsComponent }
 ];
 
