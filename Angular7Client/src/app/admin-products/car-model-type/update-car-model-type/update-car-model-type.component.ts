@@ -106,7 +106,7 @@ export class UpdateCarModelTypeComponent implements OnInit {
  // Choose mark using select dropdown
  markToNumber(){
   this.carMarkId = +this.carMarkId;
-  this.loadCarMarkIdTypes(this.carMarkId); 
+  this.loadCarTypeIdMarks(this.carMarkId); 
   this.markaValidna = false;
   console.log(this.carMarkId);
 }
@@ -117,7 +117,7 @@ export class UpdateCarModelTypeComponent implements OnInit {
   console.log(this.carTypeId);
 }
 
-loadCarMarkIdTypes(carMarkId: number) {  
+loadCarTypeIdMarks(carMarkId: number) {  
   this.carTypeService.getCarMarkIdTypes(carMarkId).subscribe(
     result => this.allCarTypes = result,
     error => console.log("Error :: " + error),

@@ -1,3 +1,121 @@
-<p>
-  update-car-model-type-engine works!
-</p>
+<h5 style="text-align:center">Izmeni motor tipa modela vozila</h5>
+
+<div class="container">
+
+  <!-- OVO JE VAZNO ZA CENTRIRANJE FORME bootstrap/4.0.0 -->
+    <div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <form name="form" (ngSubmit)="carModelTypeEngineForm.form.valid && OnUpdateCarModelTypeEngine(
+      carModelTypeEngineName.value, 
+      carModelTypeId)"
+      #carModelTypeEngineForm="ngForm" 
+      novalidate>
+
+      <!-- Car mark -->
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+          </div>
+    
+        <select 
+        name="markSelect" 
+        id="markSelect" 
+        type="number" 
+        class="form-control" 
+        [(ngModel)]="carMarkId" 
+        (ngModelChange)="markToNumber()">
+          <option disabled value="">{{ carModelTypeEngine.CarMark }}</option>
+          <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
+       </select>
+      </div>
+      </div>
+    
+       <!-- Car model -->
+       <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+          </div>
+    
+        <select 
+        name="carTypeSelect" 
+        id="carTypeSelect" 
+        type="number" 
+        class="form-control" 
+        disabled="{{markaValidna}}"
+        [(ngModel)]="carTypeId" 
+        (ngModelChange)="typeToNumber()">
+          <option disabled value="">{{ carModelTypeEngine.CarModel }}</option>
+          <option *ngFor="let carType of allCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
+       </select>
+      </div>
+      </div>
+     
+    
+        <!-- Car Type -->
+       <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+          </div>
+    
+        <select 
+        name="carModelTypeSelect" 
+        id="carModelTypeSelect" 
+        type="number" 
+        class="form-control" 
+        disabled="{{tipValidan}}"
+        [(ngModel)]="carModelTypeId" 
+        (ngModelChange)="modelTypeToNumber()">
+          <option disabled value="">{{ carModelTypeEngine.CarModelType }}</option>
+          <option *ngFor="let carModelType of allCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
+       </select>
+      </div>
+      </div>
+
+      <!-- Car motor -->
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+          </div>
+    
+                <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+    
+          <input 
+          id="carModelTypeEngineName" 
+          name="carModelTypeEngineName" 
+          class="form-control" 
+          required minlength="3" 
+          ngModel 
+          [(ngModel)]="carModelTypeEngine.CarModelTypeEngineName"
+          #carModelTypeEngineName="ngModel"
+          placeholder="Upiši novi motor za tip vozila" type="text" />
+    
+        </div>
+        <div class="form-group">
+          <div *ngIf="carModelTypeEngineName.invalid && (carModelTypeEngineName.dirty || carModelTypeEngineName.touched)" class="alert alert-danger">
+            <div *ngIf="carModelTypeEngineName?.errors.required">
+              Mora se uneti motor za tip automobila.
+            </div>
+            <div *ngIf="carModelTypeEngineName?.errors.minlength">
+              Tip mora imati minimalno 3 karaktera.
+            </div>
+          </div>
+        </div>
+      </div>
+    
+   
+    
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"
+          [disabled]="carModelTypeEngineForm.form.invalid || buttondisabled"> Izmeni model vozila </button>
+      </div>
+    </form>
+    </div>
+</div>
+</div>
+
+

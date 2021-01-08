@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CarModelTypeEngine } from 'src/app/shared/model/car-model-type-engine.model';
 import { CarModelType } from 'src/app/shared/model/car-model-type.model';
 import { CarType } from 'src/app/shared/model/car-type.model';
 import { CarMark } from 'src/app/shared/model/carMark.model';
@@ -18,7 +19,8 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
 
   godinaProizvodnjeOdValidna: boolean = true;
   markaValidna: boolean = true;
-  tipValidan: boolean = true;
+  typeValidan: boolean = true;
+  carModelTypeValidan: boolean = true;
   godinaProizvodnjeOdValidnaDisabled: boolean = true;
   godinaProizvodnjeDoValidna: boolean = true;
   allCarMarks: CarMark[];
@@ -30,6 +32,7 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
   carMark: CarMark;
   carType: CarType;
   carModelType: CarModelType;
+  carModelTypeEngine: CarModelTypeEngine;
 
 
 
@@ -47,15 +50,13 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
     this.loadAllCarMarks(); 
   }
 
-  OnSubmitCreateCarModelTypeEngine(carModelId, CarModelTypeName, yearFrom, yearTo) {
-    this.carModelType = {
-      CarModelId: carModelId,
-      CarModelTypeName: CarModelTypeName,
-      YearFrom: yearFrom,
-      YearTo: yearTo
+  OnSubmitCreateCarModelTypeEngine(carModelTypeEngineName, carModelTypeId) {
+    this.carModelTypeEngine = {
+      CarModelTypeEngineName: carModelTypeEngineName,
+      CarModelTypeId: carModelTypeId
     }
-    console.log('carModelType: ', this.carModelType);
-    this.carModelTypeService.saveCarModelType(this.carModelType).subscribe(       
+    console.log('carModelTypeEngine: ', this.carModelTypeEngine);
+    this.carModelTypeEngineService.saveCarModelTypeEngine(this.carModelTypeEngine).subscribe(       
       res => console.log('done'), //this.fileUpload = res,
       err => console.log('err'), // this.error = err,
       () => {
@@ -79,7 +80,7 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
       () => console.log('done!', this.allCarMarks)
     )}; 
 
-    loadCarTypesIdMark(carMarkId: number) {  
+    loadCarMarkIdTypes(carMarkId: number) {  
       this.carTypeService.getCarMarkIdTypes(carMarkId).subscribe(
         result => this.allCarTypes = result,
         error => console.log("Error :: " + error),
@@ -87,7 +88,7 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
       )}; 
 
       loadCarModelIdTypes(carTypeId: number) {  
-        this.carModelTypeService.getCarModelType(carTypeId).subscribe(
+        this.carModelTypeService.getCarModelTypeIdModelType(carTypeId).subscribe(
           result => this.allCarModelTypes = result,
           error => console.log("Error :: " + error),
           () => console.log('done!', this.allCarModelTypes)
@@ -100,20 +101,22 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
    markToNumber(){
     this.carMarkId = +this.carMarkId;
     console.log(this.carMarkId);
-    this.loadCarTypesIdMark(this.carMarkId);
+    this.loadCarMarkIdTypes(this.carMarkId);
     this.markaValidna = false;
   }
 
      // Choose type using select dropdown
-     typeToNumber(){
+     carTypeToNumber(){
       this.carTypeId = +this.carTypeId;
+      console.log(this.carTypeId);
       this.loadCarModelIdTypes(this.carTypeId); 
-      this.markaValidna = false;
+      this.typeValidan = false;
     }
 
        // Choose model type using select dropdown
        carModelTypeToNumber(){
       this.carModelTypeId = +this.carModelTypeId;
+      this.carModelTypeValidan = false;
     }
 
   

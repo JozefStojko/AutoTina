@@ -24,8 +24,8 @@ export class CarModelTypeService {
     return this.http.get<CarModelType[]>(this.rootUrl + '/api/carmodeltypes');
   }  
 
-  getCarModelType(carModelTypeId: number): Observable<CarModelType[]> {  
-    return this.http.get<CarModelType[]>(this.rootUrl + '/api/carmodeltypes/GetCarModelTypesByCarModelTypeIdSearch/' + carModelTypeId);
+  getCarModelTypeIdModelType(carModelTypeId: number): Observable<CarModelType[]> {  
+    return this.http.get<CarModelType[]>(this.rootUrl + '/api/carmodeltypes/getcarmodeltypesbycarmodeltypeidsearch/' + carModelTypeId);
   }  
 
   putCarModelType(carModelType: CarModelType) {  

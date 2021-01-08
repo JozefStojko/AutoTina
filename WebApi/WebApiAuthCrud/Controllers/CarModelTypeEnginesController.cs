@@ -20,8 +20,18 @@ namespace WebApiAuthCrud.Controllers
         // GET: api/CarModelTypeEngines
         public IQueryable<CarModelTypeEngine> GetCarModelTypeEngines()
         {
-            return db.CarModelTypeEngines;
+
+            IQueryable<CarModelTypeEngine> carModelTypeEngines = db.CarModelTypeEngines.Include(p => p.CarModelType);
+
+            carModelTypeEngines = carModelTypeEngines.Include(p => p.CarModelType.CarModel);
+            carModelTypeEngines = carModelTypeEngines.Include(p => p.CarModelType.CarModel.CarMark);
+
+
+            return carModelTypeEngines.OrderBy(p => p.CarModelType.CarModel.CarMark.Mark);
+
         }
+
+
 
         // GET: api/CarModelTypeEngines/5
         [ResponseType(typeof(CarModelTypeEngine))]

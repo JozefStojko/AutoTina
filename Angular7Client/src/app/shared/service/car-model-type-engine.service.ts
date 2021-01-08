@@ -23,6 +23,7 @@ export class CarModelTypeEngineService {
     return this.http.get<CarModelTypeEngine[]>(this.rootUrl + '/api/carmodeltypeengines');
   }  
 
+
   getCarModelTypeEngines(carModelTypeEngineId: number): Observable<CarModelTypeEngine[]> {  
     return this.http.get<CarModelTypeEngine[]>(this.rootUrl + '/api/carmodeltypeengines/GetCarModelTypeEnginesByCarModelTypeEngineIdSearch/' + carModelTypeEngineId);
   }  
@@ -32,7 +33,7 @@ export class CarModelTypeEngineService {
     return this.http.put(this.rootUrl + '/api/carmodeltypeengines/' + carModelTypeEngine.Id, carModelTypeEngine);
   }  
 
-  removeCarModelTypeEngine(id: string) {
+  removeCarModelTypeEngine(id: number) {
     return this.http.delete(this.rootUrl + '/api/carmodeltypeengines/' + id);
   }
 

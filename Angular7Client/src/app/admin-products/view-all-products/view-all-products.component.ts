@@ -78,6 +78,7 @@ export class ViewAllProductsComponent implements OnInit {
       this.loadAllCarTypes(); 
       this.loadAllPartTypes(); 
       this.loadAllCarModelTypes(); 
+      this.loadAllCarModelTypeEngines();
       }
 
 
@@ -112,6 +113,15 @@ export class ViewAllProductsComponent implements OnInit {
         ProductType: '',
         ProductTypeImage: null
     };
+    this.carModelTypeEngineService.carModelTypeEngine = {
+      Id: null,
+      CarModelTypeEngineName: '',
+      CarModelTypeId: null,
+      CarMark: null,
+      CarModel: null,
+      CarModelType: null  
+  };
+
 
       this.imageUrl = "/assets/img/default-image.png";
     }
@@ -129,7 +139,9 @@ export class ViewAllProductsComponent implements OnInit {
 
     loadAllCarModelTypeEngines() {  
       this.carModelTypeEngineService.getAllCarModelTypeEngines().subscribe(
-        result => this.allCarModelTypeEngines = result,
+        result => {
+          this.allCarModelTypeEngines = result
+        },
         error => console.log("Error :: " + error),
         () => console.log('done!', this.allCarModelTypeEngines)
       )}; 
@@ -137,6 +149,18 @@ export class ViewAllProductsComponent implements OnInit {
       createCarModelTypeEngine() {
         this.router.navigate(['/admin-products/create-car-model-type-engine']);
       }
+
+      updateCarModelTypeEngine(carModelTypeEngine: CarModelTypeEngine) {
+        this.carModelTypeEngineService.carModelTypeEngine = Object.assign({}, carModelTypeEngine);
+        this.router.navigate(['/admin-products/update-car-model-type-engine']);
+    }
+  
+    deleteCarModelTypeEngine(carModelTypeEngine: CarModelTypeEngine) {
+      this.carModelTypeEngineService.removeCarModelTypeEngine(carModelTypeEngine.Id).subscribe(() => {  
+        this.loadAllCarModelTypeEngines();  
+      });  
+    }
+
 
   
     // Working with Tipovi modela vozila CarModelType

@@ -7,10 +7,8 @@
   <div class="col-md-6">
 
 <form name="form" (ngSubmit)="createCarModelTypeEngineForm.form.valid && OnSubmitCreateCarModelTypeEngine(
-  carMarkSelect,
-  carTypeSelect,
-  carModelTypeSelect,
-  carModelTypeEngineName.value)" 
+carModelTypeEngineName.value,
+carModelTypeSelect)" 
    #createCarModelTypeEngineForm="ngForm" novalidate>
 
   <!-- Car mark -->
@@ -27,7 +25,7 @@
     id="carMarkSelect" 
     type="number" 
     class="form-control" 
-    [(ngModel)]="carMarkSelect" 
+    [(ngModel)]="carMarkId" 
     (ngModelChange)="markToNumber()">
       <option select  disabled value="">Izaberi marku vozila</option>
       <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
@@ -51,7 +49,7 @@
       type="number" 
       class="form-control" 
       disabled="{{markaValidna}}"
-      [(ngModel)]="carTypeSelect" 
+      [(ngModel)]="carTypeId" 
       (ngModelChange)="carTypeToNumber()">
         <option select  disabled value="">Izaberi model vozila</option>
         <option *ngFor="let carType of allCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
@@ -73,11 +71,11 @@
       id="carModelTypeSelect" 
       type="number" 
       class="form-control" 
-      disabled="{{tipValidan}}"
+      disabled="{{typeValidan}}"
       [(ngModel)]="carModelTypeSelect" 
       (ngModelChange)="carModelTypeToNumber()">
         <option select  disabled value="">Izberi tip modela</option>
-        <option *ngFor="let carModelType of allcarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelType}}</option>
+        <option *ngFor="let carModelType of allCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
      </select>
     </div>
     </div>

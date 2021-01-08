@@ -41,10 +41,10 @@
               <th colspan="2" style="text-align:center">Komande</th>
 
             </tr>
-              <tr *ngFor="let carModelTypeEngine of allCarModelTypeEngine">
-                <td style="text-align:center">{{carModelTypeEngine.CarMark.Mark}}</td>
-                <td style="text-align:center">{{carModelTypeEngine.CarModel.Model}}</td>
-                <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModelType}}</td>
+              <tr *ngFor="let carModelTypeEngine of allCarModelTypeEngines">
+                <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModel.CarMark.Mark}}</td>
+                <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModel.Model}}</td>
+                <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModelTypeName}}</td>
                 <td style="text-align:center">{{carModelTypeEngine.CarModelTypeEngineName}}</td>
                 <td style="text-align:center"><button (click)="updateCarModelTypeEngine(carModelTypeEngine)" class="btn btn-sm btn-outline-primary">Edit</button></td>
                 <td style="text-align:center"><button (click)="deleteCarModelTypeEngine(carModelTypeEngine)" class="btn btn-sm btn-outline-danger">Delete</button></td>
