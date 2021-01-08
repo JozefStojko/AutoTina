@@ -202,21 +202,6 @@ namespace WebApiAuthCrud.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = productTypeModel.Id }, productTypeModel);
 
-
-
-        //    [ResponseType(typeof(ProductTypeModel))]
-        //public async Task<IHttpActionResult> PostProductTypeModel(ProductTypeModel productTypeModel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.ProductTypeModels.Add(productTypeModel);
-        //    await db.SaveChangesAsync();
-
-
-        //    return CreatedAtRoute("DefaultApi", new { id = productTypeModel.Id }, productTypeModel);
         }
 
         // DELETE: api/ProductTypeModels/5

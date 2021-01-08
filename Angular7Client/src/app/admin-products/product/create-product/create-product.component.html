@@ -7,16 +7,16 @@
   <div class="col-md-6">
 
 <form name="form" (ngSubmit)="createProductForm.form.valid && OnSubmitCreateProduct(
-  carMarkSelect,
-  carTypeSelect,
-  productTypeSelect,
+  productTypeSelect,  
+  carModelTypeSelect,
+  carModelTypeEngineSelect,
   catalogNumber.value,
   productName.value,
   onLager.value,
   price.value,
+  image,
   description.value,
-  comparativeNumbers.value,
-   image)" 
+  comparativeNumbers.value)" 
    #createProductForm="ngForm" novalidate>
 
   <!-- Car mark -->
@@ -56,15 +56,66 @@
       id="carTypeSelect" 
       type="number" 
       class="form-control" 
+      disabled="{{markaValidna}}"
       [(ngModel)]="carTypeSelect" 
-      (ngModelChange)="carTypeToNumber()">
+      (ngModelChange)="typeToNumber()">
         <option select  disabled value="">Izaberi model vozila</option>
         <option *ngFor="let carType of allCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
      </select>
     </div>
     </div>
   
+        <!-- Car Model Type -->
+        <div class="form-group">
+          <div *ngIf="carTypeSelect !== ''">
+            Izaberi tip modela vozila
+          </div>
+    
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+            </div>
+      
+          <select 
+          name="carModelTypeSelect" 
+          id="carModelTypeSelect" 
+          type="number" 
+          class="form-control" 
+          disabled="{{tipValidan}}"
+          [(ngModel)]="carModelTypeSelect" 
+          (ngModelChange)="modelTypeToNumber()">
+            <option disabled value="">Izaberi tip modela vozila</option>
+            <option *ngFor="let carModelType of allCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
+         </select>
+        </div>
+        </div>
 
+        <!-- Car Model Type Engine-->
+        <div class="form-group">
+          <div *ngIf="carModelTypeSelect !== ''">
+            Izaberi motor modela vozila
+          </div>
+    
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+            </div>
+      
+          <select 
+          name="carModelTypeEngineSelect" 
+          id="carModelTypeEngineSelect" 
+          type="number" 
+          class="form-control" 
+          disabled="{{modelTipValidan}}"
+          [(ngModel)]="carModelTypeEngineSelect" 
+          (ngModelChange)="modelTypeToNumber()">
+            <option disabled value="">Izaberi motor modela vozila</option>
+            <option *ngFor="let carModelTypeEngine of allCarModelTypeEngines" [ngValue]="carModelTypeEngine.Id">{{carModelTypeEngine.CarModelTypeEngineName}}</option>
+         </select>
+        </div>
+        </div>
+
+  
     <!-- Product type -->
     <div class="form-group">
       <div>Izaberi tip dela</div>
@@ -80,7 +131,7 @@
       class="form-control" 
       [(ngModel)]="productTypeSelect" 
       (ngModelChange)="productTypeToNumber()">
-        <option select  disabled value="">Izberi tip dela</option>
+        <option select  disabled value="">Izaberi tip dela</option>
         <option *ngFor="let productType of allPartTypes" [ngValue]="productType.Id">{{productType.ProductType}}</option>
      </select>
     </div>
@@ -114,7 +165,7 @@
           Mora se uneti kataloški broj auto dela.
         </div>
         <div *ngIf="catalogNumber?.errors.minlength">
-          Tip mora imati minimalno 3 karaktera.
+          Kataloški broj mora imati minimalno 3 karaktera.
         </div>
         <div class="valid-feedback">
           Izgleda da je dobro!
@@ -136,28 +187,26 @@
         id="productName" 
         name="productName" 
         class="form-control" 
-        required 
-        minlength="3" 
-
+        required minlength="3" 
         ngModel 
         #productName="ngModel"
-        placeholder="Upiši broj godine od koje ovaj model proizvodi." 
+        placeholder="Upiši ime proizvoda." 
         type="text" />
     </div>
 
-      <div class="form-group">
-        <div *ngIf="productName && (productName.dirty || productName.touched)" class="alert alert-danger">
-          <div *ngIf="!productName.valid">
-            Mora se uneti naziv dela.
-          </div>
-          <div *ngIf="productName?.errors.minlength">
-            Tip mora imati minimalno 3 karaktera.
-          </div>
-            <div class="valid-feedback">
-            Izgleda da je dobro!
-          </div>
+    <div class="form-group">
+      <div *ngIf="productName.invalid && (productName.dirty || productName.touched)" class="alert alert-danger">
+        <div *ngIf="productName?.errors.required">
+          Mora se upisati ime dela.
+        </div>
+        <div *ngIf="productName?.errors.minlength">
+          Ime dela mora imati minimalno 3 karaktera.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
         </div>
       </div>
+    </div>
     </div>
   
     <!-- On Lager -->
@@ -177,21 +226,21 @@
 
         ngModel 
         #onLager="ngModel"
-        placeholder="Upiši koliko komada ima na lageru." 
+        placeholder="Upiši koliko komada ima na stanju." 
         type="number"
         (keypress)="stripText($event)" />
     </div>
 
-      <div class="form-group">
-        <div *ngIf="onLager && (onLager.dirty || onLager.touched)" class="alert alert-danger">
-          <div *ngIf="!onLager.valid">
-            Mora se uneti količina.
-          </div>
-            <div class="valid-feedback">
-            Izgleda da je dobro!
-          </div>
+    <div class="form-group">
+      <div *ngIf="onLager.invalid && (onLager.dirty || onLager.touched)" class="alert alert-danger">
+        <div *ngIf="onLager?.errors.required">
+          Mora se upisati koliko ima na stanju.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
         </div>
       </div>
+    </div>
     </div>
 
     <!-- Price -->
@@ -216,16 +265,16 @@
         (keypress)="stripText($event)" />
     </div>
 
-      <div class="form-group">
-        <div *ngIf="price && (price.dirty || price.touched)" class="alert alert-danger">
-          <div *ngIf="!productName.valid">
-            Mora se uneti cena dela.
-          </div>
-            <div class="valid-feedback">
-            Izgleda da je dobro!
-          </div>
+    <div class="form-group">
+      <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+        <div *ngIf="price?.errors.required">
+          Mora se upisati cena.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
         </div>
       </div>
+    </div>
     </div>
 
   
@@ -238,7 +287,9 @@
   
         <!-- [(ngModel)]="carTypeService.carType.YearFrom"  -->
 
-        <input 
+        <textarea 
+        rows="5" 
+        cols="25" 
         id="description" 
         name="description" 
         class="form-control" 
@@ -247,23 +298,21 @@
 
         ngModel 
         #description="ngModel"
-        placeholder="Upiši opis za proizvod." 
-        type="text" />
+        placeholder="Upiši opis za proizvod..." 
+        type="text">
+      </textarea>
     </div>
 
-      <div class="form-group">
-        <div *ngIf="description && (description.dirty || description.touched)" class="alert alert-danger">
-          <div *ngIf="!description.valid">
-            Mora se uneti naziv dela.
-          </div>
-          <div *ngIf="description?.errors.minlength">
-            Tip mora imati minimalno 3 karaktera.
-          </div>
-            <div class="valid-feedback">
-            Izgleda da je dobro!
-          </div>
+    <div class="form-group">
+      <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+        <div *ngIf="description?.errors.required">
+          Mora se upisati opis dela.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
         </div>
       </div>
+    </div>
     </div>
 
     <!-- Comparative numbers -->
@@ -284,23 +333,20 @@
 
         ngModel 
         #comparativeNumbers="ngModel"
-        placeholder="Upiši broj godine od koje ovaj model proizvodi." 
+        placeholder="Upiši brojeve." 
         type="text" />
     </div>
 
-      <div class="form-group">
-        <div *ngIf="comparativeNumbers && (comparativeNumbers.dirty || comparativeNumbers.touched)" class="alert alert-danger">
-          <div *ngIf="!comparativeNumbers.valid">
-            Mora se uneti naziv dela.
-          </div>
-          <div *ngIf="comparativeNumbers?.errors.minlength">
-            Tip mora imati minimalno 3 karaktera.
-          </div>
-            <div class="valid-feedback">
-            Izgleda da je dobro!
-          </div>
+    <div class="form-group">
+      <div *ngIf="comparativeNumbers.invalid && (comparativeNumbers.dirty || comparativeNumbers.touched)" class="alert alert-danger">
+        <div *ngIf="comparativeNumbers?.errors.required">
+          Mora se upisati šifra zaupoređivanje.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
         </div>
       </div>
+    </div>
     </div>
 
 
@@ -325,48 +371,6 @@
 
      
   </div>
-
-
-
-    <!-- Car YearTo -->
-    <!-- <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text"> <i class="far fa-calendar-minus"></i> </span>
-        </div>
-        
-
-        <input 
-        id="yearTo" 
-        name="godinaProizvodnjeDo" 
-        class="form-control" 
-        required 
-        minlength="3" 
-
-        ngModel 
-        #godinaProizvodnjeDo="ngModel"
-        (keyup)="onKeyYearTo($event)"
-        [disabled]="godinaProizvodnjeOdValidna"
-        (keypress)="stripText($event)"
-        placeholder="Upiši broj godine do koje ovaj model proizvodio." 
-        type="number" />
-    </div>
-
-      <div class="form-group">
-        <div *ngIf="godinaProizvodnjeDoValidna && (godinaProizvodnjeDo.dirty || godinaProizvodnjeDo.touched)" class="alert alert-danger">
-          <div *ngIf="!godinaProizvodnjeDo.valid">
-            Mora se uneti godina početka proizvodnje modela.
-          </div>
-          <div *ngIf="godinaProizvodnjeDoValidna">
-            Godina mora biti veća poéetka proizvodnje i manja ili jednaka sa aktuelnom godinom.
-          </div>
-          <div class="valid-feedback">
-            Izgleda da je dobro!
-          </div>
-        </div>
-      </div>
-    </div> -->
-
 
   <div class="form-group">
     <button type="submit" class="btn btn-primary btn-block"

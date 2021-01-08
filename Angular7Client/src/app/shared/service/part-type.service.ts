@@ -20,14 +20,14 @@ export class PartTypeService {
   constructor(private http: HttpClient) { }
 
   savePartType(productType: string, fileToUpload: File) {
-    const formData: FormData = new FormData();
-    formData.append('productTypeName', JSON.stringify(productType));
-    formData.append('productTypeImage', fileToUpload, fileToUpload.name);
-    return this.http.post(this.rootUrl + '/api/producttypemodels/', formData, {
+    var formProductType: FormData = new FormData();
+    formProductType.set('productTypeName', JSON.stringify(productType));
+    formProductType.set('productTypeImage', fileToUpload, fileToUpload.name);
+    return this.http.post(this.rootUrl + '/api/producttypemodels/', formProductType, {
         reportProgress: true,
         observe: 'events'
       }).pipe(
-        map(event => this.getEventMessage(event, formData)),
+        map(event => this.getEventMessage(event, formProductType)),
         catchError(this.handleError)
     );
   }
@@ -36,7 +36,7 @@ export class PartTypeService {
   //   return this.http.post(this.rootUrl + '/api/producttypemodels/', partType, httpOptions);
   // }
 
-    //ovo ide za prodress bar
+    //ovo ide za progress bar
     private getEventMessage(event: HttpEvent<any>, formData) {
 
       switch (event.type) {

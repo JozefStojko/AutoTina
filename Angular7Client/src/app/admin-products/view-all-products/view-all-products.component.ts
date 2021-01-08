@@ -8,6 +8,7 @@ import { CarType } from 'src/app/shared/model/car-type.model';
 import { Car } from 'src/app/shared/model/car.model';
 import { CarMark } from 'src/app/shared/model/carMark.model';
 import { PartType } from 'src/app/shared/model/part-type.model';
+import { Product } from 'src/app/shared/model/product.model';
 import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
 import { CarModelTypeEngineService } from 'src/app/shared/service/car-model-type-engine.service';
@@ -16,6 +17,7 @@ import { CarTypeService } from 'src/app/shared/service/car-type.service';
 import { CarService } from 'src/app/shared/service/car.service';
 import { DataService } from 'src/app/shared/service/data.service';
 import { PartTypeService } from 'src/app/shared/service/part-type.service';
+import { ProductService } from 'src/app/shared/service/product.service';
 
 @Component({
   selector: 'app-view-all-products',
@@ -34,6 +36,8 @@ export class ViewAllProductsComponent implements OnInit {
   allPartTypes: PartType[];
   allCarModelTypes: CarModelType[];
   allCarModelTypeEngines: CarModelTypeEngine[];
+  product: Product;
+  allProduct: Product[];
 
   
 
@@ -51,7 +55,8 @@ export class ViewAllProductsComponent implements OnInit {
     public carTypeService: CarTypeService,
     public carModelTypeService: CarModelTypeService,
     public carModelTypeEngineService: CarModelTypeEngineService,
-    public partTypeService: PartTypeService
+    public partTypeService: PartTypeService,
+    public productService: ProductService
     
     ) { }
 
@@ -79,6 +84,8 @@ export class ViewAllProductsComponent implements OnInit {
       this.loadAllPartTypes(); 
       this.loadAllCarModelTypes(); 
       this.loadAllCarModelTypeEngines();
+      this.loadAllProduct();
+
       }
 
 
@@ -130,6 +137,14 @@ export class ViewAllProductsComponent implements OnInit {
 
   
     // workig with product
+    loadAllProduct() {  
+      this.productService.getAll().subscribe(
+        result => this.allProduct = result,
+        error => console.log("Error :: " + error),
+        () => console.log('done!', this.allProduct)
+      )} 
+
+
     createProduct() {
       this.router.navigate(['/admin-products/create-product']);
     }

@@ -25,14 +25,15 @@ export class CarMarkService {
 
   // ovo radi bez progress bar
   saveCarMark(mark: string, fileToUpload: File) {
-    const formData: FormData = new FormData();
-    formData.append('mark', JSON.stringify(mark));
-    formData.append('image', fileToUpload, fileToUpload.name);
-    return this.http.post(this.rootUrl + '/api/carmarks/', formData, {
+    var formCarMark: FormData = new FormData();
+    formCarMark.set('mark', JSON.stringify(mark));
+    formCarMark.set('image', fileToUpload, fileToUpload.name);
+    console.log(formCarMark.getAll('mark'));
+    return this.http.post(this.rootUrl + '/api/carmarks/', formCarMark, {
         reportProgress: true,
         observe: 'events'
       }).pipe(
-        map(event => this.getEventMessage(event, formData)),
+        map(event => this.getEventMessage(event, formCarMark)),
         catchError(this.handleError)
     );
   }
