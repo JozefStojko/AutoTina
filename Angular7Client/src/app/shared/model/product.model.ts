@@ -1,8 +1,10 @@
 export class Product {
   Id?: number;
-  ProductTypeId: number;
+  ProductTypeModelId: number;
   CarModelTypeId: number;
   CarModelTypeEngineId: number;
+  CarModelId: number;
+  CarMarkId: number;
   CatalogNumber: string;
   ProductName: string;
   OnLager: number;

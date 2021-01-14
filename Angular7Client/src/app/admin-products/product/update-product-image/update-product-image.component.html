@@ -1,4 +1,4 @@
-<h5 style="text-align:center">Dodaj novu sliku</h5>
+<h5 style="text-align:center">Dodaj drugu sliku dela za {{product.ProductName}}</h5>
 
 <div class="container">
 
@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
   <div class="col-md-6">
 
-    <form name="form" (ngSubmit)="partTypeForm.form.valid && OnUpdatePartType(image)" #partTypeForm="ngForm" novalidate>
+    <form name="form" (ngSubmit)="productForm.form.valid && OnUpdateProduct(image)" #productForm="ngForm" novalidate>
 
 
   <!-- Image -->
@@ -31,7 +31,7 @@
 
   <div class="form-group">
     <button type="submit" class="btn btn-primary btn-block"
-      [disabled]="partTypeForm.form.invalid || buttondisabled"> Promeni sliku </button>
+      [disabled]="productForm.form.invalid || buttondisabled"> Promeni sliku </button>
   </div>
 </form>
 </div>

@@ -105,6 +105,7 @@ export class UpdateCarModelTypeEngineComponent implements OnInit {
   this.loadCarTypeIdMarks(this.carMarkId); 
   this.markaValidna = false;
   console.log(this.carMarkId);
+  this.tipValidan = true;
 }
 
  // Choose type using select dropdown

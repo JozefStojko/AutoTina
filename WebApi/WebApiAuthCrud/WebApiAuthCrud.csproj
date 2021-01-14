@@ -361,6 +361,18 @@
     <Compile Include="Migrations\202101041252151_[Required].Designer.cs">
       <DependentUpon>202101041252151_[Required].cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101101657162_Change_ProductModel.cs" />
+    <Compile Include="Migrations\202101101657162_Change_ProductModel.Designer.cs">
+      <DependentUpon>202101101657162_Change_ProductModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101101710056_Change_ProductModel_Adding_2_Id-s.cs" />
+    <Compile Include="Migrations\202101101710056_Change_ProductModel_Adding_2_Id-s.Designer.cs">
+      <DependentUpon>202101101710056_Change_ProductModel_Adding_2_Id-s.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101101715509_Change_ProductModel_Required_false_for_foreign_Id-s.cs" />
+    <Compile Include="Migrations\202101101715509_Change_ProductModel_Required_false_for_foreign_Id-s.Designer.cs">
+      <DependentUpon>202101101715509_Change_ProductModel_Required_false_for_foreign_Id-s.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounting.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -554,6 +566,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101041252151_[Required].resx">
       <DependentUpon>202101041252151_[Required].cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101101657162_Change_ProductModel.resx">
+      <DependentUpon>202101101657162_Change_ProductModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101101710056_Change_ProductModel_Adding_2_Id-s.resx">
+      <DependentUpon>202101101710056_Change_ProductModel_Adding_2_Id-s.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101101715509_Change_ProductModel_Required_false_for_foreign_Id-s.resx">
+      <DependentUpon>202101101715509_Change_ProductModel_Required_false_for_foreign_Id-s.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

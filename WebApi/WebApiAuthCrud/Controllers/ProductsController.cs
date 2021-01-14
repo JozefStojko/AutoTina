@@ -26,7 +26,14 @@ namespace WebApiAuthCrud.Controllers
         [AllowAnonymous]
         public IQueryable<ProductModel> GetProducts()
         {
-            return db.ProductModels.OrderBy(x => x.ProductName);
+            IQueryable<ProductModel> productModels = db.ProductModels.Include(p => p.CarModelTypeEngine);
+
+            productModels = productModels.Include(p => p.CarModelType);
+            productModels = productModels.Include(p => p.CarModel);
+            productModels = productModels.Include(p => p.CarMark);
+            productModels = productModels.Include(p => p.ProductTypeModel);
+
+            return productModels.OrderBy(x => x.CarMark.Mark);
         }
 
         public enum SortTypes
@@ -151,17 +158,81 @@ namespace WebApiAuthCrud.Controllers
 
         // PUT: api/Products/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutProductModel(int id, ProductModel productModel)
-        {
+        public async Task<IHttpActionResult> PutProductModel()
+            {
+            var httpRequest = HttpContext.Current.Request;
+
+            string imageName = null;
+            string productName = null;
+
+            //Create id from productTypeId
+            string idNameString = httpRequest.Params["ProductId"];
+            //idNameString = idNameString.Remove(0, 1);
+            //idNameString = idNameString.Remove(idNameString.Length - 1);
+
+            int id = (int)Int64.Parse(idNameString);
+
+
+
+            //var product = httpRequest.Params["ProductName"];
+
+            //if (product.Contains("Product"))
+            //{
+            //    productName = product.Remove(0, 9);
+            //    productName = productName.Remove(productName.Length - 2);
+            //}
+            //else
+            //{
+            //    productName = product.Remove(0, 1);
+            //    productName = productName.Remove(productName.Length - 1);
+            //}
+
+
+            //Upload Image
+            var postedFile = httpRequest.Files["ProductImage"];
+            var postedImage = httpRequest.Params["ProductImage"];
+
+
+            //Create custom filename
+            if (postedFile != null)
+            {
+
+                imageName = new String(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
+                postedFile.SaveAs(filePath);
+            }
+            else
+            {
+                imageName = postedImage.Remove(0, 1);
+                imageName = imageName.Remove(imageName.Length - 1);
+            }
+
+
+
+            ProductModel productModel = new ProductModel()
+            {
+                Id = id,
+                ProductTypeModelId = int.Parse(httpRequest.Params["ProductTypeId"]),
+                CarModelTypeId = int.Parse(httpRequest.Params["CarModelTypeId"]),
+                CarModelId = int.Parse(httpRequest.Params["CarTypeId"]),
+                CarMarkId = int.Parse(httpRequest.Params["CarMarkId"]),
+                CarModelTypeEngineId = int.Parse(httpRequest.Params["CarModelTypeEngineId"]),
+                CatalogNumber = httpRequest.Params["CatalogNumber"],
+                ProductName = httpRequest.Params["ProductName"],
+                OnLager = int.Parse(httpRequest.Params["OnLager"]),
+                Price = int.Parse(httpRequest.Params["Price"]),
+                Description = httpRequest.Params["Description"],
+                ComparativeNumbers = httpRequest.Params["ComparativeNumbers"],  
+                Image = imageName
+            };
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            //if (id != productModel.Id)
-            //{
-            //    return BadRequest();
-            //}
 
             db.Entry(productModel).State = EntityState.Modified;
 
@@ -171,7 +242,7 @@ namespace WebApiAuthCrud.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductModelExists(id))
+                if (!ProductModelExists(productModel.Id))
                 {
                     return NotFound();
                 }
@@ -199,29 +270,10 @@ namespace WebApiAuthCrud.Controllers
             var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
             postedFile.SaveAs(filePath);
 
-            var productTypeId = httpRequest.Params["ProductTypeId"];
-
-            var carModelTypeId = httpRequest.Params["CarModelTypeId"];
-
-            var carModelTypeEngineId = httpRequest.Params["CarModelTypeEngineId"];
-
-
-            var catalogNumber = httpRequest.Params["CatalogNumber"];
 
             //var catalogN = httpRequest.Params["catalogNumber"];
             //var catalogNumber = catalogN.Remove(0, 1);
             //catalogNumber = catalogNumber.Remove(catalogNumber.Length - 1);
-
-
-            var productName = httpRequest.Params["ProductName"];
-
-            var onLager = httpRequest.Params["OnLager"];
-
-            var price = httpRequest.Params["Price"];
-
-            var description = httpRequest.Params["Description"];
-
-            var comparativeNumbers = httpRequest.Params["ComparativeNumbers"];
 
 
             if (!ModelState.IsValid)
@@ -231,16 +283,18 @@ namespace WebApiAuthCrud.Controllers
 
             ProductModel productModel = new ProductModel()
             {
-                ProductTypeId = int.Parse(productTypeId),
-                CarModelTypeId = int.Parse(carModelTypeId),
-                CarModelTypeEngineId = int.Parse(carModelTypeEngineId),
-                CatalogNumber = catalogNumber,
-                ProductName = productName,
-                OnLager = int.Parse(onLager),
-                Price = int.Parse(price),
+                ProductTypeModelId = int.Parse(httpRequest.Params["ProductTypeId"]),
+                CarModelTypeId = int.Parse(httpRequest.Params["CarModelTypeId"]),
+                CarModelId = int.Parse(httpRequest.Params["CarTypeId"]),
+                CarMarkId = int.Parse(httpRequest.Params["CarMarkId"]),
+                CarModelTypeEngineId = int.Parse(httpRequest.Params["CarModelTypeEngineId"]),
+                CatalogNumber = httpRequest.Params["CatalogNumber"],
+                ProductName = httpRequest.Params["ProductName"],
+                OnLager = int.Parse(httpRequest.Params["OnLager"]),
+                Price = int.Parse(httpRequest.Params["Price"]),
                 Image = imageName,
-                Description = description,
-                ComparativeNumbers = comparativeNumbers
+                Description = httpRequest.Params["Description"],
+                ComparativeNumbers = httpRequest.Params["ComparativeNumbers"]
             };
 
 
@@ -248,18 +302,6 @@ namespace WebApiAuthCrud.Controllers
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = productModel.Id }, productModel);
-            //Random rnd = new Random();
-            //int length = 15;
-            //string charPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-            //StringBuilder rs = new StringBuilder();
-
-            //while (length > 0)
-            //{
-            //    rs.Append(charPool[(int)(rnd.NextDouble() * charPool.Length)]);
-            //    length--;
-            //}
-            //productModel.Id = rs.ToString();
-
         }
 
 
@@ -272,6 +314,12 @@ namespace WebApiAuthCrud.Controllers
             {
                 return NotFound();
             }
+
+            //delete image
+            string imageName = productModel.Image;
+            var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
+            File.Delete(filePath);
+
 
             db.ProductModels.Remove(productModel);
             await db.SaveChangesAsync();

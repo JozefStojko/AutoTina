@@ -6,7 +6,6 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import { ViewAllProductsComponent } from './view-all-products/view-all-products.component';
 import { UpdateProductComponent } from './product/update-product/update-product.component';
 import { UpdateImageComponent } from './car-mark/update-image/update-image.component';
-import { DeleteProductComponent } from './product/delete-product/delete-product.component';
 import { ViewAllProductsByDateComponent } from './view-all-products-by-date/view-all-products-by-date.component';
 import { ViewAllProductsByCategoryComponent } from './view-all-products-by-category/view-all-products-by-category.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -23,6 +22,7 @@ import { UpdateCarModelTypeComponent } from './car-model-type/update-car-model-t
 import { UpdatePartTypeImageComponent } from './part-type/update-part-type-image/update-part-type-image.component';
 import { CreateCarModelTypeEngineComponent } from './car-model-type-engine/create-car-model-type-engine/create-car-model-type-engine.component';
 import { UpdateCarModelTypeEngineComponent } from './car-model-type-engine/update-car-model-type-engine/update-car-model-type-engine.component';
+import { UpdateProductImageComponent } from './product/update-product-image/update-product-image.component';
 
 
 
@@ -33,7 +33,6 @@ import { UpdateCarModelTypeEngineComponent } from './car-model-type-engine/updat
     ViewAllProductsComponent,
     UpdateProductComponent,
     UpdateImageComponent,
-    DeleteProductComponent,
     ViewAllProductsByDateComponent,
     ViewAllProductsByCategoryComponent,
     OrdersComponent,
@@ -47,7 +46,8 @@ import { UpdateCarModelTypeEngineComponent } from './car-model-type-engine/updat
     UpdateCarModelTypeComponent,
     UpdatePartTypeImageComponent,
     CreateCarModelTypeEngineComponent,
-    UpdateCarModelTypeEngineComponent
+    UpdateCarModelTypeEngineComponent,
+    UpdateProductImageComponent
   ],
   imports: [
     CommonModule,

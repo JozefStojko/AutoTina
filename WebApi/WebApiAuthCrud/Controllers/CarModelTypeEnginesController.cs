@@ -27,8 +27,7 @@ namespace WebApiAuthCrud.Controllers
             carModelTypeEngines = carModelTypeEngines.Include(p => p.CarModelType.CarModel.CarMark);
 
 
-            return carModelTypeEngines.OrderBy(p => p.CarModelType.CarModel.CarMark.Mark);
-
+            return carModelTypeEngines.OrderBy(p => p.CarModelType.CarModel.CarMark.Mark).ThenBy(x => x.CarModelType.CarModel.Model).ThenBy(x => x.CarModelType.CarModelTypeName).ThenBy(x => x.CarModelTypeEngineName);
         }
 
 

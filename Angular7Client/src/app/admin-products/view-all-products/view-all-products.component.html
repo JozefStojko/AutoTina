@@ -12,9 +12,45 @@
 
             <div class="row">
                 <button type="button" style="text-align:center" class="btn btn-primary btn-block"
-                (click)="createProduct()"> Dodaj novi deo</button>
+                (click)="createProduct()"> Dodaj novi deo </button>
             </div>
             <hr>
+
+
+          <div class="col-md-12">
+            <table class="table table-striped table-hover table-bordered">
+            <tr>
+              <th style="text-align:center">Marka</th>
+              <th style="text-align:center">Model</th>
+              <th style="text-align:center">Tip modela</th>
+              <th style="text-align:center">Motor tipa modela</th>
+              <th style="text-align:center">Grupa dela</th>
+              <th style="text-align:center">Naziv dela</th>
+              <th style="text-align:center">Slika</th>
+              <th style="text-align:center">Na stanju</th>
+              <th style="text-align:center">Cena</th>
+              <th style="text-align:center">Opis</th>
+              <th colspan="3" style="text-align:center">Komande</th>
+
+            </tr>
+              <tr *ngFor="let product of allProduct">
+                <td style="text-align:center">{{product.CarMark.Mark}}</td>
+                <td style="text-align:center">{{product.CarModel.Model}}</td>
+                <td style="text-align:center">{{product.CarModelType.CarModelTypeName}}</td>
+                <td style="text-align:center">{{product.CarModelTypeEngine.CarModelTypeEngineName}}</td>
+                <td style="text-align:center">{{product.ProductTypeModel.ProductType}}</td>
+                <td style="text-align:center">{{product.ProductName}}</td>
+                <td style="text-align:center"><img [src]="createProductImagePath(product.Image)" style="width:40px; height:40px"></td>
+                <td style="text-align:center">{{product.OnLager}}</td>
+                <td style="text-align:center">{{product.Price}}</td>
+                <td style="text-align:center">{{product.Description}}</td>
+                <td style="text-align:center"><button (click)="updateProductImage(product)" class="btn btn-sm btn-outline-primary">Change image</button></td>
+                <td style="text-align:center"><button (click)="updateProduct(product)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+                <td style="text-align:center"><button (click)="deleteProduct(product)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+              </tr>
+            </table>
+          </div>
+
           </ng-template>
         </ngb-tab>
 

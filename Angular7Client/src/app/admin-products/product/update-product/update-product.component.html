@@ -1,3 +1,398 @@
-<p>
-  update-product works!
-</p>
+<h5 style="text-align:center">Promeni podatke za deo</h5>
+
+<div class="container">
+
+  <!-- OVO JE VAZNO ZA CENTRIRANJE FORME bootstrap/4.0.0 -->
+
+<form name="form" (ngSubmit)="ProductForm.form.valid && OnUpdateProduct(
+  carMarkSelect,
+  carTypeSelect,
+  productTypeSelect,  
+  carModelTypeSelect,
+  carModelTypeEngineSelect,
+  catalogNumber.value,
+  productName.value,
+  onLager.value,
+  price.value,
+  description.value,
+  comparativeNumbers.value)" 
+   #ProductForm="ngForm" novalidate>
+   <!-- <div class="row-md-12 justify-content-center"> -->
+      <!-- <div class="col-md-12"> -->
+<div class="row justify-content-center">
+
+
+  <div class="col">
+
+  <!-- Car mark -->
+  <div class="form-group">
+    <div>Izaberi marku vozila</div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+      </div>
+
+    <select 
+    name="carMarkSelect" 
+    id="carMarkSelect" 
+    type="number" 
+    class="form-control" 
+    [(ngModel)]="carMarkSelect" 
+    (ngModelChange)="markToNumber()"> 
+      <option select  disabled value="">{{ productService.product.CarMark.Mark }}</option>
+      <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
+   </select>
+  </div>
+  </div>
+
+          <!-- Car Model Type -->
+          <div class="form-group">
+            <div *ngIf="carTypeSelect !== ''">
+              Izaberi modela vozila
+            </div>
+      
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+              </div>
+        
+            <select 
+            name="carModelTypeSelect" 
+            id="carModelTypeSelect" 
+            type="number" 
+            class="form-control" 
+            disabled="{{tipValidan}}"
+            [(ngModel)]="carModelTypeSelect" 
+            (ngModelChange)="modelTypeToNumber()">
+              <option disabled value="">{{ productService.product.CarModelType.CarModelTypeName }}</option>
+              <option *ngFor="let carModelType of allCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
+           </select>
+          </div>
+          </div>
+  
+
+  </div>
+
+  <div class="col">
+
+        <!-- Car type -->
+        <div class="form-group">
+          <div *ngIf="carTypeSelect !== ''">
+            Izaberi tip modela vozila
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+            </div>
+      
+          <select 
+          name="carTypeSelect" 
+          id="carTypeSelect" 
+          type="number" 
+          class="form-control" 
+          disabled="{{markaValidna}}"
+          [(ngModel)]="carTypeSelect" 
+          (ngModelChange)="typeToNumber()">
+            <option select  disabled value="">{{ productService.product.CarModelType.Model }}</option>
+            <option *ngFor="let carType of allCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
+         </select>
+        </div>
+        </div>
+    
+  
+        <!-- Car Model Type Engine-->
+        <div class="form-group">
+          <div *ngIf="carModelTypeSelect !== ''">
+            Izaberi motor modela vozila
+          </div>
+    
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+            </div>
+      
+          <select 
+          name="carModelTypeEngineSelect" 
+          id="carModelTypeEngineSelect" 
+          type="number" 
+          class="form-control" 
+          disabled="{{modelTipValidan}}"
+          [(ngModel)]="carModelTypeEngineSelect" 
+          (ngModelChange)="modelTypeToNumber()">
+            <option disabled value="">{{ productService.product.CarModelType.CarModelTypeEngineName }}</option>
+            <option *ngFor="let carModelTypeEngine of allCarModelTypeEngines" [ngValue]="carModelTypeEngine.Id">{{carModelTypeEngine.CarModelTypeEngineName}}</option>
+         </select>
+        </div>
+        </div>
+</div>
+</div>
+
+<div class="row-md-12 justify-content-center">
+
+    <!-- Product type -->
+    <div class="form-group">
+      <div>Izaberi tip dela</div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+        </div>
+  
+      <select 
+      name="productTypeSelect" 
+      id="productTypeSelect" 
+      type="number" 
+      class="form-control" 
+      [(ngModel)]="productTypeSelect" 
+      (ngModelChange)="productTypeToNumber()">
+        <option select  disabled value="">{{ productService.product.ProductTypeModel.ProductType }}</option>
+        <option *ngFor="let productType of allPartTypes" [ngValue]="productType.Id">{{productType.ProductType}}</option>
+     </select>
+    </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+
+  <div class="col">
+    <!-- Product Name -->
+    <div class="form-group">
+      <div>Naziv dela</div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="far fa-calendar-plus"></i> </span>
+        </div>
+  
+        <!-- [(ngModel)]="carTypeService.carType.YearFrom"  -->
+
+        <input 
+        id="productName" 
+        name="productName" 
+        class="form-control" 
+        required minlength="3" 
+        ngModel 
+        [(ngModel)]="product.ProductName"
+        #productName="ngModel"
+        placeholder="Upiši ime proizvoda." 
+        type="text" />
+    </div>
+
+    <div class="form-group">
+      <div *ngIf="productName.invalid && (productName.dirty || productName.touched)" class="alert alert-danger">
+        <div *ngIf="productName?.errors.required">
+          Mora se upisati ime dela.
+        </div>
+        <div *ngIf="productName?.errors.minlength">
+          Ime dela mora imati minimalno 3 karaktera.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="col">
+      <!-- Catalog number -->
+  <div class="form-group">
+    <div>Kataloški broj</div>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+      </div>
+
+            <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+
+      <input 
+      id="catalogNumber" 
+      name="catalogNumber" 
+      class="form-control" 
+      required minlength="3" 
+      ngModel 
+      [(ngModel)]="product.CatalogNumber"
+      #catalogNumber="ngModel"
+      placeholder="Upiši kataloški broj " 
+      type="text" />
+
+    </div>
+    <div class="form-group">
+      <div *ngIf="catalogNumber.invalid && (catalogNumber.dirty || catalogNumber.touched)" class="alert alert-danger">
+        <div *ngIf="catalogNumber?.errors.required">
+          Mora se uneti kataloški broj auto dela.
+        </div>
+        <div *ngIf="catalogNumber?.errors.minlength">
+          Kataloški broj mora imati minimalno 3 karaktera.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>  
+
+<div class="row justify-content-center">
+  <div class="col">
+    <!-- On Lager -->
+    <div class="form-group">
+      <div>Na stanju</div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="far fa-calendar-plus"></i> </span>
+        </div>
+  
+        <!-- [(ngModel)]="carTypeService.carType.YearFrom"  -->
+
+        <input 
+        id="onLager" 
+        name="onLager" 
+        class="form-control" 
+        required 
+        [(ngModel)]="product.OnLager"
+        ngModel 
+        #onLager="ngModel"
+        placeholder="Upiši koliko komada ima na stanju." 
+        type="number"
+        (keypress)="stripText($event)" />
+    </div>
+
+    <div class="form-group">
+      <div *ngIf="onLager.invalid && (onLager.dirty || onLager.touched)" class="alert alert-danger">
+        <div *ngIf="onLager?.errors.required">
+          Mora se upisati koliko ima na stanju.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="col">
+    <!-- Price -->
+    <div class="form-group">
+      <div>Cena</div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="far fa-calendar-plus"></i> </span>
+        </div>
+  
+        <!-- [(ngModel)]="carTypeService.carType.YearFrom"  -->
+
+        <input 
+        id="price" 
+        name="price" 
+        class="form-control" 
+        required 
+        [(ngModel)]="product.Price"
+        ngModel 
+        #price="ngModel"
+        placeholder="Upiši cenu jediničnog dela." 
+        type="number"
+        (keypress)="stripText($event)" />
+    </div>
+
+    <div class="form-group">
+      <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+        <div *ngIf="price?.errors.required">
+          Mora se upisati cena.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="col">
+  
+    <!-- Comparative numbers -->
+    <div class="form-group">
+      <div>Brojevi za upoređivanje</div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="far fa-calendar-plus"></i> </span>
+        </div>
+  
+        <!-- [(ngModel)]="carTypeService.carType.YearFrom"  -->
+
+        <input 
+        id="comparativeNumbers" 
+        name="comparativeNumbers" 
+        class="form-control" 
+        required 
+        minlength="3" 
+        [(ngModel)]="product.ComparativeNumbers"
+        ngModel 
+        #comparativeNumbers="ngModel"
+        placeholder="Upiši brojeve." 
+        type="text" />
+    </div>
+
+    <div class="form-group">
+      <div *ngIf="comparativeNumbers.invalid && (comparativeNumbers.dirty || comparativeNumbers.touched)" class="alert alert-danger">
+        <div *ngIf="comparativeNumbers?.errors.required">
+          Mora se upisati šifra zaupoređivanje.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+  <div class="row-md-12 justify-content-center">
+  
+    <!-- Description -->
+    <div class="form-group">
+      <div>Opis</div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="far fa-calendar-plus"></i> </span>
+        </div>
+  
+        <!-- [(ngModel)]="carTypeService.carType.YearFrom"  -->
+
+        <textarea 
+        rows="5" 
+        cols="25" 
+        id="description" 
+        name="description" 
+        class="form-control" 
+        required 
+        minlength="3" 
+        [(ngModel)]="product.Description"
+        ngModel 
+        #description="ngModel"
+        placeholder="Upiši opis za proizvod..." 
+        type="text">
+      </textarea>
+    </div>
+
+    <div class="form-group">
+      <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+        <div *ngIf="description?.errors.required">
+          Mora se upisati opis dela.
+        </div>
+        <div class="valid-feedback">
+          Izgleda da je dobro!
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-block"
+      [disabled]="ProductForm.form.invalid || buttondisabled"> Dodaj novi deo </button>
+  </div>
+<!-- </div> -->
+</div>
+</form>
+<p>{{ error }}</p>
+</div>

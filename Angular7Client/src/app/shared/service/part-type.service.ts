@@ -21,7 +21,7 @@ export class PartTypeService {
 
   savePartType(productType: string, fileToUpload: File) {
     var formProductType: FormData = new FormData();
-    formProductType.set('productTypeName', JSON.stringify(productType));
+    formProductType.set('productTypeName', productType);
     formProductType.set('productTypeImage', fileToUpload, fileToUpload.name);
     return this.http.post(this.rootUrl + '/api/producttypemodels/', formProductType, {
         reportProgress: true,
@@ -83,7 +83,7 @@ export class PartTypeService {
 
   putPartType(partTypeId: string, partTypeName:string, fileToUpload: File) {  
     const formData: FormData = new FormData();
-    formData.append('productTypeId', JSON.stringify(partTypeId));
+    formData.append('productTypeId', partTypeId);
     formData.append('productTypeName', JSON.stringify(partTypeName));
     formData.append('productTypeImage', fileToUpload, fileToUpload.name);
     return this.http.put(this.rootUrl + '/api/producttypemodels/' + partTypeId, formData);
@@ -91,7 +91,7 @@ export class PartTypeService {
 
   putPartTypeNoImage(partTypeId: string, partTypeName:string, partTypeImage: string) {  
     const formData: FormData = new FormData();
-    formData.append('productTypeId', JSON.stringify(partTypeId));
+    formData.append('productTypeId', partTypeId);
     formData.append('productTypeName', JSON.stringify(partTypeName));
     formData.append('productTypeImage', JSON.stringify(partTypeImage));
     return this.http.put(this.rootUrl + '/api/producttypemodels/' + partTypeId, formData);

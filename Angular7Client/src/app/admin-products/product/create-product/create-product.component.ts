@@ -59,8 +59,23 @@ export class CreateProductComponent implements OnInit {
 
   }
 
-  OnSubmitCreateProduct(productTypeSelect, carModelTypeSelect, carModelTypeEngineSelect, catalogNumber, productName, onLager, price, image, description, comparativeNumbers) {
+  OnSubmitCreateProduct(carMarkSelect, carTypeSelect, productTypeSelect, carModelTypeSelect, carModelTypeEngineSelect, catalogNumber, productName, onLager, price, image, description, comparativeNumbers) {
+
+    if (carMarkSelect == null){
+      carMarkSelect = 0;
+    }
+    if (carTypeSelect == null){
+      carTypeSelect = 0;
+    }
+    if (carModelTypeSelect == null){
+      carModelTypeSelect = 0;
+    }
+    if (carModelTypeEngineSelect == null){
+      carModelTypeEngineSelect = 0;
+    }
     this.productService.saveProduct(
+      carMarkSelect, 
+      carTypeSelect,
       productTypeSelect, 
       carModelTypeSelect,
       carModelTypeEngineSelect,
@@ -74,6 +89,8 @@ export class CreateProductComponent implements OnInit {
       res => this.fileUpload = res,          // console.log('done');
       err => this.error = err,
       () => {
+        carMarkSelect  = null;
+        carTypeSelect = null;
         productTypeSelect = null;
         carModelTypeSelect = null;
         carModelTypeEngineSelect = null;
@@ -102,6 +119,9 @@ export class CreateProductComponent implements OnInit {
     this.loadCarTypeIdMarks(this.carMarkSelect); 
     this.markaValidna = false;
     console.log(this.carMarkSelect);
+    this.tipValidan = true;
+    this.modelTipValidan = true;
+
   }
 
  // Choose type using select dropdown
@@ -110,6 +130,7 @@ export class CreateProductComponent implements OnInit {
   this.loadCarModelTypeIdModel(this.carTypeSelect); 
   console.log(this.carTypeSelect);
   this.tipValidan = false;
+  this.modelTipValidan = true;
 }
 
  // Choose model type using select dropdown
@@ -202,8 +223,10 @@ loadCarModelTypeIdModel(carModelTypeId: number) {
     }
     this.productService.product = {
       Id: null,
-      ProductTypeId: null,
+      ProductTypeModelId: null,
       CarModelTypeId: null,
+      CarModelId: null,
+      CarMarkId: null,
       CarModelTypeEngineId: null,
       CatalogNumber: '',
       ProductName: '',

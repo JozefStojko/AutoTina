@@ -52,8 +52,8 @@ namespace WebApiAuthCrud.Controllers
 
             //Create id from productTypeId
             string idNameString = httpRequest.Params["productTypeId"];
-            idNameString = idNameString.Remove(0, 1);
-            idNameString = idNameString.Remove(idNameString.Length - 1);
+            //idNameString = idNameString.Remove(0, 1);
+            //idNameString = idNameString.Remove(idNameString.Length - 1);
 
             int idName = (int)Int64.Parse(idNameString);
 
@@ -179,9 +179,9 @@ namespace WebApiAuthCrud.Controllers
             var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
             postedFile.SaveAs(filePath);
 
-            var productType = httpRequest.Params["productTypeName"];
-            var productTypeName = productType.Remove(0, 1);
-            productTypeName = productTypeName.Remove(productTypeName.Length - 1);
+            //var productType = httpRequest.Params["productTypeName"];
+            //var productTypeName = productType.Remove(0, 1);
+            //productTypeName = productTypeName.Remove(productTypeName.Length - 1);
 
 
             if (!ModelState.IsValid)
@@ -191,7 +191,7 @@ namespace WebApiAuthCrud.Controllers
 
             ProductTypeModel productTypeModel = new ProductTypeModel()
             {
-                ProductType = productTypeName,
+                ProductType = httpRequest.Params["productTypeName"],
                 ProductTypeImage = imageName
             };
 
@@ -218,6 +218,12 @@ namespace WebApiAuthCrud.Controllers
             //string imageName = productTypeModel.ProductTypeImage;
             //var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
             //File.Delete(filePath);
+
+            //delete image
+            string imageName = productTypeModel.ProductTypeImage;
+            var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
+            File.Delete(filePath);
+
 
             db.ProductTypeModels.Remove(productTypeModel);
             await db.SaveChangesAsync();

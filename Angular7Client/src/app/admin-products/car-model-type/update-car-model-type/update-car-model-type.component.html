@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
   <div class="col-md-6">
 
-    <form name="form" (ngSubmit)="carTypeForm.form.valid && OnUpdateCarType(type.value, carTypeId, godinaProizvodnjeOd.value, godinaProizvodnjeDo.value)" #carTypeForm="ngForm" novalidate>
+    <form name="form" (ngSubmit)="carTypeForm.form.valid && OnUpdateCarType(type.value, carTypeSelect, godinaProizvodnjeOd.value, godinaProizvodnjeDo.value)" #carTypeForm="ngForm" novalidate>
 
       <!-- Car mark -->
       <div class="form-group">
@@ -35,13 +35,16 @@
             <span class="input-group-text"> <i class="fas fa-car"></i> </span>
           </div>
     
+          <!-- [(ngModel)]="carTypeId"  -->
+
+
         <select 
         name="carTypeSelect" 
         id="carTypeSelect" 
         type="number" 
         class="form-control" 
         disabled="{{markaValidna}}"
-        [(ngModel)]="carTypeId" 
+        [(ngModel)]="carTypeSelect" 
         (ngModelChange)="typeToNumber()">
           <option disabled value="">{{ carModelType.CarModel }}</option>
           <option *ngFor="let carType of allCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>

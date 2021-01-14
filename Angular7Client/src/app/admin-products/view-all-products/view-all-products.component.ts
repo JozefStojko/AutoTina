@@ -149,6 +149,28 @@ export class ViewAllProductsComponent implements OnInit {
       this.router.navigate(['/admin-products/create-product']);
     }
 
+    updateProductImage(product: Product) {
+      this.productService.product = Object.assign({}, product);
+      this.router.navigate(['/admin-products/update-product-image']);
+    }
+
+
+    updateProduct(product: Product) {
+      this.productService.product = Object.assign({}, product);
+      this.router.navigate(['/admin-products/update-product']);
+  }
+
+  deleteProduct(product: Product) {
+    this.productService.removeProduct(product.Id.toString()).subscribe(() => {  
+      this.loadAllPartTypes();  
+    });  
+  }
+
+  public createProductImagePath(serverPath: string) {
+    return 'http://localhost:52866/image/'+serverPath;
+  } 
+
+
 
     // Working with CarModelTypeEngine
 

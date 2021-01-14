@@ -23,7 +23,7 @@ export class ProductService {
   }
 
   get(id: string) {
-    return this.http.get(`${this.rootUrl + '/products'}/${id}`);
+    return this.http.get(`${this.rootUrl + 'api/products'}/${id}`);
   }
 
   // getBySearch(key: string) {
@@ -36,6 +36,8 @@ export class ProductService {
   }
 
   saveProduct(
+    carMarkSelect: number,
+    carTypeSelect: number,
     productTypeSelect: number, 
     carModelTypeSelect: number, 
     carModelTypeEngineSelect: number, 
@@ -46,11 +48,12 @@ export class ProductService {
     fileToUpload: File,
     description: string, 
     comparativeNumbers: string) {
-    // console.log(productTypeSelect, carModelTypeSelect, carModelTypeEngineSelect, catalogNumber, productName, onLager, price, fileToUpload, description, comparativeNumbers);
     var formProduct: FormData = new FormData();
     formProduct.set('ProductTypeId', JSON.stringify(productTypeSelect));
     formProduct.set('CarModelTypeId', JSON.stringify(carModelTypeSelect));
     formProduct.set('CarModelTypeEngineId', JSON.stringify(carModelTypeEngineSelect));
+    formProduct.set('CarTypeId', JSON.stringify(carTypeSelect));
+    formProduct.set('CarMarkId', JSON.stringify(carMarkSelect));
     formProduct.set('CatalogNumber', catalogNumber);
     formProduct.set('ProductName', productName);
     formProduct.set('OnLager', JSON.stringify(onLager));
@@ -58,19 +61,6 @@ export class ProductService {
     formProduct.set('Description', description);
     formProduct.set('ComparativeNumbers', comparativeNumbers);
     formProduct.set('Image', fileToUpload, fileToUpload.name);
-    console.log(formProduct.getAll('ProductTypeId'));
-    console.log(formProduct.getAll('CarModelTypeId'));
-    console.log(formProduct.getAll('CarModelTypeEngineId'));
-    console.log(formProduct.getAll('CatalogNumber'));
-    console.log(formProduct.getAll('ProductName'));
-    console.log(formProduct.getAll('OnLager'));
-    console.log(formProduct.getAll('Description'));
-    console.log(formProduct.getAll('Price'));
-    console.log(formProduct.getAll('ComparativeNumbers'));
-    console.log(formProduct.getAll('Image'));
-    // const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
-    // return this.http.post(this.rootUrl + '/api/products/', formProduct, httpOptions);
-
     return this.http.post(this.rootUrl + '/api/products/', formProduct, {
         reportProgress: true,
         observe: 'events'
@@ -124,6 +114,70 @@ export class ProductService {
   //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   //   return this.http.post<Product>(this.rootUrl + '/products', product, httpOptions);
   // }
+
+  putProduct(
+    productId: number,
+    carMarkSelect: number,
+    carTypeSelect: number,
+    productTypeSelect: number, 
+    carModelTypeSelect: number, 
+    carModelTypeEngineSelect: number, 
+    catalogNumber: string, 
+    productName: string, 
+    onLager: number, 
+    price: number, 
+    description: string, 
+    comparativeNumbers: string,
+    fileToUpload: File) {  
+    const formProduct: FormData = new FormData();
+    formProduct.set('ProductId', JSON.stringify(productId));
+    formProduct.set('ProductTypeId', JSON.stringify(productTypeSelect));
+    formProduct.set('CarModelTypeId', JSON.stringify(carModelTypeSelect));
+    formProduct.set('CarTypeId', JSON.stringify(carTypeSelect));
+    formProduct.set('CarMarkId', JSON.stringify(carMarkSelect));
+    formProduct.set('CarModelTypeEngineId', JSON.stringify(carModelTypeEngineSelect));
+    formProduct.set('CatalogNumber', catalogNumber);
+    formProduct.set('ProductName', productName);
+    formProduct.set('OnLager', JSON.stringify(onLager));
+    formProduct.set('Price', JSON.stringify(price));
+    formProduct.set('Description', description);
+    formProduct.set('ComparativeNumbers', comparativeNumbers);
+    formProduct.set('ProductImage', fileToUpload, fileToUpload.name);
+    return this.http.put(this.rootUrl + '/api/products/' + productId, formProduct);
+  }  
+
+  putProductNoImage(
+    productId: number,
+    carMarkSelect: number,
+    carTypeSelect: number,
+    productTypeSelect: number, 
+    carModelTypeSelect: number, 
+    carModelTypeEngineSelect: number, 
+    catalogNumber: string, 
+    productName: string, 
+    onLager: number, 
+    price: number, 
+    description: string, 
+    comparativeNumbers: string,
+    productImage: string) {  
+    const formProduct: FormData = new FormData();
+    formProduct.set('ProductId', JSON.stringify(productId));
+    formProduct.set('ProductTypeId', JSON.stringify(productTypeSelect));
+    formProduct.set('CarModelTypeId', JSON.stringify(carModelTypeSelect));
+    formProduct.set('CarTypeId', JSON.stringify(carTypeSelect));
+    formProduct.set('CarMarkId', JSON.stringify(carMarkSelect));
+    formProduct.set('CarModelTypeEngineId', JSON.stringify(carModelTypeEngineSelect));
+    formProduct.set('CatalogNumber', catalogNumber);
+    formProduct.set('ProductName', productName);
+    formProduct.set('OnLager', JSON.stringify(onLager));
+    formProduct.set('Price', JSON.stringify(price));
+    formProduct.set('Description', description);
+    formProduct.set('ComparativeNumbers', comparativeNumbers);
+    formProduct.set('ProductImage', JSON.stringify(productImage));
+    console.log(formProduct);
+    return this.http.put(this.rootUrl + '/api/products/' + productId, formProduct);
+  }  
+
 
   remove(id: string) {
     console.log('id from remove function in service: ' + id);

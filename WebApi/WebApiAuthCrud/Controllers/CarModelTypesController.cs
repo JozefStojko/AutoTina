@@ -20,14 +20,14 @@ namespace WebApiAuthCrud.Controllers
         // GET: api/CarModelTypes
         public IQueryable<CarModelType> GetCarModelTypes()
         {
-            IQueryable<CarModel> carModel = db.CarModels.Include(p => p.CarMark);
+            //IQueryable<CarModel> carModel = db.CarModels.Include(p => p.CarMark);
             IQueryable<CarModelType> carModelType = db.CarModelTypes.Include(p => p.CarModel.CarMark);
 
             //models = models.Where(p => p.CarMarkId == carMarkId);
 
             //return db.CarModelTypes;
             //return db.CarModelTypes.Include(m => m.CarModel).OrderBy(p => p.CarMark.Mark);
-            return carModelType.OrderBy(p => p.CarModel.CarMark.Mark);
+            return carModelType.OrderBy(p => p.CarModel.CarMark.Mark).ThenBy(x => x.CarModel.Model).ThenBy(y => y.CarModelTypeName);
 
         }
 

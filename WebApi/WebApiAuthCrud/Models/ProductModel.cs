@@ -12,13 +12,15 @@ namespace WebApiAuthCrud.Models
         public int Id { get; set; }
 
         [Required]
-        public int ProductTypeId { get; set; }
+        public int ProductTypeModelId { get; set; }
 
-        [Required]
         public int CarModelTypeId { get; set; }
 
-        [Required]
         public int CarModelTypeEngineId { get; set; }
+        
+        public int CarModelId { get; set; }
+
+        public int CarMarkId { get; set; }
 
         [Required]
         public string CatalogNumber { get; set; }

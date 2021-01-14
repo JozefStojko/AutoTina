@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core/src/linker/element_ref';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarModelTypeEngine } from 'src/app/shared/model/car-model-type-engine.model';
@@ -33,6 +34,7 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
   carType: CarType;
   carModelType: CarModelType;
   carModelTypeEngine: CarModelTypeEngine;
+  
 
 
 
@@ -103,6 +105,7 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
     console.log(this.carMarkId);
     this.loadCarMarkIdTypes(this.carMarkId);
     this.markaValidna = false;
+    this.typeValidan = true;
   }
 
      // Choose type using select dropdown
@@ -111,6 +114,7 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
       console.log(this.carTypeId);
       this.loadCarModelIdTypes(this.carTypeId); 
       this.typeValidan = false;
+
     }
 
        // Choose model type using select dropdown
