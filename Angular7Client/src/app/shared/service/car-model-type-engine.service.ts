@@ -34,9 +34,8 @@ export class CarModelTypeEngineService {
   }  
 
   removeCarModelTypeEngine(id: number) {
+    console.log(id);
     return this.http.delete(this.rootUrl + '/api/carmodeltypeengines/' + id);
   }
-
-
 
 }

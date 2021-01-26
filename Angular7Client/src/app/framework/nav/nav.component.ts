@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../shared/service/admin.service';
 import { Router } from '@angular/router';
 import { Globals } from '../../globals';
+import { ProductService } from 'src/app/shared/service/product.service';
 
 
 
@@ -19,13 +20,21 @@ export class NavComponent implements OnInit {
   constructor(
     private adminData: AdminService,
     private router: Router,
-    public adminService: AdminService
+    public adminService: AdminService,
+    public productService: ProductService
     ) { }
 
   ngOnInit() {
     // this.adminSignIn = this.adminService.itsAdminSignIn;
     this.adminData.currentAdmin.subscribe(admin => this.admin = admin);
   }
+
+  filteredProductBySearch(search: string) {  
+     this.productService.productList = this.productService.fixProductList.filter(
+      product => product.ProductName.toLowerCase().indexOf(search.toLowerCase()) !== -1 )
+
+    } 
+
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;

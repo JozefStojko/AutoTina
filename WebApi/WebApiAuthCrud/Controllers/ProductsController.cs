@@ -67,81 +67,128 @@ namespace WebApiAuthCrud.Controllers
         //{
         //    SortTypes sortBy = SortTypeDict[sortType];
 
-            //IQueryable<ProductModel> product = db.ProductModels.Include(p => p.Cars);
+        //IQueryable<ProductModel> product = db.ProductModels.Include(p => p.Cars);
 
-            //IQueryable<ProductModel> product = db.ProductModels;
+        //IQueryable<ProductModel> product = db.ProductModels;
 
-            //switch (sortBy)
-            //{
-            //    case SortTypes.Name:
-            //        festival = festival.OrderBy(x => x.Name);
-            //        break;
-            //    case SortTypes.NameDesc:
-            //        festival = festival.OrderByDescending(x => x.Name);
-            //        break;
-            //    case SortTypes.MaxNumberOfVisitors:
-            //        festival = festival.OrderBy(x => x.MaxNumberOfVisitors);
-            //        break;
-            //    case SortTypes.MaxNumberOfVisitorsDesc:
-            //        festival = festival.OrderByDescending(x => x.MaxNumberOfVisitors);
-            //        break;
-            //    case SortTypes.DateOfMaintenance:
-            //        festival = festival.OrderBy(x => x.DateOfMaintenance);
-            //        break;
-            //    case SortTypes.DateOfMaintenanceDesc:
-            //        festival = festival.OrderByDescending(x => x.DateOfMaintenance);
-            //        break;
-            //}
+        //switch (sortBy)
+        //{
+        //    case SortTypes.Name:
+        //        festival = festival.OrderBy(x => x.Name);
+        //        break;
+        //    case SortTypes.NameDesc:
+        //        festival = festival.OrderByDescending(x => x.Name);
+        //        break;
+        //    case SortTypes.MaxNumberOfVisitors:
+        //        festival = festival.OrderBy(x => x.MaxNumberOfVisitors);
+        //        break;
+        //    case SortTypes.MaxNumberOfVisitorsDesc:
+        //        festival = festival.OrderByDescending(x => x.MaxNumberOfVisitors);
+        //        break;
+        //    case SortTypes.DateOfMaintenance:
+        //        festival = festival.OrderBy(x => x.DateOfMaintenance);
+        //        break;
+        //    case SortTypes.DateOfMaintenanceDesc:
+        //        festival = festival.OrderByDescending(x => x.DateOfMaintenance);
+        //        break;
+        //}
 
-            //if (!search.IsNullOrWhiteSpace())
-            //{
-            //    product = product.Where(
-            //        p => p.ProductTypeModelId.ProductType.Contains(search) ||
-            //        p.CatalogNumber.ToString().Contains(search) ||
-            //        p.ProductName.Contains(search));
-            //}
+        //if (!search.IsNullOrWhiteSpace())
+        //{
+        //    product = product.Where(
+        //        p => p.ProductTypeModelId.ProductType.Contains(search) ||
+        //        p.CatalogNumber.ToString().Contains(search) ||
+        //        p.ProductName.Contains(search));
+        //}
 
-            //ViewBag.sortTypes = new SelectList(SortTypeDict, "Key", "Key", sortType);
-            //ViewBag.CurrentSortType = sortType;
+        //ViewBag.sortTypes = new SelectList(SortTypeDict, "Key", "Key", sortType);
+        //ViewBag.CurrentSortType = sortType;
 
-            //return View(festival.ToPagedList(page, FestsPerPage));
+        //return View(festival.ToPagedList(page, FestsPerPage));
         //    return product;
         //}
 
-        //[HttpPost]
-        //public ActionResult Filter(Fest filter)
-        //{
+        // GET: GetProductsFilterByModel
+        //public ActionResult Filter(Product filterByMark)
+        [Route("api/Products/FilterByModel/{filter:int}")]
 
-        //    var festival = db.Fests.Include(p => p.Tickets);
+        //public IQueryable<ProductModel> FilterByModel(ProductModel filter)
+        public IQueryable<ProductModel> FilterByModel(int filter)
 
-        //    if (filter.DateOfMaintenance != null)
-        //    {
-        //        festival = festival.Where(p => p.DateOfMaintenance == filter.DateOfMaintenance);
-        //    }
+        {
+            IQueryable<ProductModel> productModels = db.ProductModels.Include(p => p.CarModelTypeEngine);
 
-        //    if (filter.MaxNumberOfVisitors != 0)
-        //    {
-        //        festival = festival.Where(p => p.MaxNumberOfVisitors == filter.MaxNumberOfVisitors);
-        //    }
-
-        //    if (filter.Name != null)
-        //    {
-        //        festival = festival.Where(p => p.Name == filter.Name);
-        //    }
-
-        //    if (filter.Place != null)
-        //    {
-        //        festival = festival.Where(p => p.Place == filter.Place);
-        //    }
-        //    if (filter.Rating != 0)
-        //    {
-        //        festival = festival.Where(p => p.Rating == filter.Rating);
-        //    }
+            productModels = productModels.Include(p => p.CarModelType);
+            productModels = productModels.Include(p => p.CarModel);
+            productModels = productModels.Include(p => p.CarMark);
+            productModels = productModels.Include(p => p.ProductTypeModel);
 
 
-        //    return View(festival.ToList());
-        //}
+            // var festival = db.Fests.Include(p => p.Tickets);
+            if (filter != 0)
+            {
+                productModels = productModels.Where(p => p.CarMarkId == filter);
+            }
 
+
+            //if (filter.CarMarkId != 0 & filter.CarModelId == 0 & filter.CarModelTypeId == 0 & filter.CarModelTypeEngineId == 0)
+            //{
+            //    productModels = productModels.Where(p => p.CarMarkId == filter.CarMarkId);
+            //}
+
+            //if (filter.CarMarkId != 0 & filter.CarModelId != 0 & filter.CarModelTypeId == 0 & filter.CarModelTypeEngineId == 0)
+            //{
+            //    productModels = productModels.Where(p => p.CarMarkId == filter.CarMarkId);
+            //    productModels = productModels.Where(p => p.CarModelId == filter.CarModelId);
+            //}
+
+            //if (filter.CarMarkId != 0 & filter.CarModelId != 0 & filter.CarModelTypeId != 0 & filter.CarModelTypeEngineId == 0)
+            //{
+            //    productModels = productModels.Where(p => p.CarMarkId == filter.CarMarkId);
+            //    productModels = productModels.Where(p => p.CarModelId == filter.CarModelId);
+            //    productModels = productModels.Where(p => p.CarModelTypeId == filter.CarModelTypeId);
+
+            //}
+
+            //if (filter.CarMarkId != 0 & filter.CarModelId != 0 & filter.CarModelTypeId != 0 & filter.CarModelTypeEngineId != 0)
+            //{
+            //    productModels = productModels.Where(p => p.CarMarkId == filter.CarMarkId);
+            //    productModels = productModels.Where(p => p.CarModelId == filter.CarModelId);
+            //    productModels = productModels.Where(p => p.CarModelTypeId == filter.CarModelTypeId);
+            //    productModels = productModels.Where(p => p.CarModelTypeEngineId == filter.CarModelTypeEngineId);
+
+            //}
+
+            return productModels.OrderBy(x => x.CarMark.Mark).ThenBy(x => x.CarModel.Model).ThenBy(x => x.CarModelType.CarModelTypeName).ThenBy(x => x.CarModelTypeEngine.CarModelTypeEngineName);
+        }
+
+        // GET: FilterByProductType
+        //public ActionResult Filter(Product filterByMark)
+        [Route("api/products/FilterByProductType/{productTypeId:int}")]
+        [AllowAnonymous]
+        public IQueryable<ProductModel> FilterByProductType(int productTypeId)
+
+        {
+            IQueryable<ProductModel> productModels = db.ProductModels.Include(p => p.ProductTypeModel);
+
+            productModels = productModels.Include(p => p.CarModelTypeEngine);
+            productModels = productModels.Include(p => p.CarModelType);
+            productModels = productModels.Include(p => p.CarModel);
+            productModels = productModels.Include(p => p.CarMark);
+
+
+            // var festival = db.Fests.Include(p => p.Tickets);
+
+            if (productTypeId != 0)
+            {
+                productModels = productModels.Where(p => p.ProductTypeModelId == productTypeId);
+            }
+
+
+            return productModels.OrderBy(x => x.ProductTypeModel.ProductType).ThenBy(x => x.CarMark.Mark).ThenBy(x => x.CarModel.Model).ThenBy(x => x.CarModelType.CarModelTypeName).ThenBy(x => x.CarModelTypeEngine.CarModelTypeEngineName);
+            //return productModels;
+
+        }
 
         // GET: api/Products/5
         [ResponseType(typeof(ProductModel))]

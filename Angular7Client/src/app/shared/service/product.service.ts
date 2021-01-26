@@ -10,6 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ProductService {
   productList: Product[];
+  fixProductList: Product[];
   [x: string]: any;
   product: Product;
   readonly rootUrl = 'http://localhost:52866';
@@ -22,18 +23,35 @@ export class ProductService {
     return this.http.get<Product[]>(this.rootUrl + '/api/products');
   }
 
+  
+  // getProductFilteredByType(key: number): Observable<Product[]> {
+  //   console.log(key);
+  //   return this.http.get<Product[]>(this.rootUrl + '/api/products/FilterByProductType/' + key);
+  // }
+
+  // getProductFilteredByMark(key: number): Observable<Product[]> {
+  //   console.log(key);
+  //   return this.http.get<Product[]>(this.rootUrl + '/api/products/FilterByModel/' + key);
+  // }
+
+
+  // getCarModelTypeEngines(carModelTypeEngineId: number): Observable<CarModelTypeEngine[]> {  
+  //   return this.http.get<CarModelTypeEngine[]>(this.rootUrl + '/api/carmodeltypeengines/GetCarModelTypeEnginesByCarModelTypeEngineIdSearch/' + carModelTypeEngineId);
+  // }  
+
+
   get(id: string) {
     return this.http.get(`${this.rootUrl + 'api/products'}/${id}`);
   }
 
-  // getBySearch(key: string) {
+    // getBySearch(key: string) {
   //   return this.http.get(`${this.rootUrl + '/products/GetProductsBySearch'}/${key}`);
   // }
 
-  update(product: Product): Observable<Product> {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.put<Product>(this.rootUrl + '/products/' + product.Id, product, httpOptions);
-  }
+  // update(product: Product): Observable<Product> {
+  //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+  //   return this.http.put<Product>(this.rootUrl + '/products/' + product.Id, product, httpOptions);
+  // }
 
   saveProduct(
     carMarkSelect: number,
@@ -179,8 +197,10 @@ export class ProductService {
   }  
 
 
-  remove(id: string) {
+  remove(id: number) {
     console.log('id from remove function in service: ' + id);
-    return this.http.delete(`${this.rootUrl + '/products'}/${id}`);
+    return this.http.delete(this.rootUrl + '/api/products/' + id );
   }
+
+
 }

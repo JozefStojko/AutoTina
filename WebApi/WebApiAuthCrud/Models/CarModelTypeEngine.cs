@@ -16,7 +16,7 @@ namespace WebApiAuthCrud.Models
 
         [Required]
         public int CarModelTypeId { get; set; }
-
+        
 
         public CarModel CarModel { get; set; }
 

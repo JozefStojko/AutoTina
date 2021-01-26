@@ -37,7 +37,29 @@ export class ViewAllProductsComponent implements OnInit {
   allCarModelTypes: CarModelType[];
   allCarModelTypeEngines: CarModelTypeEngine[];
   product: Product;
-  allProduct: Product[];
+  //allProduct: Product[];
+  //allProductFix: Product[];
+  markaValidna: boolean = true;
+  tipValidan: boolean = true;
+  modelTipValidan: boolean = true;
+  carMarkSelect: number = null;
+  carTypeSelect: number = null;
+  carModelTypeSelect: number = null;
+  carModelTypeEngineSelect: number = null;
+  filterProductByTypeSelect: number = null;
+  filteredCarTypes: CarType[];
+  filteredPartTypes: PartType[];
+  filteredCarModelTypes: CarModelType[];
+  filteredCarModelTypeEngines: CarModelTypeEngine[];
+  productTypeSelect: number = null;
+
+  filteredProductsByMark: Product[];
+  filteredProductsByMarkType: Product[];
+  filteredProductsByMarkTypeModel: Product[];
+
+
+
+
 
   
 
@@ -86,6 +108,7 @@ export class ViewAllProductsComponent implements OnInit {
       this.loadAllCarModelTypeEngines();
       this.loadAllProduct();
 
+
       }
 
 
@@ -133,15 +156,123 @@ export class ViewAllProductsComponent implements OnInit {
       this.imageUrl = "/assets/img/default-image.png";
     }
 
+    //working wit filter by mark, model, engine
+
+    markToNumber(){
+      this.carMarkSelect = +this.carMarkSelect;
+      this.loadCarTypeIdMarks(this.carMarkSelect); 
+      this.filteredProductByMark(this.carMarkSelect); 
+      this.markaValidna = false;
+      this.tipValidan = true;
+      this.modelTipValidan = true;
+  
+    }
+  
+   // Choose type using select dropdown
+   typeToNumber(){
+    this.carTypeSelect = +this.carTypeSelect;
+    this.loadCarModelTypeIdModel(this.carTypeSelect); 
+    this.filteredProductByModel(this.carTypeSelect); 
+    this.tipValidan = false;
+    this.modelTipValidan = true;
+  }
+  
+   // Choose model type using select dropdown
+   modelTypeToNumber(){
+    this.carModelTypeSelect = +this.carModelTypeSelect;
+    this.loadCarModelTypeEngineIdModelType(this.carModelTypeSelect); 
+    this.filteredProductByModelType(this.carModelTypeSelect); 
+    this.modelTipValidan = false;
+  }
+
+  modelTypeEngineToNumber(){
+    this.carModelTypeEngineSelect = +this.carModelTypeEngineSelect;
+    this.filteredProductByModelTypeEngine(this.carModelTypeEngineSelect); 
+  }
+
+  
+  loadCarTypeIdMarks(carMarkId: number) {  
+    this.carTypeService.getCarMarkIdTypes(carMarkId).subscribe(
+      result => this.filteredCarTypes = result,
+      error => console.log("Error :: " + error),
+      () => console.log('done!', this.allCarTypes)
+    )}; 
+
+  loadCarModelTypeIdModel(carModelTypeId: number) {  
+  this.carModelTypeService.getCarModelTypeIdModelType(carModelTypeId).subscribe(
+  result => this.filteredCarModelTypes = result,
+  error => console.log("Error :: " + error),
+  () => console.log('done!', this.allCarModelTypes)
+  )}; 
+
+  loadCarModelTypeEngineIdModelType(carModelTypeId: number) {  
+  this.carModelTypeEngineService.getCarModelTypeEngines(carModelTypeId).subscribe(
+    result => this.filteredCarModelTypeEngines = result,
+    error => console.log("Error :: " + error),
+    () => console.log('done!', this.allCarModelTypeEngines)
+    )}; 
+
+    productTypeToNumber(){
+      this.productTypeSelect = +this.productTypeSelect;
+      console.log(this.productTypeSelect);
+    }
+ 
+    filterProductByTypeToNumber(){
+       this.filterProductByTypeSelect = +this.filterProductByTypeSelect;
+       this.loadFilteredProductByType(this.filterProductByTypeSelect); 
+    }
+
+    loadFilteredProductByType(filter: number) {  
+      this.productService.productList = this.productService.fixProductList.filter(
+        product => product.ProductTypeModelId === filter);
+        this.markaValidna = true;
+        this.tipValidan = true;
+        this.modelTipValidan = true;
+      } 
+
+    filteredProductByMark(filter: number) {  
+      this.productService.productList = this.productService.fixProductList.filter(
+        product => product.CarMarkId === filter);
+      this.filteredProductsByMark = this.productService.productList;
+      } 
+
+    filteredProductByModel(filter: number) {  
+      this.productService.productList = this.filteredProductsByMark.filter(
+        product => product.CarModelId === filter);
+        this.filteredProductsByMarkType = this.productService.productList;
+      } 
+  
+    filteredProductByModelType(filter: number) {  
+      this.productService.productList = this.filteredProductsByMarkType.filter(
+        product => product.CarModelTypeId === filter);
+        this.filteredProductsByMarkTypeModel = this.productService.productList;
+      } 
+
+    filteredProductByModelTypeEngine(filter: number) {  
+      this.productService.productList = this.filteredProductsByMarkTypeModel.filter(
+        product => product.CarModelTypeEngineId === filter);
+      } 
+
+  
+
+    filterReset() {
+      this.productService.productList = this.productService.fixProductList;
+      this.markaValidna = true;
+      this.tipValidan = true;
+      this.modelTipValidan = true;
+    }
 
 
   
     // workig with product
     loadAllProduct() {  
       this.productService.getAll().subscribe(
-        result => this.allProduct = result,
+        result => {
+          this.productService.productList = result;
+          this.productService.fixProductList = result;
+        },
         error => console.log("Error :: " + error),
-        () => console.log('done!', this.allProduct)
+        () => console.log('done!', this.productService.productList)
       )} 
 
 
@@ -161,8 +292,9 @@ export class ViewAllProductsComponent implements OnInit {
   }
 
   deleteProduct(product: Product) {
-    this.productService.removeProduct(product.Id.toString()).subscribe(() => {  
-      this.loadAllPartTypes();  
+    console.log(product.Id);
+    this.productService.remove(product.Id).subscribe(() => {  
+      this.loadAllProduct();  
     });  
   }
 
