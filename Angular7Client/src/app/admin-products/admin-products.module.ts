@@ -23,6 +23,7 @@ import { UpdatePartTypeImageComponent } from './part-type/update-part-type-image
 import { CreateCarModelTypeEngineComponent } from './car-model-type-engine/create-car-model-type-engine/create-car-model-type-engine.component';
 import { UpdateCarModelTypeEngineComponent } from './car-model-type-engine/update-car-model-type-engine/update-car-model-type-engine.component';
 import { UpdateProductImageComponent } from './product/update-product-image/update-product-image.component';
+import { JwPaginationModule } from 'jw-angular-pagination';
 
 
 
@@ -53,7 +54,8 @@ import { UpdateProductImageComponent } from './product/update-product-image/upda
     CommonModule,
     AdminProductsRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    JwPaginationModule
   ]
 })
 export class AdminProductsModule { }

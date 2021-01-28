@@ -56,16 +56,11 @@ export class ViewAllProductsComponent implements OnInit {
   filteredProductsByMark: Product[];
   filteredProductsByMarkType: Product[];
   filteredProductsByMarkTypeModel: Product[];
+  //items = [];
+  pageOfItems: Array<any>;
 
+  setImageValue: any = null;
 
-
-
-
-  
-
-    setImageValue: any = null;
-
-  
   
   constructor(
     private router: Router,
@@ -110,6 +105,11 @@ export class ViewAllProductsComponent implements OnInit {
 
 
       }
+  
+      onChangePage(pageOfItems: Array<any>) {
+        // update current page of items
+        this.pageOfItems = pageOfItems;
+    }
 
 
     resetForm(form?: NgForm) {

@@ -3,6 +3,33 @@ th, td {
     vertical-align: middle;
 }
 
+/* a.page-link {
+    cursor: pointer !important;
+} */
+
+/* .pagination.justify-content-center {
+    cursor: pointer;
+} */
+
+/* .jw.pagination.pagionationItem.ul.pagination.li.page-item.number-item.a.page-link
+{
+    cursor: pointer;
+} */
+
+/* .jw.pagination.pagionationItem {
+    cursor: pointer;
+} */
+
+
+#pagionationItem:hover {
+    cursor: pointer;
+    cursor: hand;
+}
+
+/* li.page-item.previous-item.disabled {
+    cursor: pointer;
+} */
+
 /* .table-fit
 .table-bordered
 .table-hover

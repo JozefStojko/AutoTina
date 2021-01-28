@@ -30,6 +30,7 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './framework/home/home.component';
 import { FooterComponent } from './framework/footer/footer.component';
 import { NavComponent } from './framework/nav/nav.component';
+import { JwPaginationModule } from 'jw-angular-pagination';
 // import { AdminProductsModule } from './admin-products/admin-products.module';
 // import { ProductsModule } from './products/products.module';
 // import { AdminOrdersModule } from './admin-orders/admin-orders.module';
@@ -61,6 +62,7 @@ import { NavComponent } from './framework/nav/nav.component';
     //AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
+    JwPaginationModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-right',

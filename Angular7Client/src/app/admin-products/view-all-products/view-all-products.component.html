@@ -184,7 +184,7 @@
               <th colspan="3" style="text-align:center">Komande</th>
 
             </tr>
-              <tr *ngFor="let product of productService.productList">
+              <tr *ngFor="let product of pageOfItems">
                 <td style="text-align:center; word-break:break-word;">{{product.CarMark.Mark}}</td>
                 <td style="text-align:center; word-break:break-word;">{{product.CarModel.Model}}</td>
                 <td style="text-align:center; word-break:break-word;">{{product.CarModelType.CarModelTypeName}}</td>
@@ -200,6 +200,9 @@
                 <td style="text-align:center"><button (click)="deleteProduct(product)" class="btn btn-sm btn-outline-danger">Delete</button></td>
               </tr>
             </table>
+            <div class="pagination justify-content-center">
+              <jw-pagination id="pagionationItem" class="pagionationItem" [items]="productService.productList" (changePage)="onChangePage($event)"></jw-pagination>
+          </div>
           </div>
         </div>
 
