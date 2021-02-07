@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/shared/model/product.model';
 import { ProductService } from 'src/app/shared/service/product.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-product-image',
@@ -25,7 +26,8 @@ export class UpdateProductImageComponent implements OnInit {
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    public productService: ProductService
+    public productService: ProductService,
+    private location: Location
     ) { }
 
     //@ViewChild('mark') mark;
@@ -53,9 +55,13 @@ export class UpdateProductImageComponent implements OnInit {
       ProductTypeModel: this.productService.product.ProductTypeModel
     };
     console.log(this.product);
-
-
   }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
+
 
   OnUpdateProduct(image) {
     console.log(this.fileToUpload);

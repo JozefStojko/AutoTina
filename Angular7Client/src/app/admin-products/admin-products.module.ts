@@ -2,12 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminProductsRoutingModule } from './admin-products-routing.module';
 import { CreateProductComponent } from './product/create-product/create-product.component';
-import { ViewProductComponent } from './view-product/view-product.component';
-import { ViewAllProductsComponent } from './view-all-products/view-all-products.component';
+import { ViewProductComponent } from './product/view-product/view-product.component';
+import { ViewAllProductsComponent } from './product/view-all-products/view-all-products.component';
 import { UpdateProductComponent } from './product/update-product/update-product.component';
 import { UpdateImageComponent } from './car-mark/update-image/update-image.component';
-import { ViewAllProductsByDateComponent } from './view-all-products-by-date/view-all-products-by-date.component';
-import { ViewAllProductsByCategoryComponent } from './view-all-products-by-category/view-all-products-by-category.component';
 import { OrdersComponent } from './orders/orders.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -34,8 +32,6 @@ import { JwPaginationModule } from 'jw-angular-pagination';
     ViewAllProductsComponent,
     UpdateProductComponent,
     UpdateImageComponent,
-    ViewAllProductsByDateComponent,
-    ViewAllProductsByCategoryComponent,
     OrdersComponent,
     CreateCarMarkComponent,
     CreateCarTypeComponent,

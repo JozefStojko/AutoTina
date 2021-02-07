@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CarMark } from 'src/app/shared/model/carMark.model';
 import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-car-mark',
@@ -29,12 +30,17 @@ export class CreateCarMarkComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     public adminService: AdminService,
-    public carmarkService: CarMarkService
+    public carmarkService: CarMarkService,
+    private location: Location
     ) { }
 
 
   ngOnInit() {
     this.resetForm();
+  }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
   OnSubmitMark(mark, image) {

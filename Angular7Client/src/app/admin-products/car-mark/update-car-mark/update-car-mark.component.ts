@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CarMark } from 'src/app/shared/model/carMark.model';
 import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-car-mark',
@@ -26,7 +27,8 @@ export class UpdateCarMarkComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     public adminService: AdminService,
-    public carmarkService: CarMarkService
+    public carmarkService: CarMarkService,
+    private location: Location
     ) { }
 
 
@@ -38,6 +40,10 @@ export class UpdateCarMarkComponent implements OnInit {
       Image: this.carmarkService.carMark.Image
     };
 
+  }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
   OnUpdateCarMark(mark) {

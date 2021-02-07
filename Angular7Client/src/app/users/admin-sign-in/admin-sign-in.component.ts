@@ -23,7 +23,7 @@ export class AdminSignInComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private adminData: AdminService,
+    // private adminData: AdminService,
     public adminService: AdminService
        ) { }
 
@@ -45,14 +45,17 @@ export class AdminSignInComponent implements OnInit {
   OnSubmit(userName, password) {
     console.log(userName, password);
     this.userService.userAuthentication(userName, password).subscribe((user: any) => {
-     localStorage.setItem('userToken', user.access_token);
+     localStorage.setItem('userToken', user.access_token); //postavlja token admina u lokalnu promenljivu
      this.userService.getUserClaims().subscribe((data: any) => {
      this.userClaims = data;
      console.log(data);
      this.resetForm();
      if (data.IsAdmin) {
-      this.adminData.adminSignInFunction(data.UserName);
-      this.adminService.itsAdminSignIn = true;
+      this.adminService.setValue(true);
+      // localStorage.setItem('userIsAdminOrNote', JSON.stringify(data.IsAdmin));
+      localStorage.setItem('userAdminName', data.FirstName);
+      localStorage.setItem('user', data.UserName);
+      // this.adminService.itsAdminSignIn = true;
       this.router.navigate(['admin-products/list-products']);
     } else {
       localStorage.removeItem('userToken');
@@ -63,4 +66,6 @@ export class AdminSignInComponent implements OnInit {
      this.isLoginError = true;
    });
  }
+
+
  }

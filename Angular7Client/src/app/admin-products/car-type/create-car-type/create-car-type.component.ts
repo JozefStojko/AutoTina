@@ -5,6 +5,7 @@ import { CarType } from 'src/app/shared/model/car-type.model';
 import { CarMark } from 'src/app/shared/model/carMark.model';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-car-type',
@@ -23,13 +24,18 @@ export class CreateCarTypeComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     public carTypeService: CarTypeService,
-    public carMarkService: CarMarkService
+    public carMarkService: CarMarkService,
+    private location: Location
 
   ) { }
 
   ngOnInit() {
     this.loadAllCarMarks(); 
     // this.carMarkId = this.allCarMarks[0];
+  }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
   OnSubmitType(markId, type) {

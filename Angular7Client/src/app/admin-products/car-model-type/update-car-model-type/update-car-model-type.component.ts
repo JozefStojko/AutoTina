@@ -9,6 +9,7 @@ import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
 import { CarModelTypeService } from 'src/app/shared/service/car-model-type.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-car-model-type',
@@ -42,7 +43,8 @@ export class UpdateCarModelTypeComponent implements OnInit {
     public adminService: AdminService,
     public carMarkService: CarMarkService,
     public carTypeService: CarTypeService,
-    public carModelTypeService: CarModelTypeService
+    public carModelTypeService: CarModelTypeService,
+    private location: Location
     ) { }
 
 
@@ -61,6 +63,10 @@ export class UpdateCarModelTypeComponent implements OnInit {
     this.loadAllCarMarks(); 
     this.godinaPocetkaProizvodnje = this.carModelType.YearFrom;
     console.log(this.carModelType);
+  }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
   OnUpdateCarType(carModelTypeName, carModelId, yearFrom, yearTo) {

@@ -47,8 +47,8 @@ export class UserSignInComponent implements OnInit {
      console.log(data);
      this.resetForm();
      if (data.IsAdmin) {
-      this.adminData.adminSignInFunction(data.UserName);
-      this.adminService.itsAdminSignIn = true;
+      // this.adminData.adminSignInFunction(data.UserName);
+      // this.adminService.itsAdminSignIn = true;
       this.router.navigate(['users/admin-home']);
     } else {
       localStorage.removeItem('userToken');

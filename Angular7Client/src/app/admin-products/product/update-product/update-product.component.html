@@ -27,12 +27,13 @@
   <!-- Car mark -->
   <div class="form-group">
     <div>Izaberi marku vozila</div>
+    <p><b>{{ productService.product.CarMark.Mark }}</b></p>
 
     <div class="input-group">
+
       <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fas fa-car"></i> </span>
       </div>
-
     <select 
     name="carMarkSelect" 
     id="carMarkSelect" 
@@ -51,6 +52,8 @@
             <div *ngIf="carTypeSelect !== ''">
               Izaberi modela vozila
             </div>
+            <p><b>{{ productService.product.CarModelType.CarModelTypeName }}</b></p>
+
       
             <div class="input-group">
               <div class="input-group-prepend">
@@ -81,6 +84,8 @@
           <div *ngIf="carTypeSelect !== ''">
             Izaberi tip modela vozila
           </div>
+          <p><b>{{ productService.product.CarModel.Model }}</b></p>
+
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fas fa-car"></i> </span>
@@ -94,7 +99,7 @@
           disabled="{{markaValidna}}"
           [(ngModel)]="carTypeSelect" 
           (ngModelChange)="typeToNumber()">
-            <option select  disabled value="">{{ productService.product.CarModelType.Model }}</option>
+            <option select  disabled value="">{{ productService.product.CarModel.Model }}</option>
             <option *ngFor="let carType of allCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
          </select>
         </div>
@@ -106,6 +111,8 @@
           <div *ngIf="carModelTypeSelect !== ''">
             Izaberi motor modela vozila
           </div>
+          <p><b>{{ productService.product.CarModelTypeEngine.CarModelTypeEngineName }}</b></p>
+
     
           <div class="input-group">
             <div class="input-group-prepend">
@@ -120,7 +127,7 @@
           disabled="{{modelTipValidan}}"
           [(ngModel)]="carModelTypeEngineSelect" 
           (ngModelChange)="modelTypeToNumber()">
-            <option disabled value="">{{ productService.product.CarModelType.CarModelTypeEngineName }}</option>
+            <option disabled value="">{{ productService.product.CarModelTypeEngine.CarModelTypeEngineName }}</option>
             <option *ngFor="let carModelTypeEngine of allCarModelTypeEngines" [ngValue]="carModelTypeEngine.Id">{{carModelTypeEngine.CarModelTypeEngineName}}</option>
          </select>
         </div>
@@ -133,6 +140,8 @@
     <!-- Product type -->
     <div class="form-group">
       <div>Izaberi tip dela</div>
+      <p><b>{{ productService.product.ProductTypeModel.ProductType }}</b></p>
+
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text"> <i class="fas fa-car"></i> </span>
@@ -385,14 +394,21 @@
       </div>
     </div>
     </div>
-
-
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary btn-block"
-      [disabled]="ProductForm.form.invalid || buttondisabled"> Dodaj novi deo </button>
   </div>
+
+    
+  <div class="row justify-content-center">
+    <div class="col ">
+    <button type="submit" class="btn btn-primary btn-block"
+      [disabled]="ProductForm.form.invalid || buttondisabled"> Promeni podatke o robi </button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
+    </div>
+  </div>
+
 <!-- </div> -->
-</div>
 </form>
-<p>{{ error }}</p>
 </div>
+
+<p>{{ error }}</p>

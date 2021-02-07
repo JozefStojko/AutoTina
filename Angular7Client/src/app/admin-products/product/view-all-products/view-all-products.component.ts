@@ -51,7 +51,7 @@ export class ViewAllProductsComponent implements OnInit {
   filteredPartTypes: PartType[];
   filteredCarModelTypes: CarModelType[];
   filteredCarModelTypeEngines: CarModelTypeEngine[];
-  productTypeSelect: number = null;
+    productTypeSelect: number = null;
 
   filteredProductsByMark: Product[];
   filteredProductsByMarkType: Product[];
@@ -86,14 +86,6 @@ export class ViewAllProductsComponent implements OnInit {
     
 
   ngOnInit() {
-    // this.toastr.success(
-    //   'Hello Admin!',
-    //    'Greate to see You.',
-    //    {
-    //     timeOut: 5000,
-    //     progressBar: true,
-    //    });
-    // if(this.adminService.itsAdminSignIn == true) {
       this.resetForm();
       // this.loadAllCars();
       this.loadAllCarMarks(); 
@@ -102,10 +94,17 @@ export class ViewAllProductsComponent implements OnInit {
       this.loadAllCarModelTypes(); 
       this.loadAllCarModelTypeEngines();
       this.loadAllProduct();
+      this.adminService.setValue(true);
+      // console.log(this.adminService.itsAdminSignIn);
+      // console.log(localStorage.getItem('userToken'));
+      // console.log(JSON.parse(localStorage.getItem('userIsAdminOrNote')));
+      // console.log(localStorage.getItem('userName'));
+      
 
 
       }
   
+      // page pagination
       onChangePage(pageOfItems: Array<any>) {
         // update current page of items
         this.pageOfItems = pageOfItems;
@@ -290,6 +289,11 @@ export class ViewAllProductsComponent implements OnInit {
       this.productService.product = Object.assign({}, product);
       this.router.navigate(['/admin-products/update-product']);
   }
+
+  viewProduct(product: Product) {
+    this.productService.product = Object.assign({}, product);
+    this.router.navigate(['/admin-products/view-product']);
+}
 
   deleteProduct(product: Product) {
     console.log(product.Id);

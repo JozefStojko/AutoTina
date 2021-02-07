@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PartType } from 'src/app/shared/model/part-type.model';
 import { PartTypeService } from 'src/app/shared/service/part-type.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-part-type-image',
@@ -26,6 +27,7 @@ export class UpdatePartTypeImageComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     public partTypeService: PartTypeService,
+    private location: Location
     ) { }
 
     //@ViewChild('mark') mark;
@@ -38,6 +40,10 @@ export class UpdatePartTypeImageComponent implements OnInit {
       ProductTypeImage: this.partTypeService.partType.ProductTypeImage
     };
 
+  }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
   OnUpdatePartType(image) {

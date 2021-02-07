@@ -13,6 +13,7 @@ import { CarModelTypeService } from 'src/app/shared/service/car-model-type.servi
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
 import { PartTypeService } from 'src/app/shared/service/part-type.service';
 import { ProductService } from 'src/app/shared/service/product.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-product',
@@ -50,7 +51,8 @@ export class CreateProductComponent implements OnInit {
     public carModelTypeEngineService: CarModelTypeEngineService,
     public carMarkService: CarMarkService,
     public partTypeService: PartTypeService,
-    public productService: ProductService
+    public productService: ProductService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -58,6 +60,11 @@ export class CreateProductComponent implements OnInit {
     this.loadAllPartTypes(); 
 
   }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
 
   OnSubmitCreateProduct(carMarkSelect, carTypeSelect, productTypeSelect, carModelTypeSelect, carModelTypeEngineSelect, catalogNumber, productName, onLager, price, image, description, comparativeNumbers) {
 

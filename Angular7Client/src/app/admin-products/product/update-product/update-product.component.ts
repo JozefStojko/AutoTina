@@ -14,6 +14,7 @@ import { CarModelTypeService } from 'src/app/shared/service/car-model-type.servi
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
 import { PartTypeService } from 'src/app/shared/service/part-type.service';
 import { ProductService } from 'src/app/shared/service/product.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-product',
@@ -48,7 +49,8 @@ export class UpdateProductComponent implements OnInit {
     public carModelTypeEngineService: CarModelTypeEngineService,
     public carMarkService: CarMarkService,
     public partTypeService: PartTypeService,
-    public productService: ProductService
+    public productService: ProductService,
+    private location: Location
     ) { }
 
 
@@ -80,7 +82,31 @@ export class UpdateProductComponent implements OnInit {
     this.loadAllPartTypes(); 
   }
 
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
+
   OnUpdateProduct(carMarkSelect, carTypeSelect, productTypeSelect, carModelTypeSelect, carModelTypeEngineSelect, catalogNumber, productName, onLager, price, description, comparativeNumbers) {
+    if (carMarkSelect == null){
+      carMarkSelect = this.product.CarMarkId;
+    }
+    if (carTypeSelect == null){
+      carTypeSelect = this.product.CarModelId;
+    }
+    if (carModelTypeSelect == null){
+      carModelTypeSelect = this.product.CarModelTypeId;
+    }
+
+    if (carModelTypeEngineSelect == null){
+      carModelTypeEngineSelect = this.product.CarModelTypeEngineId;
+    }
+
+    if (productTypeSelect == null){
+      productTypeSelect = this.product.ProductTypeModelId;
+    }
+
+
     this.product = {
       Id: this.productService.product.Id,
       ProductTypeModelId: productTypeSelect,

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PartType } from 'src/app/shared/model/part-type.model';
 import { PartTypeService } from 'src/app/shared/service/part-type.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-part-type',
@@ -27,13 +28,19 @@ export class CreatePartTypeComponent implements OnInit {
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    public partTypeService: PartTypeService
+    public partTypeService: PartTypeService,
+    private location: Location
 
   ) { }
 
   ngOnInit() {
     this.resetForm();
   }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
 
   OnSubmitPartType(partTypeName, image) {
       this.partTypeService.savePartType(partTypeName.value, this.fileToUpload).subscribe(       

@@ -10,6 +10,7 @@ import { CarMarkService } from 'src/app/shared/service/car-mark.service';
 import { CarModelTypeEngineService } from 'src/app/shared/service/car-model-type-engine.service';
 import { CarModelTypeService } from 'src/app/shared/service/car-model-type.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-car-model-type-engine',
@@ -44,13 +45,19 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
     public carTypeService: CarTypeService,
     public carMarkService: CarMarkService,
     public carModelTypeService: CarModelTypeService,
-    public carModelTypeEngineService: CarModelTypeEngineService
+    public carModelTypeEngineService: CarModelTypeEngineService,
+    private location: Location
 
   ) { }
 
   ngOnInit() {
     this.loadAllCarMarks(); 
   }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
 
   OnSubmitCreateCarModelTypeEngine(carModelTypeEngineName, carModelTypeId) {
     this.carModelTypeEngine = {

@@ -7,6 +7,7 @@ import { CarMark } from 'src/app/shared/model/carMark.model';
 import { AdminService } from 'src/app/shared/service/admin.service';
 import { CarMarkService } from 'src/app/shared/service/car-mark.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-car-type',
@@ -28,7 +29,8 @@ export class UpdateCarTypeComponent implements OnInit {
     private toastr: ToastrService,
     public adminService: AdminService,
     public carMarkService: CarMarkService,
-    public carTypeService: CarTypeService
+    public carTypeService: CarTypeService,
+    private location: Location
     ) { }
 
 
@@ -40,6 +42,10 @@ export class UpdateCarTypeComponent implements OnInit {
       CarMark: this.carTypeService.carType.CarMark.Mark
     };
     this.loadAllCarMarks(); 
+  }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
   OnUpdateCarType(markId, type, yearFrom, yearTo) {

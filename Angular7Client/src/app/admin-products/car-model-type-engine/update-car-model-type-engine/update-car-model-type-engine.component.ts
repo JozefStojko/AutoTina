@@ -10,6 +10,7 @@ import { CarMarkService } from 'src/app/shared/service/car-mark.service';
 import { CarModelTypeEngineService } from 'src/app/shared/service/car-model-type-engine.service';
 import { CarModelTypeService } from 'src/app/shared/service/car-model-type.service';
 import { CarTypeService } from 'src/app/shared/service/car-type.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-car-model-type-engine',
@@ -41,7 +42,8 @@ export class UpdateCarModelTypeEngineComponent implements OnInit {
     public carMarkService: CarMarkService,
     public carTypeService: CarTypeService,
     public carModelTypeService: CarModelTypeService,
-    public carModelTypeEngineService: CarModelTypeEngineService
+    public carModelTypeEngineService: CarModelTypeEngineService,
+    private location: Location
     ) { }
 
 
@@ -60,6 +62,11 @@ export class UpdateCarModelTypeEngineComponent implements OnInit {
     this.loadAllCarMarks(); 
     console.log(this.carModelTypeEngine);
   }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
 
   OnUpdateCarModelTypeEngine(CarModelTypeEngineName, CarModelTypeId) {
     this.carModelTypeEngine = {

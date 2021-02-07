@@ -26,6 +26,11 @@ th, td {
     cursor: hand;
 }
 
+td {
+    cursor: pointer;
+    cursor: hand;
+}
+
 /* li.page-item.previous-item.disabled {
     cursor: pointer;
 } */

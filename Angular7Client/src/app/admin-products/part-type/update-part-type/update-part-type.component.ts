@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PartType } from 'src/app/shared/model/part-type.model';
 import { AdminService } from 'src/app/shared/service/admin.service';
 import { PartTypeService } from 'src/app/shared/service/part-type.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-part-type',
@@ -22,7 +23,8 @@ export class UpdatePartTypeComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     public adminService: AdminService,
-    public partTypeService: PartTypeService
+    public partTypeService: PartTypeService,
+    private location: Location
     ) { }
 
 
@@ -36,6 +38,11 @@ export class UpdatePartTypeComponent implements OnInit {
     };
     this.loadAllPartTypes(); 
   }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
 
   OnUpdatePartType(partType) {
     this.partType = {

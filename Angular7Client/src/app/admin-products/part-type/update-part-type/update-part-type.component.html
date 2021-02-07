@@ -41,12 +41,17 @@
         </div>
       </div>
     
-    
-    
-      <div class="form-group">
+      <div class="row justify-content-center form-group">
+        <div class="col ">
         <button type="submit" class="btn btn-primary btn-block"
-          [disabled]="partTypeForm.form.invalid || buttondisabled"> Izmeni tip delova </button>
+          [disabled]="partTypeForm.form.invalid || buttondisabled"> Promeni tip dela </button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
+        </div>
       </div>
+  
+    
     </form>
     </div>
 </div>
