@@ -18,7 +18,7 @@ export class AdminSignInComponent implements OnInit {
 
   admin: Admin;
   isLoginError = false;
-  userClaims: any;
+  adminClaims: any;
 
   constructor(
     private userService: UserService,
@@ -37,18 +37,20 @@ export class AdminSignInComponent implements OnInit {
       form.reset();
     }
     this.admin = {
-      AdminName: '',
+      UserName: '',
       Password: ''
     };
   }
 
   OnSubmit(userName, password) {
     console.log(userName, password);
-    this.userService.userAuthentication(userName, password).subscribe((user: any) => {
+    this.adminService.adminAuthentication(userName, password).subscribe((user: any) => {
      localStorage.setItem('userToken', user.access_token); //postavlja token admina u lokalnu promenljivu
-     this.userService.getUserClaims().subscribe((data: any) => {
-     this.userClaims = data;
-     console.log(data);
+     this.adminService.getUserClaims().subscribe((data: any) => {
+     this.adminClaims = data;
+     this.adminService.admin = data;
+     console.log(this.adminService.admin);
+     console.log(localStorage.getItem('userToken'));
      this.resetForm();
      if (data.IsAdmin) {
       this.adminService.setValue(true);

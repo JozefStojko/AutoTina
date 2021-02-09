@@ -72,6 +72,9 @@ export class NavComponent implements OnInit {
   changeUserSign() {
 
   }
+  adminEdit() {
+    this.router.navigate(['users/admin-home']);
+  }
 
   signOut() {
     localStorage.removeItem('userToken');

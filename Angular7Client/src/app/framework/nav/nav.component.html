@@ -71,7 +71,7 @@
 
       <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
         <!-- <a class="dropdown-item" [routerLink]="['/admin-products/product/view-all-product']"><i class="fa fa-product-hunt" aria-hidden="true"></i>&nbsp;{{admin}}</a> -->
-        <a class="dropdown-item" [routerLink]="['/users/admin-home']"><i class="fas fa-cogs"></i>&nbsp;Edit my profile</a>
+        <a class="dropdown-item" (click)="adminEdit()"><i class="fas fa-cogs"></i>&nbsp;Edit my profile</a>
         <a class="dropdown-item" (click)="signOut()"><i class="fas fa-sign-out-alt"></i>&nbsp;Sign Out</a>
       </div>
     </div>

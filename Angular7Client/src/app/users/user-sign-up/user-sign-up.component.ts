@@ -60,11 +60,11 @@ export class UserSignUpComponent implements OnInit {
     this.userService.userRegister(this.user).subscribe(
       (userData: User) => {
         console.log(userData);
+        this.userService.user = this.user;
       },
       (error: any) => console.log(console.error()
       ));
-        
-    this.router.navigate(['/user-home']);
+    this.router.navigate(['users/user-home']);
     }
     
 }

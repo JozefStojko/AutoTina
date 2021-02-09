@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Admin } from '../../shared/model/admin.model';
 import { AdminService } from '../../shared/service/admin.service';
 import { UserService } from '../../shared/service/user.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-user-sign-in',
@@ -20,7 +22,9 @@ export class UserSignInComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private adminData: AdminService,
-    public adminService: AdminService
+    public adminService: AdminService,
+    private location: Location
+
        ) { }
 
 
@@ -33,7 +37,7 @@ export class UserSignInComponent implements OnInit {
       form.reset();
     }
     this.admin = {
-      AdminName: '',
+      UserName: '',
       Password: ''
     };
   }
@@ -59,4 +63,9 @@ export class UserSignInComponent implements OnInit {
      this.isLoginError = true;
    });
  }
+
+ goBack() {
+  this.location.back(); // <-- go back to previous location on cancel
+}
+
  }

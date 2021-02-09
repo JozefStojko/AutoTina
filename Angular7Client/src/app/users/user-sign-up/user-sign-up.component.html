@@ -1,9 +1,9 @@
 <div class="container">
   <div class="card">
     <article class="card-body">
-      <h4 class="card-title text-center mb-4 mt-1">User Sign up</h4>
+      <h4 class="card-title text-center mb-4 mt-1">Registracija korisnika</h4>
       <hr>
-      <p class="text-success text-center">Please, fill up all filds</p>
+      <p class="text-success text-center">Molim vas popunite sva polja!</p>
       <form name="form" (ngSubmit)="signUpForm.form.valid && OnSubmit(firstName.value, lastName.value, userName.value, password.value, email.value, phone.value, city.value, zipCode.value, address.value)" #signUpForm="ngForm" novalidate>
 
     <!-- FirstName -->
@@ -14,15 +14,15 @@
           </div>
 
           <input id="firstName" name="firstName" class="form-control" required minlength="4" ngModel #firstName="ngModel"
-            placeholder="Firstname" type="text" />
+            placeholder="Ime" type="text" />
         </div>
       <div class="form-group">
         <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
           <div *ngIf="firstName?.errors.required">
-            Firstname is required.
+            Ime je obavezan podatak.
         </div>
          <div *ngIf="firstName?.errors.minlength">
-              Firstname must be at least 4 characters long.
+              Ime mora imati najmanje 4 karaktera.
               </div>
             </div>
           </div>
@@ -36,15 +36,15 @@
             </div>
 
             <input id="lastName" name="lastName" class="form-control" required minlength="4" ngModel #lastName="ngModel"
-              placeholder="Lastname" type="text" />
+              placeholder="Prezime" type="text" />
           </div>
           <div class="form-group">
             <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
               <div *ngIf="lastName?.errors.required">
-                Lastname is required.
+                Prezime je obavezan podatak.
               </div>
               <div *ngIf="lastName?.errors.minlength">
-                Lastname must be at least 4 characters long.
+                Prezime mora imati najmanje 4 karaktera.
               </div>
             </div>
           </div>
@@ -59,15 +59,15 @@
             </div>
 
             <input id="userName" name="userName" class="form-control" required minlength="4" ngModel #userName="ngModel"
-              placeholder="User name" type="text" />
+              placeholder="Korisničko ime" type="text" />
           </div>
           <div class="form-group">
             <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="alert alert-danger">
               <div *ngIf="userName?.errors.required">
-                Name is required.
+                Korisničko ime je obavezan podatak.
               </div>
               <div *ngIf="userName?.errors.minlength">
-                Name must be at least 4 characters long.
+                Korisničko ime mora imati najmanje 4 karaktera.
               </div>
             </div>
           </div>
@@ -81,15 +81,15 @@
               <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
             </div>
             <input id="password" name="password" class="form-control" required minlength="3" ngModel #password="ngModel"
-              placeholder="Password" type="password" />
+              placeholder="Lozinka" type="password" />
           </div>
           <div class="form-group">
             <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
               <div *ngIf="password?.errors.required">
-                Password is required.
+                Lozinka je obavezan podatak.
               </div>
               <div *ngIf="password?.errors.minlength">
-                Password must be at least 3 characters long.
+                Šifra mora imati najmanje 3 karaktera.
               </div>
             </div>
           </div>
@@ -108,7 +108,7 @@
       <div class="form-group">
         <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
           <div *ngIf="email?.errors.required">
-            Email is required.
+            Email ime je obavezan podatak.
           </div>
             </div>
           </div>
@@ -122,15 +122,15 @@
          </div>
   
           <input id="phone" name="phone" class="form-control" required minlength="6" ngModel #phone="ngModel"
-            placeholder="phone" type="text" />
+            placeholder="Telefonski broj" type="text" />
         </div>
       <div class="form-group">
         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
           <div *ngIf="phone?.errors.required">
-            Phone is required.
+            Telefonski broj je obavezan podatak.
           </div>
           <div *ngIf="phone?.errors.minlength">
-              Phone must be at least 6 characters long.
+            Telefonski broj mora imati najmanje 6 karaktera.
               </div>
             </div>
           </div>
@@ -144,15 +144,15 @@
          </div>
   
           <input id="city" name="city" class="form-control" required minlength="3" ngModel #city="ngModel"
-            placeholder="City" type="text" />
+            placeholder="Grad" type="text" />
         </div>
       <div class="form-group">
         <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
           <div *ngIf="city?.errors.required">
-            City is required.
+            Grad je obavezan podatak.
           </div>
           <div *ngIf="city?.errors.minlength">
-            City must be at least 3 characters long.
+            Grad mora imati najmanje 3 karaktera.
               </div>
             </div>
           </div>
@@ -166,15 +166,15 @@
        </div>
 
         <input type="number" id="zipCode" name="zipCode" class="form-control" required minlength="5" ngModel #zipCode="ngModel"
-          placeholder="ZipCode" type="text" />
+          placeholder="Poštanski broj" type="text" />
       </div>
     <div class="form-group">
       <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)" class="alert alert-danger">
         <div *ngIf="zipCode?.errors.required">
-          Name is required.
+          Poštanski broj je obavezan podatak.
         </div>
         <div *ngIf="zipCode?.errors.minlength">
-          ZipCode must be at least 5 characters long.
+          Poštanski broj mora imati najmanje 5 karaktera.
             </div>
           </div>
         </div>
@@ -188,24 +188,33 @@
          </div>
   
           <input id="address" name="address" class="form-control" required minlength="4" ngModel #address="ngModel"
-            placeholder="Address" type="text" />
+            placeholder="Adresa" type="text" />
         </div>
       <div class="form-group">
         <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
           <div *ngIf="address?.errors.required">
-            Address is required.
+            Adresa je obavezan podatak.
           </div>
           <div *ngIf="address?.errors.minlength">
-            Address must be at least 4 characters long.
+            Adresa mora imati najmanje 4 karaktera.
               </div>
             </div>
           </div>
         </div>
   
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block"
-            [disabled]="signUpForm.form.pristine || signUpForm.form.invalid"> Sign up </button>
-        </div> <!-- form-group// -->
+        <div class="row justify-content-center form-group">
+          <div class="col ">
+            <button type="submit" class="btn btn-success btn-block"
+            [disabled]="signUpForm.form.pristine || signUpForm.form.invalid"> Registruj se </button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
+          </div>
+        </div>
+
+
+
+         <!-- form-group// -->
       </form>
     </article>
   </div>

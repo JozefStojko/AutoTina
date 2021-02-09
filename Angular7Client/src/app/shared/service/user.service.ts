@@ -12,6 +12,8 @@ import { catchError } from 'rxjs/operators';
 })
 export class UserService {
   readonly rootUrl = 'http://localhost:52866';
+  public user: User;
+
   constructor(private http: HttpClient) { }
 
   userRegister(user: User): Observable<User> {
@@ -46,6 +48,8 @@ export class UserService {
     const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
     return this.http.post(this.rootUrl + '/token', data, { headers: reqHeader });
   }
+
+
 
   getUserClaims() {
    return this.http.get(this.rootUrl + '/api/GetUserClaims');
