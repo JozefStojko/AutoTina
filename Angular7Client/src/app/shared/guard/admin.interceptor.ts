@@ -22,12 +22,12 @@ export class AdminInterceptor implements HttpInterceptor {
                 succ => { },
                 err => {
                     if (err.status === 401) {
-                        this.router.navigateByUrl('/admin-products/list-products');
+                        this.router.navigateByUrl('/users/admin');
                       }
                 })
                 );
         } else {
-            this.router.navigateByUrl('/admin-products/list-products');
+            this.router.navigateByUrl('/users/admin');
         }
     }
 }

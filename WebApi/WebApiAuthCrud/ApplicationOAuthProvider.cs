@@ -40,6 +40,7 @@ namespace WebApiAuthCrud
                 identity.AddClaim(new Claim("Phone", user.Phone.ToString()));
                 identity.AddClaim(new Claim("PIB", user.PIB.ToString()));
                 identity.AddClaim(new Claim("ZipCode", user.ZipCode.ToString()));
+                identity.AddClaim(new Claim("Id", user.Id.ToString()));
                 context.Validated(identity);
             }
             else

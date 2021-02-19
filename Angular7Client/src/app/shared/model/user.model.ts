@@ -4,11 +4,11 @@ export class User {
   Password: string;
   CompanyName?: string;
   PIB?: number;
-  IdNumber?: string;
+  IdNumber?: number;
   Email: string;
   FirstName: string;
   LastName: string;
-  Phone: string;
+  Phone?: string;
   City: string;
   ZipCode: number;
   Address: string;

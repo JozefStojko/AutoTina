@@ -3,6 +3,8 @@ import { AdminService } from '../../shared/service/admin.service';
 import { Router } from '@angular/router';
 import { Globals } from '../../globals';
 import { ProductService } from 'src/app/shared/service/product.service';
+import { UserService } from 'src/app/shared/service/user.service';
+import { User } from 'src/app/shared/model/user.model';
 
 
 
@@ -15,8 +17,10 @@ import { ProductService } from 'src/app/shared/service/product.service';
 })
 export class NavComponent implements OnInit {
   navbarOpen = false;
-  admin = ''
+  admin = '';
+  user = '';
   public itsAdmin: boolean;
+  public itsUser: boolean;
   productTypeSelect: number = null;
   filterProductByTypeSelect: number = null;
   
@@ -25,19 +29,26 @@ export class NavComponent implements OnInit {
   constructor(
     private router: Router,
     public adminService: AdminService,
+    public userService: UserService,
     public productService: ProductService
     ) { }
 
   ngOnInit() {
     this.adminService.getValue().subscribe((value) => {
       this.itsAdmin = value;
+      this.admin = localStorage.getItem('adminName');
       console.log(this.itsAdmin);
     });
+    this.userService.getValue().subscribe((value) => {
+      this.itsUser = value;
+      this.user = localStorage.getItem('userName');
+      console.log(this.itsUser);
+    });
+
     // this.adminSignIn = this.adminService.itsAdminSignIn;
     // this.adminData.currentAdmin.subscribe(admin => this.admin = admin);
     // this.itsAdmin = this.adminService.itsAdminSignIn;
     // this.itsAdmin = JSON.parse(localStorage.getItem('userIsAdminOrNote'));
-    this.admin = localStorage.getItem('userAdminName');
 
 
   }
@@ -72,13 +83,13 @@ export class NavComponent implements OnInit {
   changeUserSign() {
 
   }
-  adminEdit() {
+  editAdmin() {
     this.router.navigate(['users/admin-home']);
   }
 
-  signOut() {
+  signOutAdmin() {
     localStorage.removeItem('userToken');
-    this.adminService.setValue(true);
+    this.adminService.setValue(false);
     this.itsAdmin = false;
 
     // this.adminData.adminSignInFunction('');
@@ -87,6 +98,24 @@ export class NavComponent implements OnInit {
     // localStorage.setItem('userIsAdminOrNote', JSON.stringify(false));
     this.router.navigate(['/home']);
   }
+
+  editUser() {
+    // this.userService.user = Object.assign({}, user);
+    this.router.navigate(['users/user-edit']);
+  }
+
+  signOutUser() {
+    localStorage.removeItem('userToken');
+    this.userService.setValue(false);
+    this.itsUser = false;
+
+    // this.adminData.adminSignInFunction('');
+    // this.adminService.itsAdminSignIn = false;
+    // console.log(this.adminService.itsAdminSignIn + ': ez az navbol miutan sign out');
+    // localStorage.setItem('userIsAdminOrNote', JSON.stringify(false));
+    this.router.navigate(['/home']);
+  }
+
 
 
   // writingUsername(signedInAdmin: string) {

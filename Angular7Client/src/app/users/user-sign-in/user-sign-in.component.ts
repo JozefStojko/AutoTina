@@ -48,12 +48,14 @@ export class UserSignInComponent implements OnInit {
      localStorage.setItem('userToken', user.access_token);
      this.userService.getUserClaims().subscribe((data: any) => {
      this.userClaims = data;
-     console.log(data);
+     this.userService.user = data;
+     this.userService.user.Id = data.Id;
+     console.log(this.userService.user);
      this.resetForm();
-     if (data.IsAdmin) {
-      // this.adminData.adminSignInFunction(data.UserName);
-      // this.adminService.itsAdminSignIn = true;
-      this.router.navigate(['users/admin-home']);
+     if (!data.IsAdmin) {
+      this.userService.setValue(true);
+      localStorage.setItem('userName', data.UserName);
+      this.router.navigate(['users/user-home']);
     } else {
       localStorage.removeItem('userToken');
      }

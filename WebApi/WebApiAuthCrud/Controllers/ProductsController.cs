@@ -36,30 +36,6 @@ namespace WebApiAuthCrud.Controllers
             return productModels.OrderBy(x => x.CarMark.Mark);
         }
 
-        public enum SortTypes
-        {
-            Name,
-            NameDesc,
-            MaxNumberOfVisitors,
-            MaxNumberOfVisitorsDesc,
-            Rating,
-            RatingDesc,
-            DateOfMaintenance,
-            DateOfMaintenanceDesc
-
-        };
-
-        public static Dictionary<string, SortTypes> SortTypeDict = new Dictionary<string, SortTypes>
-        {
-            {"Naziv" , SortTypes.Name },
-            {"Naziv Descending" , SortTypes.NameDesc },
-            {"Broj posetilaca" , SortTypes.MaxNumberOfVisitors },
-            {"Broj posetilaca Descending" , SortTypes.MaxNumberOfVisitorsDesc },
-            {"Datum odrzavanja" , SortTypes.DateOfMaintenance },
-            {"Datum odrzavanja Descending" , SortTypes.DateOfMaintenanceDesc }
-
-        };
-
         // GET: GetProductsBySearch
         //[AllowAnonymous]
         //[Route("api/products/GetProductsBySearch")]

@@ -1,3 +1,380 @@
-<p>
-  user-edit works!
-</p>
+<div class="container">
+  <div class="card">
+    <article class="card-body">
+      <h4 class="card-title text-center mb-4 mt-1">Promena podataka korisnika</h4>
+      <hr>
+      <p class="text-success text-center">Molim vas popunite sva polja!</p>
+      <form name="form" (ngSubmit)="updateUserForm.form.valid && OnUpdateUser(
+        firstName.value, 
+        lastName.value, 
+        userName.value, 
+        password.value, 
+        password2.value,
+        email.value, 
+        phone.value, 
+        city.value, 
+        zipCode.value, 
+        address.value,
+        companyName.value,
+        pib.value)" #updateUserForm="ngForm" novalidate>
+
+    <!-- FirstName -->
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-user"></i></span>
+          </div>
+
+          <input 
+          id="firstName" 
+          name="firstName" 
+          class="form-control" 
+          required minlength="4" 
+          [(ngModel)]="userService.user.FirstName"
+          ngModel 
+          #firstName="ngModel"
+          placeholder="Ime" 
+          type="text" />
+        </div>
+      <div class="form-group">
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+          <div *ngIf="firstName?.errors.required">
+            Ime je obavezan podatak.
+        </div>
+         <div *ngIf="firstName?.errors.minlength">
+              Ime mora imati najmanje 4 karaktera.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lastname -->
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+            </div>
+
+            <input 
+            id="lastName" 
+            name="lastName" 
+            class="form-control" 
+            required 
+            minlength="4" 
+            [(ngModel)]="userService.user.LastName"
+            ngModel 
+            #lastName="ngModel"
+            placeholder="Prezime" 
+            type="text" />
+          </div>
+          <div class="form-group">
+            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+              <div *ngIf="lastName?.errors.required">
+                Prezime je obavezan podatak.
+              </div>
+              <div *ngIf="lastName?.errors.minlength">
+                Prezime mora imati najmanje 4 karaktera.
+              </div>
+            </div>
+          </div>
+        </div>
+
+    
+        <!-- User name -->
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+            </div>
+
+            <input 
+            id="userName" 
+            name="userName" 
+            class="form-control" 
+            required 
+            minlength="4" 
+            [(ngModel)]="userService.user.UserName"
+            ngModel 
+            #userName="ngModel"
+            placeholder="Korisničko ime" 
+            type="text" />
+          </div>
+          <div class="form-group">
+            <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="alert alert-danger">
+              <div *ngIf="userName?.errors.required">
+                Korisničko ime je obavezan podatak.
+              </div>
+              <div *ngIf="userName?.errors.minlength">
+                Korisničko ime mora imati najmanje 4 karaktera.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Password -->
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            </div>
+            <input 
+            id="password" 
+            name="password" 
+            class="form-control" 
+            required minlength="3" 
+            ngModel 
+            #password="ngModel"
+            placeholder="Lozinka" 
+            type="password" />
+          </div>
+          <div class="form-group">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+              <div *ngIf="password?.errors.required">
+                Lozinka je obavezan podatak.
+              </div>
+              <div *ngIf="password?.errors.minlength">
+                Šifra mora imati najmanje 3 karaktera.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Password 2 -->
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            </div>
+            <input 
+            id="password2" 
+            name="password2" 
+            class="form-control" 
+            required minlength="3" 
+            ngModel 
+            #password2="ngModel"
+            placeholder="Ponovite lozinku" 
+            type="password" />
+          </div>
+          <div class="form-group">
+            <div *ngIf="password2.invalid && (password2.dirty || password2.touched)" class="alert alert-danger">
+              <div *ngIf="password2?.errors.required">
+                Morate ponoviti lozinu.
+              </div>
+              <div *ngIf="password2?.errors.minlength">
+                Lozinka mora imati najmanje 3 karaktera.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      <!-- Email -->
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+         </div>
+  
+          <input 
+          id="email" 
+          name="email" 
+          class="form-control" 
+          required 
+          [pattern]="emailPattern" 
+          [(ngModel)]="userService.user.Email"
+          ngModel 
+          #email="ngModel"
+          placeholder="Email a@a.a" 
+          type="text" />
+        </div>
+      <div class="form-group">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email?.errors.required">
+            Email ime je obavezan podatak.
+          </div>
+            </div>
+          </div>
+        </div>
+  
+      <!-- Phone -->
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-phone-square"></i></span>
+         </div>
+  
+          <input 
+          id="phone" 
+          name="phone" 
+          class="form-control" 
+          required 
+          minlength="6" 
+          [(ngModel)]="userService.user.Phone"
+          ngModel 
+          #phone="ngModel"
+          placeholder="Telefonski broj" 
+          type="text" />
+        </div>
+      <div class="form-group">
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+          <div *ngIf="phone?.errors.required">
+            Telefonski broj je obavezan podatak.
+          </div>
+          <div *ngIf="phone?.errors.minlength">
+            Telefonski broj mora imati najmanje 6 karaktera.
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      <!-- City -->
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-city"></i> </span>
+         </div>
+  
+          <input 
+          id="city" 
+          name="city" 
+          class="form-control" 
+          required 
+          minlength="3" 
+          [(ngModel)]="userService.user.City"
+          ngModel 
+          #city="ngModel"
+          placeholder="Grad" 
+          type="text" />
+        </div>
+      <div class="form-group">
+        <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+          <div *ngIf="city?.errors.required">
+            Grad je obavezan podatak.
+          </div>
+          <div *ngIf="city?.errors.minlength">
+            Grad mora imati najmanje 3 karaktera.
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <!-- ZipCode -->
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+       </div>
+
+        <input 
+        type="number" 
+        id="zipCode" 
+        name="zipCode" 
+        class="form-control" 
+        required 
+        minlength="5" 
+        [(ngModel)]="userService.user.ZipCode"
+        ngModel 
+        #zipCode="ngModel"
+        placeholder="Poštanski broj" 
+        type="text" />
+      </div>
+    <div class="form-group">
+      <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)" class="alert alert-danger">
+        <div *ngIf="zipCode?.errors.required">
+          Poštanski broj je obavezan podatak.
+        </div>
+        <div *ngIf="zipCode?.errors.minlength">
+          Poštanski broj mora imati najmanje 5 karaktera.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-address-card"></i> </span>
+         </div>
+  
+          <input 
+          id="address" 
+          name="address" 
+          class="form-control" 
+          required 
+          minlength="4" 
+          [(ngModel)]="userService.user.Address"
+          ngModel 
+          #address="ngModel"
+          placeholder="Adresa" 
+          type="text" />
+        </div>
+      <div class="form-group">
+        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+          <div *ngIf="address?.errors.required">
+            Adresa je obavezan podatak.
+          </div>
+          <div *ngIf="address?.errors.minlength">
+            Adresa mora imati najmanje 4 karaktera.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- Company name -->
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-industry"></i> </span>
+         </div>
+  
+          <input 
+          id="companyName" 
+          name="companyName" 
+          class="form-control" 
+          [(ngModel)]="userService.user.CompanyName"
+          ngModel 
+          #companyName="ngModel"
+          placeholder="Ime firme (nije obavezan podatak)" 
+          type="text" />
+        </div>
+        </div>
+
+        <!-- PIB -->
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fas fa-money-bill-alt"></i> </span>
+           </div>
+    
+            <input 
+            id="pib" 
+            name="pib" 
+            class="form-control" 
+            [(ngModel)]="userService.user.PIB"
+            ngModel 
+            #pib="ngModel"
+            placeholder="PIB (nije obavezan podatak)" 
+            type="text" />
+          </div>
+          </div>
+
+          
+        <div class="row justify-content-center form-group">
+          <div class="col ">
+            <button type="submit" class="btn btn-success btn-block"
+            [disabled]="updateUserForm.form.pristine || updateUserForm.form.invalid"> Promeni podatke </button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
+          </div>
+        </div>
+
+
+
+         <!-- form-group// -->
+      </form>
+    </article>
+  </div>
+</div>

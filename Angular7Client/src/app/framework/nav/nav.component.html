@@ -41,13 +41,17 @@
       <li *ngIf="itsAdmin">
         Hello {{admin}}!
       </li>
-      <li *ngIf="!itsAdmin">
+      <li *ngIf="!itsAdmin && !itsUser">
         Hello
       </li>
+      <li *ngIf="itsUser">
+        Hello {{user}}!
+      </li>
+
 
       &nbsp;&nbsp;
 
-      <li *ngIf="!itsAdmin" ngbDropdown id="parentDropdown" class="nav-item dropdown">
+      <li *ngIf="!itsAdmin && !itsUser" ngbDropdown id="parentDropdown" class="nav-item dropdown">
         <button ngbDropdownToggle class="btn fas fa-user fa-fw nav-link dropdown-toggle" id="buttonNavbarDropdown"
         data-toggle="dropdown" aria-haspopup="true">
         </button>
@@ -71,11 +75,25 @@
 
       <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
         <!-- <a class="dropdown-item" [routerLink]="['/admin-products/product/view-all-product']"><i class="fa fa-product-hunt" aria-hidden="true"></i>&nbsp;{{admin}}</a> -->
-        <a class="dropdown-item" (click)="adminEdit()"><i class="fas fa-cogs"></i>&nbsp;Edit my profile</a>
-        <a class="dropdown-item" (click)="signOut()"><i class="fas fa-sign-out-alt"></i>&nbsp;Sign Out</a>
+        <a class="dropdown-item" (click)="editAdmin()"><i class="fas fa-cogs"></i>&nbsp;Edit my profile</a>
+        <a class="dropdown-item" (click)="signOutAdmin()"><i class="fas fa-sign-out-alt"></i>&nbsp;Sign Out</a>
       </div>
     </div>
     </li>
+
+    <li *ngIf="itsUser" ngbDropdown id="parentDropdown" class="nav-item dropdown">
+      <button ngbDropdownToggle class="btn fas fa-user fa-fw nav-link dropdown-toggle" id="buttonNavbarDropdown"
+      data-toggle="dropdown" aria-haspopup="true">
+      </button>
+
+      <!-- <a href=""><i class="fas fa-user fa-fw" style="color:white; font-size:20px"></i></a> -->
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" (click)="editUser()"><i class="fas fa-sign-in-alt"></i>&nbsp;Edit user</a>
+        <a class="dropdown-item" (click)="signOutUser()"><i class="fas fa-sign-out-alt"></i>&nbsp;Sign Out</a>
+      </div>
+    </li>
+
+
     &nbsp;&nbsp;
     <li class="nav-item active">
       <a href="" style="color: #ffffff"><i class="fas fa-shopping-cart fa-fw"></i></a>

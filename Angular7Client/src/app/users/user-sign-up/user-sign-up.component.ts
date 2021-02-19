@@ -1,6 +1,9 @@
+import { HashLocationStrategy } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/shared/model/user.model';
 import { UserService } from 'src/app/shared/service/user.service';
 
@@ -19,7 +22,9 @@ export class UserSignUpComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private userData: UserService
+    private userData: UserService,
+    private toastr: ToastrService
+
     ) { }
 
   ngOnInit() {
@@ -40,11 +45,14 @@ export class UserSignUpComponent implements OnInit {
       City: '',
       ZipCode: 0,
       Address: '',
-      IsAdmin: false
+      IsAdmin: false,
+      IdNumber: null,
+      CompanyName: ''
     };
   }
 
-  OnSubmit(firstName, lastName, userName, password, email, phone, city, zipCode, address): void {
+  OnSubmit(firstName, lastName, userName, password, password2, email, phone, city, zipCode, address, companyName, pib) {
+    if (password === password2) {
     this.user = {
       UserName: userName,
       Password: password,
@@ -55,16 +63,48 @@ export class UserSignUpComponent implements OnInit {
       City: city,
       ZipCode: zipCode,
       Address: address,
-      IsAdmin: false
+      IsAdmin: false,
+      // IdNumber: 234565,
+      CompanyName: companyName,
+      PIB: pib
     }
     this.userService.userRegister(this.user).subscribe(
       (userData: User) => {
         console.log(userData);
         this.userService.user = this.user;
+        this.userService.userAuthentication(userName, password).subscribe((user: any) => {
+          localStorage.setItem('userToken', user.access_token); //postavlja token admina u lokalnu promenljivu
+          this.userService.getUserClaims().subscribe((data: any) => {
+          this.userService.user = data;
+          this.router.navigate(['users/user-home']);
+          console.log(this.userService.user);
+          console.log(localStorage.getItem('userToken'));
+  
+          this.userService.setValue(true);
+          // localStorage.setItem('user', data.FirstName);
+          localStorage.setItem('userName', data.UserName);
+          this.resetForm();
+          });
+        },
+  
+        (err: HttpErrorResponse) => {
+          this.isLoginError = true;
+        });
+ 
       },
       (error: any) => console.log(console.error()
       ));
-    this.router.navigate(['users/user-home']);
+
+    } else {
+      this.toastr.warning(
+        'Lozinke nisu identične!',
+        'Morate upisati identične lozinke.',
+         {
+          timeOut: 5000,
+          progressBar: true,
+         });
+
     }
-    
-}
+  
+    };
+  }

@@ -11,9 +11,6 @@ export class AdminService {
   readonly rootUrl = 'http://localhost:52866';
   private itsAdminSignIn: BehaviorSubject<boolean>;
   public admin: Admin;
-  // private adminSignIn = new BehaviorSubject('');
-  // currentAdmin = this.adminSignIn.asObservable();
-  // public itsAdminSignIn: boolean;
 
   constructor (
     private http: HttpClient
@@ -21,9 +18,6 @@ export class AdminService {
     this.itsAdminSignIn = new BehaviorSubject<boolean>(false);
    }
 
-  // adminSignInFunction(admin: string) {
-  //   this.adminSignIn.next(admin);
-  // }
 
   adminAuthentication(userName, password) {
     const data = 'username=' + userName + '&password=' + password + '&grant_type=password';

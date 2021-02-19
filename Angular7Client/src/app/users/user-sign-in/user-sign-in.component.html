@@ -16,15 +16,15 @@
             </div>
 
             <input id="adminName" name="adminName" class="form-control" required minlength="4" ngModel #adminName="ngModel"
-              placeholder="Admin name" type="text" />
+              placeholder="Korisničko ime" type="text" />
           </div>
           <div class="form-group">
             <div *ngIf="adminName.invalid && (adminName.dirty || adminName.touched)" class="alert alert-danger">
               <div *ngIf="adminName?.errors.required">
-                Name is required.
+                Ime je obavezan podatak.
               </div>
               <div *ngIf="adminName?.errors.minlength">
-                Name must be at least 4 characters long.
+                Ime mora imati minimalno 4 karaktera.
               </div>
             </div>
           </div>
@@ -38,15 +38,15 @@
               <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
             </div>
             <input id="password" name="password" class="form-control" required minlength="3" ngModel #password="ngModel"
-              placeholder="Password" type="password" />
+              placeholder="Lozinka" type="password" />
           </div>
           <div class="form-group">
             <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
               <div *ngIf="password?.errors.required">
-                Password is required.
+                Lozinka je obavezan podatak.
               </div>
               <div *ngIf="password?.errors.minlength">
-                Password must be at least 3 characters long.
+                Lozinka mora imati minimalno 3 karaktera.
               </div>
             </div>
           </div>
@@ -54,9 +54,9 @@
 
         <div class="form-group">
           <button type="submit" class="btn btn-primary btn-block"
-            [disabled]="signInForm.form.pristine || signInForm.form.invalid"> Login </button>
+            [disabled]="signInForm.form.pristine || signInForm.form.invalid"> Prijaviti se </button>
         </div> <!-- form-group// -->
-        <p class="text-center"><a href="#" class="btn">Forgot password?</a></p>
+        <p class="text-center"><a href="#" class="btn">Zaboravili ste lozinku?</a></p>
       </form>
     </article>
   </div>

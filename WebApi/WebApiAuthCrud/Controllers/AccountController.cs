@@ -10,18 +10,26 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApiAuthCrud.Models;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Web;
 
 namespace WebApiAuthCrud.Controllers
 {
     public class AccountController : ApiController
     {
-    [HttpPost]
-    [AllowAnonymous]
-    [Route("api/Account/Register")]
-    public IdentityResult Register(AccountModel model)
-    {
-        var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-        var manager = new UserManager<ApplicationUser>(userStore);
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("api/Account/Register")]
+        public IdentityResult Register(AccountModel model)
+        {
+            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(userStore);
+
+
         var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
         user.FirstName = model.FirstName;
         user.LastName = model.LastName;
@@ -41,18 +49,19 @@ namespace WebApiAuthCrud.Controllers
         IdentityResult result = manager.Create(user, model.Password);
         return result;
     }
+
         [HttpGet]
         [Route("api/GetUserClaims")]
         [AllowAnonymous]
         public AccountModel GetUserClaims()
-        {
-            bool isAdmin = false;
+            {
+            //bool isAdmin = false;
             var identityClaims = (ClaimsIdentity)User.Identity;
             IEnumerable<Claim> claims = identityClaims.Claims;
-            if (Convert.ToBoolean(identityClaims.FindFirst("IsAdmin").Value) == true) //ez működik
-            {
-                isAdmin = true;
-            }
+            //if (Convert.ToBoolean(identityClaims.FindFirst("IsAdmin").Value) == true) //ez működik
+            //{
+            //    isAdmin = true;
+            //}
             AccountModel model = new AccountModel()
             {
                 UserName = identityClaims.FindFirst("Username").Value,
@@ -67,9 +76,50 @@ namespace WebApiAuthCrud.Controllers
                 PIB = int.Parse(identityClaims.FindFirst("PIB").Value),
                 ZipCode = int.Parse(identityClaims.FindFirst("ZipCode").Value),
                 LoggedOn = identityClaims.FindFirst("LoggedOn").Value,
-                IsAdmin = isAdmin
+                IsAdmin = Convert.ToBoolean(identityClaims.FindFirst("IsAdmin").Value),
+                Id = identityClaims.FindFirst("Id").Value
             };
             return model;
+        }
+
+        // PUT: api/account/5
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PutUser(int id, AccountModel accountModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id.ToString() != accountModel.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(accountModel).State = EntityState.Modified;
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AccountModelExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        private bool AccountModelExists(int id)
+        {
+            return db.AccountModels.Count(e => e.Id == id.ToString()) > 0;
         }
 
 

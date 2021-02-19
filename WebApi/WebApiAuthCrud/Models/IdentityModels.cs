@@ -31,6 +31,8 @@ namespace WebApiAuthCrud.Models
         }
 
         public DbSet<AccountModel> AccountModels { get; set; }
+        //public DbSet<AccountModel> Users { get; set; }
+
         public DbSet<ProductModel> ProductModels { get; set; }
         public DbSet<CarModel> CarModels { get; set; }
         public DbSet<Car> Cars { get; set; }
@@ -38,7 +40,8 @@ namespace WebApiAuthCrud.Models
         public DbSet<ProductTypeModel> ProductTypeModels { get; set; }
         public DbSet<TaxRate>  TaxRates{ get; set; }
         public DbSet<Accounting> Accountings { get; set; }
-
+        public System.Data.Entity.DbSet<WebApiAuthCrud.Models.CarModelType> CarModelTypes { get; set; }
+        public System.Data.Entity.DbSet<WebApiAuthCrud.Models.CarModelTypeEngine> CarModelTypeEngines { get; set; }
 
 
 
@@ -63,8 +66,5 @@ namespace WebApiAuthCrud.Models
                 .ToTable("UserLogin");
         }
 
-        public System.Data.Entity.DbSet<WebApiAuthCrud.Models.CarModelType> CarModelTypes { get; set; }
-
-        public System.Data.Entity.DbSet<WebApiAuthCrud.Models.CarModelTypeEngine> CarModelTypeEngines { get; set; }
     }
 }

@@ -28,6 +28,5 @@ namespace WebApiAuthCrud.Models
 
         public bool IsAdmin { get; set; }
         public string LoggedOn { get; set; }
-
     }
 }

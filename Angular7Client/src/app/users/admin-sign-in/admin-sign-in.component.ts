@@ -54,19 +54,17 @@ export class AdminSignInComponent implements OnInit {
      this.resetForm();
      if (data.IsAdmin) {
       this.adminService.setValue(true);
-      // localStorage.setItem('userIsAdminOrNote', JSON.stringify(data.IsAdmin));
-      localStorage.setItem('userAdminName', data.FirstName);
-      localStorage.setItem('user', data.UserName);
-      // this.adminService.itsAdminSignIn = true;
+      localStorage.setItem('adminName', data.UserName);
       this.router.navigate(['admin-products/list-products']);
     } else {
-      localStorage.removeItem('userToken');
+      // localStorage.removeItem('userToken');
      }
     });
    },
    (err: HttpErrorResponse) => {
      this.isLoginError = true;
    });
+  //  this.router.navigate(['admin-products/list-products']);
  }
 
 

@@ -23,7 +23,7 @@ export class AdminGuard implements CanActivate {
       // this.toastr.success('Hello world!', 'Toastr fun!');
       return true;
     }
-      this.router.navigate(['admin-products/list-products']);
+      this.router.navigate(['/users/admin']);
       return false;
   }
 }
