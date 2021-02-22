@@ -9,7 +9,7 @@ import { Admin } from '../model/admin.model';
 })
 export class AdminService {
   readonly rootUrl = 'http://localhost:52866';
-  private itsAdminSignIn: BehaviorSubject<boolean>;
+  public itsAdminSignIn: BehaviorSubject<boolean>;
   public admin: Admin;
 
   constructor (

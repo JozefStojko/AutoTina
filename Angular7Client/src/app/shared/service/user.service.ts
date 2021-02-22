@@ -14,7 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
   readonly rootUrl = 'http://localhost:52866';
   public user: User;
-  private itsUserSignIn: BehaviorSubject<boolean>;
+  public itsUserSignIn: BehaviorSubject<boolean>;
 
 
   constructor(private http: HttpClient) {

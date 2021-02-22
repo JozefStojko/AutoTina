@@ -56,19 +56,38 @@ export class NavComponent implements OnInit {
   
     //Filtering Product By Category/Type
 
-    loadFilteredProductByType(filter: number) {  
+    loadFilteredProductByType(filter: number) { 
+      if (filter === 0){
+        this.productService.productList = this.productService.fixProductList;
+
+        }
+      else {
     this.productService.productList = this.productService.fixProductList.filter(
       product => product.ProductTypeModelId === filter);
+    }
     } 
 
 
     //search Product
   filteredProductBySearch(search: string) {  
-    this.productService.productList = this.productService.fixProductList.filter(
+    if (search === '0'){
+      this.productService.productList = this.productService.fixProductList;
+      }
+      else {
+      this.productService.productList = this.productService.fixProductList.filter(
       product => (
         (product.ProductName.toLowerCase().indexOf(search.toLowerCase()) !== -1 ) || 
         (product.CatalogNumber.toLowerCase().indexOf(search.toLowerCase()) !== -1)
         ));
+       }
+
+
+       this.productService.productList = this.productService.fixProductList.filter(
+        product => (
+          (product.ProductName.toLowerCase().indexOf(search.toLowerCase()) !== -1 ) || 
+          (product.CatalogNumber.toLowerCase().indexOf(search.toLowerCase()) !== -1)
+          ));
+  
     } 
 
 
@@ -91,11 +110,7 @@ export class NavComponent implements OnInit {
     localStorage.removeItem('userToken');
     this.adminService.setValue(false);
     this.itsAdmin = false;
-
-    // this.adminData.adminSignInFunction('');
-    // this.adminService.itsAdminSignIn = false;
-    // console.log(this.adminService.itsAdminSignIn + ': ez az navbol miutan sign out');
-    // localStorage.setItem('userIsAdminOrNote', JSON.stringify(false));
+    localStorage.setItem('adminName', '');
     this.router.navigate(['/home']);
   }
 
@@ -108,11 +123,7 @@ export class NavComponent implements OnInit {
     localStorage.removeItem('userToken');
     this.userService.setValue(false);
     this.itsUser = false;
-
-    // this.adminData.adminSignInFunction('');
-    // this.adminService.itsAdminSignIn = false;
-    // console.log(this.adminService.itsAdminSignIn + ': ez az navbol miutan sign out');
-    // localStorage.setItem('userIsAdminOrNote', JSON.stringify(false));
+    localStorage.setItem('userName', '');
     this.router.navigate(['/home']);
   }
 

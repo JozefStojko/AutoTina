@@ -49,15 +49,15 @@ export class AdminSignInComponent implements OnInit {
      this.adminService.getUserClaims().subscribe((data: any) => {
      this.adminClaims = data;
      this.adminService.admin = data;
+     this.adminService.setValue(true);
      console.log(this.adminService.admin);
      console.log(localStorage.getItem('userToken'));
      this.resetForm();
      if (data.IsAdmin) {
-      this.adminService.setValue(true);
       localStorage.setItem('adminName', data.UserName);
       this.router.navigate(['admin-products/list-products']);
     } else {
-      // localStorage.removeItem('userToken');
+      localStorage.removeItem('userToken');
      }
     });
    },

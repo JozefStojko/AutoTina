@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 succ => { },
                 err => {
                     if (err.status === 401) {
-                        this.router.navigateByUrl('/users/user-sign-in');
+                        this.router.navigateByUrl('/home');
                       }
                 })
                 );

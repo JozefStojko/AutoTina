@@ -44,7 +44,6 @@ import { JwPaginationModule } from 'jw-angular-pagination';
     HomeComponent,
     NavComponent,
     FooterComponent
-
     // AdminHomeComponent,
     // AdminSignInComponent,
     // UserSignUpComponent,
