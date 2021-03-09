@@ -80,7 +80,8 @@ export class CarMarkService {
 
 
   getAllCarMarks(): Observable<CarMark[]> {  
-    return this.http.get<CarMark[]>(this.rootUrl + '/api/carmarks');
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    return this.http.get<CarMark[]>(this.rootUrl + '/api/carmarks', { headers: reqHeader });
   }  
 
 

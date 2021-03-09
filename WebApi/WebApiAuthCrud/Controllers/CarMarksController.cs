@@ -20,12 +20,14 @@ namespace WebApiAuthCrud.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/CarMarks
+        [AllowAnonymous]
         public IQueryable<CarMark> GetCarMarks()
         {
             return db.CarMarks.OrderBy(x => x.Mark);
         }
 
         // GET: api/CarMarks/5
+        [AllowAnonymous]
         [ResponseType(typeof(CarMark))]
         public async Task<IHttpActionResult> GetCarMark(int id)
         {

@@ -6,6 +6,7 @@ import { Admin } from '../../shared/model/admin.model';
 import { AdminService } from '../../shared/service/admin.service';
 import { UserService } from '../../shared/service/user.service';
 import { Location } from '@angular/common';
+import { pipeBind1 } from '@angular/core/src/render3';
 
 
 @Component({
@@ -51,6 +52,22 @@ export class UserSignInComponent implements OnInit {
      this.resetForm();
      if (!data.IsAdmin) {
       this.userService.user = data;
+
+      this.userService.user = {
+      Address: data.Address,
+      City: data.City,
+      Email: data.Email,
+      FirstName: data.FirstName,
+      Id: data.Id,
+      LastName: data.LastName,
+      Phone: data.Phone,
+      UserName: data.UserName,
+      ZipCode: data.ZipCode,
+      PIB: data.PIB,
+      CompanyName: data.CompanyName
+    }
+      console.log(this.userService.user);
+      
       this.userService.user.Id = data.Id;
       localStorage.setItem('userName', data.UserName);
       this.userService.setValue(true);

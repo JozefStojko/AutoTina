@@ -27,6 +27,7 @@ namespace WebApiAuthCrud.Controllers
         }
 
         // GET: api/ProductTypeModels/5
+        [AllowAnonymous]
         [ResponseType(typeof(ProductTypeModel))]
         public async Task<IHttpActionResult> GetProductTypeModel(int id)
         {

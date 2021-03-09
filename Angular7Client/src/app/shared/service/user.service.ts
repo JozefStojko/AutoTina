@@ -36,6 +36,7 @@ export class UserService {
    return this.http.get(this.rootUrl + '/api/GetUserClaims');
   }
 
+  // Ovo ne radi pošto je Id usera string a ne integer, treba promeniti tip ID Usera u modelu na int
   putUser(user: User) {  
     console.log(user);
     return this.http.put(this.rootUrl + '/api/account/' + user.Id, user);

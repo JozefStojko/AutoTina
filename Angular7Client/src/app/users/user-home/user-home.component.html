@@ -1,3 +1,100 @@
-<p>
-  user-home works!
-</p>
+    <!-- Page Content -->
+    <div class="container">
+  
+      <div class="row">
+  
+        <!-- /.col-lg-3 -->
+  
+        <div class="col-lg-12">
+  
+          <!-- /.card -->
+      <div class="card-deck">
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header" style="text-align:center">
+              <h4>Vaša korpa {{shopList}}</h4>
+            </div>
+            <div class="card-body" style="text-align:center">
+
+              <hr>
+   <form name="form" (ngSubmit)="shoppingForm.form.valid && OnSubmitShopping(order.value)" #shoppingForm="ngForm" novalidate>
+
+  <!-- Lista delova u korpi -->
+  <div class="row justify-content-center">
+  <div class="col-8">
+    <div class="form-group">
+      <div class="input-group">
+<table class="table table-striped table-hover table-bordered table-fit table-sm">
+  <tr>
+    <!-- <th>Korisničko ime</th> -->
+    <th class="align-without-break-word">Ime proizvoda</th>
+    <th class="align-without-break-word">Šifra proizvoda</th>
+    <th class="align-without-break-word">Automobil</th>
+    <th class="align-without-break-word">Jedinična cena bez poreza</th>
+    <th class="align-without-break-word">Jedinična cena sa porezom</th>
+    <th class="align-without-break-word">Komada / set</th>
+    <th class="align-without-break-word">Vrednost</th>
+    <th colspan="2" class="align-without-break-word">Komande</th>
+  </tr>
+  <tr *ngFor="let shopItem of shopService.shopList"> 
+    <!-- <td> {{shopItem.UserName}} </td> -->
+    <td class="align" >  {{shopItem.ProductName}}</td>
+    <td class="align"> {{shopItem.ProductId}}</td>
+    <td class="align">  {{shopItem.Car}}</td>
+    <td class="align">  {{shopItem.Price * 0.83333 | number:'1.2-2' }}</td>
+    <td class="align">  {{shopItem.Price | number:'1.2-2'}}</td>
+    <td class="align"> 
+      <form>
+        <input 
+        type="number" 
+        id="formNumberOfPiecesOfProduct" 
+        name="formNumberOfPiecesOfProduct" 
+        value= {{shopItem.NumberOfPiecesOfProduct}}
+        [(ngModel)]="shopItem.NumberOfPiecesOfProduct" 
+        (ngModelChange)="onEditShopping()"
+        size="10"
+        />
+      </form>
+    </td>
+    <td class="align-without-break-word"> {{shopItem.Price * shopItem.NumberOfPiecesOfProduct | number:'1.2-2'}}</td>
+    <!-- <td class="align-without-break-word"><button (click)="onEditShopping(shopItem)" class="btn btn-sm btn-outline-primary">Edit</button></td> -->
+    <td class="align-without-break-word"><button (click)="deleteShopItem(shopItem)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+  </tr>
+<tr> 
+  <td class="align--without-break-word" colspan="6" > <strong> Ukupna cena: </strong></td>
+  <td class="align--without-break-word" colspan="3"> <strong> {{ totalPriceValue | number:'1.2-2'}} </strong></td>
+</tr>
+
+</table>  
+ </div>
+</div>
+</div>
+</div>
+
+   <!-- Naruci deo -->
+   <div class="row justify-content-center">
+    <div class="col-4">
+    <button type="submit" class="btn btn-success btn-block"
+    [disabled]="shoppingForm.form.invalid || buttondisabled"> Naručite delove </button>
+</div>
+</div>
+</form>
+
+
+
+  <hr>
+    <div style="text-align: center">
+      <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
+      </div>
+      </div>
+  </div>
+</div>
+  
+          <!-- /.card -->
+  
+        </div>
+        <!-- /.col-lg-9 -->
+  
+      </div>
+  
+    </div>
+    <!-- /.container -->

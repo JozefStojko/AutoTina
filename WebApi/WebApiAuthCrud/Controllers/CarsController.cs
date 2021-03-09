@@ -20,6 +20,7 @@ namespace WebApiAuthCrud.Controllers
         // GET: api/Cars
         //[HttpGet]         Post i route ne sme da ide
         //[Route("api/Cars")]
+        [AllowAnonymous]
 
         public IQueryable<Car> GetCars()
         {

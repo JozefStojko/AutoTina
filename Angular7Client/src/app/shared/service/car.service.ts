@@ -21,7 +21,8 @@ export class CarService {
   }
 
   getAllCars(): Observable<Car[]> {  
-    return this.http.get<Car[]>(this.rootUrl + '/api/cars');  
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    return this.http.get<Car[]>(this.rootUrl + '/api/cars', { headers: reqHeader });  
   }  
 
   putCar(car: Car) {  

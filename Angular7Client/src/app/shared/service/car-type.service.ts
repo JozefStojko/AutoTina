@@ -19,11 +19,13 @@ export class CarTypeService {
   }
 
   getAllCarTypes(): Observable<CarType[]> {  
-    return this.http.get<CarType[]>(this.rootUrl + '/api/carmodels');
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    return this.http.get<CarType[]>(this.rootUrl + '/api/carmodels', { headers: reqHeader });
   }  
 
   getCarMarkIdTypes(carMarkId: number): Observable<CarType[]> {  
-    return this.http.get<CarType[]>(this.rootUrl + '/api/carmodels/GetCarModelsByCarMarkIdSearch/' + carMarkId);
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    return this.http.get<CarType[]>(this.rootUrl + '/api/carmodels/GetCarModelsByCarMarkIdSearch/' + carMarkId, { headers: reqHeader });
   }  
 
   putCarType(carType: CarType) {  

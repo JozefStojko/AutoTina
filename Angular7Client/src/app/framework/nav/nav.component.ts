@@ -5,6 +5,7 @@ import { Globals } from '../../globals';
 import { ProductService } from 'src/app/shared/service/product.service';
 import { UserService } from 'src/app/shared/service/user.service';
 import { User } from 'src/app/shared/model/user.model';
+import { ShopService } from 'src/app/shared/service/shop.service';
 
 
 
@@ -30,7 +31,8 @@ export class NavComponent implements OnInit {
     private router: Router,
     public adminService: AdminService,
     public userService: UserService,
-    public productService: ProductService
+    public productService: ProductService,
+    private shopService: ShopService
     ) { }
 
   ngOnInit() {
@@ -43,6 +45,9 @@ export class NavComponent implements OnInit {
       this.itsUser = value;
       this.user = localStorage.getItem('userName');
       console.log(this.itsUser);
+      // localStorage.removeItem("shoppingBasket");
+      
+
     });
 
     // this.adminSignIn = this.adminService.itsAdminSignIn;
@@ -121,8 +126,8 @@ export class NavComponent implements OnInit {
 
   signOutUser() {
     localStorage.removeItem('userToken');
-    this.userService.setValue(false);
     this.itsUser = false;
+    this.userService.setValue(false);
     localStorage.setItem('userName', '');
     this.router.navigate(['/home']);
   }

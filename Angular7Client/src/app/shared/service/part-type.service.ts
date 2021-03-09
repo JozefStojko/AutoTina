@@ -77,8 +77,9 @@ export class PartTypeService {
     }
   
 
-  getAllPartTypes(): Observable<PartType[]> {  
-    return this.http.get<PartType[]>(this.rootUrl + '/api/producttypemodels');
+  getAllPartTypes(): Observable<PartType[]> {
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+     return this.http.get<PartType[]>(this.rootUrl + '/api/producttypemodels', { headers: reqHeader });
   }  
 
   putPartType(partTypeId: string, partTypeName:string, fileToUpload: File) {  

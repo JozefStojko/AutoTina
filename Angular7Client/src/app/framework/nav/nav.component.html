@@ -11,9 +11,6 @@
       <li class="nav-item active">
         <a class="nav-link" href="home">Početna<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="proizvodjaci">Pretraga po vozilu</a>
-      </li>
 
       <li ngbDropdown  id="parentDropdown" class="nav-item dropdown">
           <button ngbDropdownToggle class="btn nav-link dropdown-toggle" id="navbarDropdown"
@@ -96,7 +93,7 @@
 
     &nbsp;&nbsp;
     <li class="nav-item active">
-      <a href="" style="color: #ffffff"><i class="fas fa-shopping-cart fa-fw"></i></a>
+      <a href="" style="color: #ffffff" [routerLink]="['/users/user-home']"><i class="fas fa-shopping-cart fa-fw"></i></a>
     </li>
 
       &nbsp;&nbsp;

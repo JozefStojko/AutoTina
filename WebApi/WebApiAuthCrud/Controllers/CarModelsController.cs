@@ -18,6 +18,7 @@ namespace WebApiAuthCrud.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/CarModels
+        [AllowAnonymous]
         public IQueryable<CarModel> GetCarModels()
         {
             //var models = db.CarModels.Include(c => c.CarMark).Where(p => p.CarMark.Id.Contains(tip));
@@ -28,6 +29,7 @@ namespace WebApiAuthCrud.Controllers
         }
 
         // GET: GetCarModelsByCarMarkIdSearch
+        [AllowAnonymous]
         [Route("api/CarModels/GetCarModelsByCarMarkIdSearch/{carMarkId:int}")]
         public IQueryable<CarModel> GetCarModelsByCarMarkIdSearch(int carMarkId)
         {
@@ -47,6 +49,7 @@ namespace WebApiAuthCrud.Controllers
 
 
         // GET: api/CarModels/5
+        [AllowAnonymous]
         [ResponseType(typeof(CarModel))]
         public async Task<IHttpActionResult> GetCarModel(int id)
         {

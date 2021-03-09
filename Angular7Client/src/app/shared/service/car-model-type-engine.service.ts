@@ -20,12 +20,14 @@ export class CarModelTypeEngineService {
   }
 
   getAllCarModelTypeEngines(): Observable<CarModelTypeEngine[]> {  
-    return this.http.get<CarModelTypeEngine[]>(this.rootUrl + '/api/carmodeltypeengines');
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    return this.http.get<CarModelTypeEngine[]>(this.rootUrl + '/api/carmodeltypeengines', { headers: reqHeader });
   }  
 
 
   getCarModelTypeEngines(carModelTypeEngineId: number): Observable<CarModelTypeEngine[]> {  
-    return this.http.get<CarModelTypeEngine[]>(this.rootUrl + '/api/carmodeltypeengines/GetCarModelTypeEnginesByCarModelTypeEngineIdSearch/' + carModelTypeEngineId);
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    return this.http.get<CarModelTypeEngine[]>(this.rootUrl + '/api/carmodeltypeengines/GetCarModelTypeEnginesByCarModelTypeEngineIdSearch/' + carModelTypeEngineId, { headers: reqHeader });
   }  
 
   putCarModelTypeEngine(carModelTypeEngine: CarModelTypeEngine) {  

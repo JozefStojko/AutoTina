@@ -1,3 +1,116 @@
-<p>
-  view-products works!
-</p>
+    <!-- Page Content -->
+    <div class="container">
+  
+      <div class="row">
+  
+        <!-- /.col-lg-3 -->
+  
+        <div class="col-lg-12">
+  
+          <!-- /.card -->
+      <div class="card-deck">
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header" style="text-align:center">
+              <h4>{{productService.product.ProductName}}</h4>
+            </div>
+            <div class="card-body" style="text-align:center">
+              <img  [src]="createImagePath(productService.product.Image)" style="width:250px; height:200px"> 
+
+              <hr>
+   <form name="form" (ngSubmit)="orderForm.form.valid && onSubmitOrder(order.value)" #orderForm="ngForm" novalidate>
+   <!-- Naruci deo -->
+   <div class="row justify-content-center">
+   <div class="col-8">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-cart-plus"></i> </span>
+        </div>
+  
+        <!-- [(ngModel)]="carTypeService.carType.YearFrom"  -->
+
+        <input 
+        id="order" 
+        name="order" 
+        class="form-control" 
+        ngModel 
+        #order="ngModel"
+        placeholder="Upiši koliko komada naručuješ."
+        required 
+        type="number" />
+      </div>
+
+    <div class="form-group">
+      <div *ngIf="order.invalid && (order.dirty || order.touched)" class="alert alert-danger">
+        <div *ngIf="order?.errors.required">
+          Morate uneti broj komada ako hoćete naručiti deo.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="col-4">
+    <button type="submit" class="btn btn-success btn-block"
+    [disabled]="orderForm.form.invalid || buttondisabled"> Dodaj deo u korpu </button>
+</div>
+</div>
+</form>
+
+
+
+              <hr>
+              <div class="row">
+
+              <div class="col-md-4">
+
+              <p>{{productService.product.CatalogNumber}}</p>
+              <small class="text-muted">Kataloški broj</small>
+              </div>
+              <div class="col-md-4">
+
+                <p>{{productService.product.OnLager}} kom</p>
+                <small class="text-muted">Na stanju</small>
+                </div>
+
+                <div class="col-md-4">
+
+                    <p>{{productService.product.Price}},00</p>
+                    <small class="text-muted">Cena</small>
+                    </div>
+                </div>
+<hr>
+<div>
+    <p   style="text-align:center">{{productService.product.Description}}</p>
+    <small class="text-muted text-align:center">Opis robe</small>
+</div>
+<hr>
+<div>
+    <p   style="text-align:center">{{productService.product.ComparativeNumbers}}</p>
+    <small class="text-muted text-align:center">Kataloški brojevi</small>
+</div>
+<hr>
+<div style="text-align:left">
+  <p>
+    Modelima kojima odgovora proizvod:
+  </p>
+  <p *ngFor="let car of filteredCars">
+    * Marka: <b>{{car.CarMark.Mark}}</b>, model: <b>{{car.CarModel.Model}}</b>, tip modela: <b>{{car.CarModelType.CarModelTypeName}}</b>, motor: <b>{{car.CarModelTypeEngine.CarModelTypeEngineName}}</b>
+  </p>
+</div>      
+              <hr>
+              <div style="text-align: center">
+                <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
+              </div>
+            </div>
+        </div>
+      </div>
+  
+          <!-- /.card -->
+  
+        </div>
+        <!-- /.col-lg-9 -->
+  
+      </div>
+  
+    </div>
+    <!-- /.container -->

@@ -1,0 +1,11 @@
+.align {
+    text-align:center; 
+    word-break:break-word; 
+    vertical-align: middle;
+}
+
+.align-without-break-word {
+    text-align:center; 
+    vertical-align: middle;
+}
+

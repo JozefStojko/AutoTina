@@ -9,21 +9,29 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-  productList: Product[];
-  fixProductList: Product[];
+  public productList: Product[];
+  public fixProductList: Product[];
   [x: string]: any;
-  product: Product;
-  readonly rootUrl = 'http://localhost:52866';
-  progress: number;
+  public product: Product;
+  private readonly rootUrl = 'http://localhost:52866';
+  public progress: number;
 
   constructor(private http: HttpClient) { }
 
 
+  // getAll(): Observable<Product[]> {
+  //   return this.http.get<Product[]>(this.rootUrl + '/api/products');
+  // }
+
   getAll(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.rootUrl + '/api/products');
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    return this.http.get<Product[]>(this.rootUrl + '/api/products', { headers: reqHeader });
   }
 
+
+
   
+
   // getProductFilteredByType(key: number): Observable<Product[]> {
   //   console.log(key);
   //   return this.http.get<Product[]>(this.rootUrl + '/api/products/FilterByProductType/' + key);

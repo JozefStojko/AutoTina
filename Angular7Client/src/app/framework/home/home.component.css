@@ -3,9 +3,54 @@
   height: auto;
 }
 
-.responsive-text {
-  font-size:4vw;
+.backGroundImage {
+  opacity: 0.4;
 }
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 60px */
+@media screen and (min-width: 1001px) {
+.responsive-text {
+    font-size: 40px;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 1000px) {
+  .responsive-text {
+    font-size: 20px;
+  }
+}
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 60px */
+@media screen and (min-width: 1001px) {
+.centered-down {
+    font-size: 20px;
+    }
+  }
+  
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 1000px) {
+    .centered-down {
+      font-size: 10px;
+    }
+  }
+  
+/* .responsive-text {
+  font-size:40px;
+} */
+
+h3, h5 {
+  color: black;
+  text-shadow:
+    -1px -1px 0 white,
+     0   -1px 0 white,
+     1px -1px 0 white,
+     1px  0   0 white,
+     1px  1px 0 white,
+     0    1px 0 white,
+    -1px  1px 0 white,
+    -1px  0   0 white;
+  }
 
 img {
   display: block;
@@ -17,4 +62,27 @@ img {
   cursor: pointer;
   cursor: hand;
 }
+
+/* Container holding the image and the text */
+.container {
+  position: relative;
+  text-align: center;
+  /* color: white; */
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centered-down {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
