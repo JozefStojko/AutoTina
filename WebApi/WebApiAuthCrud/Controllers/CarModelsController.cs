@@ -21,9 +21,6 @@ namespace WebApiAuthCrud.Controllers
         [AllowAnonymous]
         public IQueryable<CarModel> GetCarModels()
         {
-            //var models = db.CarModels.Include(c => c.CarMark).Where(p => p.CarMark.Id.Contains(tip));
-
-            //return db.CarModels;
             return db.CarModels.Include(m => m.CarMark).OrderBy(x => x.CarMark.Mark);
 
         }
@@ -33,9 +30,6 @@ namespace WebApiAuthCrud.Controllers
         [Route("api/CarModels/GetCarModelsByCarMarkIdSearch/{carMarkId:int}")]
         public IQueryable<CarModel> GetCarModelsByCarMarkIdSearch(int carMarkId)
         {
-            //var models = db.CarModels.Include(c => c.CarMark).Where(p => p.CarMark.Id.Contains(tip));
-
-            //    SortTypes sortBy = SortTypeDict[sortType];
 
             IQueryable<CarModel> models = db.CarModels.Include(p => p.CarMark);
 

@@ -53,8 +53,6 @@ namespace WebApiAuthCrud.Controllers
 
             //Create id from productTypeId
             string idNameString = httpRequest.Params["productTypeId"];
-            //idNameString = idNameString.Remove(0, 1);
-            //idNameString = idNameString.Remove(idNameString.Length - 1);
 
             int idName = (int)Int64.Parse(idNameString);
 
@@ -131,39 +129,6 @@ namespace WebApiAuthCrud.Controllers
         }
 
 
-        //[ResponseType(typeof(void))]
-        //public async Task<IHttpActionResult> PutProductTypeModel(int id, ProductTypeModel productTypeModel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (id != productTypeModel.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(productTypeModel).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await db.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!ProductTypeModelExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
 
         // POST: api/ProductTypeModels
 
@@ -179,10 +144,6 @@ namespace WebApiAuthCrud.Controllers
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
             var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
             postedFile.SaveAs(filePath);
-
-            //var productType = httpRequest.Params["productTypeName"];
-            //var productTypeName = productType.Remove(0, 1);
-            //productTypeName = productTypeName.Remove(productTypeName.Length - 1);
 
 
             if (!ModelState.IsValid)
@@ -215,10 +176,6 @@ namespace WebApiAuthCrud.Controllers
                 return NotFound();
             }
 
-            //delete image
-            //string imageName = productTypeModel.ProductTypeImage;
-            //var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageName);
-            //File.Delete(filePath);
 
             //delete image
             string imageName = productTypeModel.ProductTypeImage;

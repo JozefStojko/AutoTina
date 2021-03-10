@@ -19,7 +19,6 @@ export class CreateCarTypeComponent implements OnInit {
   carType: CarType;
 
 
-
   constructor(
     private router: Router,
     private toastr: ToastrService,

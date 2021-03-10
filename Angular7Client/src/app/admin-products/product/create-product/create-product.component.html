@@ -47,30 +47,30 @@
   </div>
   </div>
 
-          <!-- Car Model Type -->
-          <div class="form-group">
-            <div *ngIf="carTypeSelect !== ''">
-              Izaberi tip modela vozila
-            </div>
-      
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fas fa-car"></i> </span>
-              </div>
-        
-            <select 
-            name="carModelTypeSelect" 
-            id="carModelTypeSelect" 
-            type="number" 
-            class="form-control" 
-            disabled="{{tipValidan}}"
-            [(ngModel)]="carModelTypeSelect" 
-            (ngModelChange)="modelTypeToNumber()">
-              <option disabled value="">Izaberi tip modela vozila</option>
-              <option *ngFor="let carModelType of allCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
-           </select>
-          </div>
-          </div>
+    <!-- Car Model Type -->
+    <div class="form-group">
+      <div *ngIf="carTypeSelect !== ''">
+        Izaberi tip modela vozila
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+        </div>
+  
+      <select 
+      name="carModelTypeSelect" 
+      id="carModelTypeSelect" 
+      type="number" 
+      class="form-control" 
+      disabled="{{tipValidan}}"
+      [(ngModel)]="carModelTypeSelect" 
+      (ngModelChange)="modelTypeToNumber()">
+        <option disabled value="">Izaberi tip modela vozila</option>
+        <option *ngFor="let carModelType of allCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
+      </select>
+    </div>
+    </div>
 
   </div>
 
@@ -101,30 +101,30 @@
     </div>
 
   
-        <!-- Car Model Type Engine-->
-        <div class="form-group">
-          <div *ngIf="carModelTypeSelect !== ''">
-            Izaberi motor modela vozila
-          </div>
-    
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fas fa-car"></i> </span>
-            </div>
-      
-          <select 
-          name="carModelTypeEngineSelect" 
-          id="carModelTypeEngineSelect" 
-          type="number" 
-          class="form-control" 
-          disabled="{{modelTipValidan}}"
-          [(ngModel)]="carModelTypeEngineSelect" 
-          (ngModelChange)="modelTypeToNumber()">
-            <option disabled value="">Izaberi motor modela vozila</option>
-            <option *ngFor="let carModelTypeEngine of allCarModelTypeEngines" [ngValue]="carModelTypeEngine.Id">{{carModelTypeEngine.CarModelTypeEngineName}}</option>
-         </select>
-        </div>
-        </div>
+  <!-- Car Model Type Engine-->
+  <div class="form-group">
+    <div *ngIf="carModelTypeSelect !== ''">
+      Izaberi motor modela vozila
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+      </div>
+
+    <select 
+    name="carModelTypeEngineSelect" 
+    id="carModelTypeEngineSelect" 
+    type="number" 
+    class="form-control" 
+    disabled="{{modelTipValidan}}"
+    [(ngModel)]="carModelTypeEngineSelect" 
+    (ngModelChange)="modelTypeToNumber()">
+      <option disabled value="">Izaberi motor modela vozila</option>
+      <option *ngFor="let carModelTypeEngine of allCarModelTypeEngines" [ngValue]="carModelTypeEngine.Id">{{carModelTypeEngine.CarModelTypeEngineName}}</option>
+    </select>
+  </div>
+  </div>
 </div>
 </div>
 

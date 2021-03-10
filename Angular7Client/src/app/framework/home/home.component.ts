@@ -109,7 +109,6 @@ export class HomeComponent implements OnInit {
         this.carService.getAllCars().subscribe(
           result => this.allCars = result,
           error => console.log("Error :: " + error)
-          //() => console.log('done!', this.allCars)
         )}; 
 
     loadAllCarTypes() {  

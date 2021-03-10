@@ -29,37 +29,10 @@ export class ProductService {
   }
 
 
-
-  
-
-  // getProductFilteredByType(key: number): Observable<Product[]> {
-  //   console.log(key);
-  //   return this.http.get<Product[]>(this.rootUrl + '/api/products/FilterByProductType/' + key);
-  // }
-
-  // getProductFilteredByMark(key: number): Observable<Product[]> {
-  //   console.log(key);
-  //   return this.http.get<Product[]>(this.rootUrl + '/api/products/FilterByModel/' + key);
-  // }
-
-
-  // getCarModelTypeEngines(carModelTypeEngineId: number): Observable<CarModelTypeEngine[]> {  
-  //   return this.http.get<CarModelTypeEngine[]>(this.rootUrl + '/api/carmodeltypeengines/GetCarModelTypeEnginesByCarModelTypeEngineIdSearch/' + carModelTypeEngineId);
-  // }  
-
-
   get(id: string) {
     return this.http.get(`${this.rootUrl + 'api/products'}/${id}`);
   }
 
-    // getBySearch(key: string) {
-  //   return this.http.get(`${this.rootUrl + '/products/GetProductsBySearch'}/${key}`);
-  // }
-
-  // update(product: Product): Observable<Product> {
-  //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  //   return this.http.put<Product>(this.rootUrl + '/products/' + product.Id, product, httpOptions);
-  // }
 
   saveProduct(
     carMarkSelect: number,
@@ -136,10 +109,6 @@ export class ProductService {
   }
 
 
-  // save(product: Product): Observable<Product> {
-  //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  //   return this.http.post<Product>(this.rootUrl + '/products', product, httpOptions);
-  // }
 
   putProduct(
     productId: number,

@@ -11,152 +11,126 @@
             <hr>
             
 
-            <div class="d-flex align-content-start">
-                <button type="button" style="text-align:center" class="btn btn-primary btn-block"
-                (click)="createProduct()"> Dodaj novi deo </button>
-            </div>
-            <hr>
-            <h5>Filtriraj po vozilu</h5>
-            <div class="row justify-content-center">
+    <div class="d-flex align-content-start">
+        <button type="button" style="text-align:center" class="btn btn-primary btn-block"
+        (click)="createProduct()"> Dodaj novi deo </button>
+    </div>
+    <hr>
+    <h5>Filtriraj po vozilu</h5>
+    <div class="row justify-content-center">
 
-            <div class="col">
-            
-              <!-- Car mark -->
-              <div class="form-group">
-                <div>Izaberi po marku vozila</div>
-            
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fas fa-car"></i> </span>
-                  </div>
-            
-                <select 
-                name="carMarkSelect" 
-                id="carMarkSelect" 
-                type="number" 
-                class="form-control" 
-                [(ngModel)]="carMarkSelect" 
-                (ngModelChange)="markToNumber()"> 
-                  <option select  disabled value="">Izaberi marku vozila.</option>
-                  <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
-               </select>
+    <div class="col">
+    
+      <!-- Car mark -->
+      <div class="form-group">
+        <div>Izaberi po marku vozila</div>
+    
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+          </div>
+    
+        <select 
+        name="carMarkSelect" 
+        id="carMarkSelect" 
+        type="number" 
+        class="form-control" 
+        [(ngModel)]="carMarkSelect" 
+        (ngModelChange)="markToNumber()"> 
+          <option select  disabled value="">Izaberi marku vozila.</option>
+          <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
+        </select>
+      </div>
+      </div>
+    
+            <!-- Car Model Type -->
+            <div class="form-group">
+              <div *ngIf="carTypeSelect !== ''">
+                Izaberi po modelu vozila
               </div>
-              </div>
-            
-                      <!-- Car Model Type -->
-                      <div class="form-group">
-                        <div *ngIf="carTypeSelect !== ''">
-                          Izaberi po modelu vozila
-                        </div>
-                  
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
-                          </div>
-                    
-                        <select 
-                        name="carModelTypeSelect" 
-                        id="carModelTypeSelect" 
-                        type="number" 
-                        class="form-control" 
-                        disabled="{{tipValidan}}"
-                        [(ngModel)]="carModelTypeSelect" 
-                        (ngModelChange)="modelTypeToNumber()">
-                          <option disabled value="">Izaberi model vozila.</option>
-                          <option *ngFor="let carModelType of filteredCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
-                       </select>
-                      </div>
-                      </div>
-              
-            
-              </div>
-              <div class="col">
-            
-                    <!-- Car type -->
-                    <div class="form-group">
-                      <div *ngIf="carTypeSelect !== ''">
-                        Izaberi po tipu modela vozila
-                      </div>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"> <i class="fas fa-car"></i> </span>
-                        </div>
-                  
-                      <select 
-                      name="carTypeSelect" 
-                      id="carTypeSelect" 
-                      type="number" 
-                      class="form-control" 
-                      disabled="{{markaValidna}}"
-                      [(ngModel)]="carTypeSelect" 
-                      (ngModelChange)="typeToNumber()">
-                        <option select  disabled value="">Izaberi tip vozila.</option>
-                        <option *ngFor="let carType of filteredCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
-                     </select>
-                    </div>
-                    </div>
-                
-              
-                    <!-- Car Model Type Engine-->
-                    <div class="form-group">
-                      <div *ngIf="carModelTypeSelect !== ''">
-                        Izaberi po motoru modela vozila
-                      </div>
-                
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"> <i class="fas fa-car"></i> </span>
-                        </div>
-                  
-                      <select 
-                      name="carModelTypeEngineSelect" 
-                      id="carModelTypeEngineSelect" 
-                      type="number" 
-                      class="form-control" 
-                      disabled="{{modelTipValidan}}"
-                      [(ngModel)]="carModelTypeEngineSelect" 
-                      (ngModelChange)="modelTypeEngineToNumber()">
-                        <option disabled value="">Izaberi motor vozila.</option>
-                        <option *ngFor="let carModelTypeEngine of filteredCarModelTypeEngines" [ngValue]="carModelTypeEngine.Id">{{carModelTypeEngine.CarModelTypeEngineName}}</option>
-                     </select>
-                    </div>
-                    </div>
+        
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+                </div>
+          
+              <select 
+              name="carModelTypeSelect" 
+              id="carModelTypeSelect" 
+              type="number" 
+              class="form-control" 
+              disabled="{{tipValidan}}"
+              [(ngModel)]="carModelTypeSelect" 
+              (ngModelChange)="modelTypeToNumber()">
+                <option disabled value="">Izaberi model vozila.</option>
+                <option *ngFor="let carModelType of filteredCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
+              </select>
             </div>
             </div>
-            
-            <hr>
+    
+  
+    </div>
+    <div class="col">
+  
+          <!-- Car type -->
+          <div class="form-group">
+            <div *ngIf="carTypeSelect !== ''">
+              Izaberi po tipu modela vozila
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+              </div>
+        
+            <select 
+            name="carTypeSelect" 
+            id="carTypeSelect" 
+            type="number" 
+            class="form-control" 
+            disabled="{{markaValidna}}"
+            [(ngModel)]="carTypeSelect" 
+            (ngModelChange)="typeToNumber()">
+              <option select  disabled value="">Izaberi tip vozila.</option>
+              <option *ngFor="let carType of filteredCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
+            </select>
+          </div>
+          </div>
+      
+    
+          <!-- Car Model Type Engine-->
+          <div class="form-group">
+            <div *ngIf="carModelTypeSelect !== ''">
+              Izaberi po motoru modela vozila
+            </div>
+      
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+              </div>
+        
+            <select 
+            name="carModelTypeEngineSelect" 
+            id="carModelTypeEngineSelect" 
+            type="number" 
+            class="form-control" 
+            disabled="{{modelTipValidan}}"
+            [(ngModel)]="carModelTypeEngineSelect" 
+            (ngModelChange)="modelTypeEngineToNumber()">
+              <option disabled value="">Izaberi motor vozila.</option>
+              <option *ngFor="let carModelTypeEngine of filteredCarModelTypeEngines" [ngValue]="carModelTypeEngine.Id">{{carModelTypeEngine.CarModelTypeEngineName}}</option>
+            </select>
+          </div>
+          </div>
+  </div>
+  </div>
+  
+  <hr>
 
 <!-- <div class="d-flex align-content-start"> -->
   <!-- <h5>Ili filtriraj po tipu dela</h5> -->
         
   <div class="row justify-content-center">
 
-    <!-- Product type -->
-
-    <!-- <div class="col">
-
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text"> <i class="fab fa-product-hunt"></i> </span>
-        </div>
-  
-      <select 
-      name="productTypeSelect" 
-      id="productTypeSelect" 
-      type="number" 
-      class="form-control" 
-      [(ngModel)]="filterProductByTypeSelect" 
-      (ngModelChange)="filterProductByTypeToNumber()">
-        <option select  desabled value="Izaberi tip dela">Izaberi tip dela</option>
-        <option *ngFor="let productType of allPartTypes" [ngValue]="productType.Id">{{productType.ProductType}}</option>
-     </select>
-    </div>
-    </div>
-    <button type="button" style="text-align:center" class="btn btn-primary btn-block"
-    (click)="filterReset()"> Filter reset </button>
-
-    </div> -->
 
   <div class="col">
     <button type="button" style="text-align:center" class="btn btn-primary btn-block"
@@ -165,86 +139,86 @@
     </div>
 
   </div>
-              <hr>
+        <hr>
 
-            <div class="row">
-          <div class="col-md-12">
-            <table class="table table-striped table-hover table-bordered table-fit table-sm">
-            <tr>
-              <th style="text-align:center">Marka</th>
-              <th style="text-align:center">Model</th>
-              <th style="text-align:center">Tip modela</th>
-              <th style="text-align:center">Motor tipa modela</th>
-              <th style="text-align:center">Grupa dela</th>
-              <th style="text-align:center">Naziv dela</th>
-              <th style="text-align:center">Kataloški broj</th>
-              <th style="text-align:center">Na stanju</th>
-              <th style="text-align:center">Cena</th>
-              <th style="text-align:center">Slika</th>
-              <th colspan="3" style="text-align:center">Komande</th>
+      <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped table-hover table-bordered table-fit table-sm">
+      <tr>
+        <th style="text-align:center">Marka</th>
+        <th style="text-align:center">Model</th>
+        <th style="text-align:center">Tip modela</th>
+        <th style="text-align:center">Motor tipa modela</th>
+        <th style="text-align:center">Grupa dela</th>
+        <th style="text-align:center">Naziv dela</th>
+        <th style="text-align:center">Kataloški broj</th>
+        <th style="text-align:center">Na stanju</th>
+        <th style="text-align:center">Cena</th>
+        <th style="text-align:center">Slika</th>
+        <th colspan="3" style="text-align:center">Komande</th>
 
-            </tr>
-              <tr *ngFor="let product of pageOfItems" (click)="viewProduct(product)">
-                <td style="text-align:center; word-break:break-word;">{{product.CarMark.Mark}}</td>
-                <td style="text-align:center; word-break:break-word;">{{product.CarModel.Model}}</td>
-                <td style="text-align:center; word-break:break-word;">{{product.CarModelType.CarModelTypeName}}</td>
-                <td style="text-align:center; word-break:break-word;">{{product.CarModelTypeEngine.CarModelTypeEngineName}}</td>
-                <td style="text-align:center; word-break:break-word;">{{product.ProductTypeModel.ProductType}}</td>
-                <td style="text-align:center; word-break:break-word;">{{product.ProductName}}</td>
-                <td style="text-align:center; word-break:break-word;">{{product.CatalogNumber}}</td>
-                <td style="text-align:center; word-break:break-word;">{{product.OnLager}}</td>
-                <td style="text-align:center; word-break:break-word;">{{product.Price}}</td>
-                <td style="text-align:center"><img [src]="createProductImagePath(product.Image)" style="width:40px; height:40px"></td>
-                <td style="text-align:center"><button (click)="updateProductImage(product)" class="btn btn-sm btn-outline-primary">Change image</button></td>
-                <td style="text-align:center"><button (click)="updateProduct(product)" class="btn btn-sm btn-outline-primary">Edit</button></td>
-                <td style="text-align:center"><button (click)="deleteProduct(product)" class="btn btn-sm btn-outline-danger">Delete</button></td>
-              </tr>
-            </table>
-            <div class="pagination justify-content-center">
-              <jw-pagination id="pagionationItem" class="pagionationItem" [items]="productService.productList" (changePage)="onChangePage($event)"></jw-pagination>
-          </div>
-          </div>
-        </div>
+      </tr>
+        <tr *ngFor="let product of pageOfItems" (click)="viewProduct(product)">
+          <td style="text-align:center; word-break:break-word;">{{product.CarMark.Mark}}</td>
+          <td style="text-align:center; word-break:break-word;">{{product.CarModel.Model}}</td>
+          <td style="text-align:center; word-break:break-word;">{{product.CarModelType.CarModelTypeName}}</td>
+          <td style="text-align:center; word-break:break-word;">{{product.CarModelTypeEngine.CarModelTypeEngineName}}</td>
+          <td style="text-align:center; word-break:break-word;">{{product.ProductTypeModel.ProductType}}</td>
+          <td style="text-align:center; word-break:break-word;">{{product.ProductName}}</td>
+          <td style="text-align:center; word-break:break-word;">{{product.CatalogNumber}}</td>
+          <td style="text-align:center; word-break:break-word;">{{product.OnLager}}</td>
+          <td style="text-align:center; word-break:break-word;">{{product.Price}}</td>
+          <td style="text-align:center"><img [src]="createProductImagePath(product.Image)" style="width:40px; height:40px"></td>
+          <td style="text-align:center"><button (click)="updateProductImage(product)" class="btn btn-sm btn-outline-primary">Change image</button></td>
+          <td style="text-align:center"><button (click)="updateProduct(product)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+          <td style="text-align:center"><button (click)="deleteProduct(product)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+        </tr>
+      </table>
+      <div class="pagination justify-content-center">
+        <jw-pagination id="pagionationItem" class="pagionationItem" [items]="productService.productList" (changePage)="onChangePage($event)"></jw-pagination>
+    </div>
+    </div>
+  </div>
 
-          </ng-template>
-        </ngb-tab>
+    </ng-template>
+  </ngb-tab>
 
-        <!-- 2. tab CarModelTypeEngine -->
-        <ngb-tab title="Motori tipova modela vozila" class="ngbTabTitle">
-          <ng-template ngbTabContent>
-            <!-- <h5 style="text-align:center">Marke vozila</h5> -->
-            <hr>
+  <!-- 2. tab CarModelTypeEngine -->
+  <ngb-tab title="Motori tipova modela vozila" class="ngbTabTitle">
+    <ng-template ngbTabContent>
+      <!-- <h5 style="text-align:center">Marke vozila</h5> -->
+      <hr>
 
-            <div class="d-flex align-content-start">
-                <button type="button" style="text-align:center" class="btn btn-primary btn-block"
-                (click)="createCarModelTypeEngine()"> Dodaj motor tipu modela vozila </button>
-            </div>
-            <hr>
+      <div class="d-flex align-content-start">
+          <button type="button" style="text-align:center" class="btn btn-primary btn-block"
+          (click)="createCarModelTypeEngine()"> Dodaj motor tipu modela vozila </button>
+      </div>
+      <hr>
 
 
-          <div class="col-md-12">
-            <table class="table table-striped table-hover table-bordered table-fit table-sm">
-              <tr>
-              <th style="text-align:center">Marka</th>
-              <th style="text-align:center">Model</th>
-              <th style="text-align:center">Tip modela</th>
-              <th style="text-align:center">Motor tipa modela</th>
-              <th colspan="2" style="text-align:center">Komande</th>
+    <div class="col-md-12">
+      <table class="table table-striped table-hover table-bordered table-fit table-sm">
+        <tr>
+        <th style="text-align:center">Marka</th>
+        <th style="text-align:center">Model</th>
+        <th style="text-align:center">Tip modela</th>
+        <th style="text-align:center">Motor tipa modela</th>
+        <th colspan="2" style="text-align:center">Komande</th>
 
-            </tr>
-              <tr *ngFor="let carModelTypeEngine of allCarModelTypeEngines">
-                <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModel.CarMark.Mark}}</td>
-                <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModel.Model}}</td>
-                <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModelTypeName}}</td>
-                <td style="text-align:center">{{carModelTypeEngine.CarModelTypeEngineName}}</td>
-                <td style="text-align:center"><button (click)="updateCarModelTypeEngine(carModelTypeEngine)" class="btn btn-sm btn-outline-primary">Edit</button></td>
-                <td style="text-align:center"><button (click)="deleteCarModelTypeEngine(carModelTypeEngine)" class="btn btn-sm btn-outline-danger">Delete</button></td>
-              </tr>
-            </table>
-          </div>
+      </tr>
+        <tr *ngFor="let carModelTypeEngine of allCarModelTypeEngines">
+          <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModel.CarMark.Mark}}</td>
+          <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModel.Model}}</td>
+          <td style="text-align:center">{{carModelTypeEngine.CarModelType.CarModelTypeName}}</td>
+          <td style="text-align:center">{{carModelTypeEngine.CarModelTypeEngineName}}</td>
+          <td style="text-align:center"><button (click)="updateCarModelTypeEngine(carModelTypeEngine)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+          <td style="text-align:center"><button (click)="deleteCarModelTypeEngine(carModelTypeEngine)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+        </tr>
+      </table>
+    </div>
 
-          </ng-template>
-        </ngb-tab>
+    </ng-template>
+  </ngb-tab>
 
 
         <!-- 3. tab -->
@@ -260,144 +234,144 @@
             <hr>
 
 
-          <div class="col-md-12">
-            <table class="table table-striped table-hover table-bordered table-fit table-sm">
-              <tr>
-              <th style="text-align:center">Marka</th>
-              <th style="text-align:center">Model</th>
-              <th style="text-align:center">Tip modela</th>
-              <th style="text-align:center">Početak proizvodnje</th>
-              <th style="text-align:center">Kraj proizvodnje</th>
-              <th colspan="3" style="text-align:center">Komande</th>
+    <div class="col-md-12">
+      <table class="table table-striped table-hover table-bordered table-fit table-sm">
+        <tr>
+        <th style="text-align:center">Marka</th>
+        <th style="text-align:center">Model</th>
+        <th style="text-align:center">Tip modela</th>
+        <th style="text-align:center">Početak proizvodnje</th>
+        <th style="text-align:center">Kraj proizvodnje</th>
+        <th colspan="3" style="text-align:center">Komande</th>
 
-            </tr>
-              <tr *ngFor="let carModelType of allCarModelTypes">
-                <td style="text-align:center">{{carModelType.CarModel.CarMark.Mark}}</td>
-                <td style="text-align:center">{{carModelType.CarModel.Model}}</td>
-                <td style="text-align:center">{{carModelType.CarModelTypeName}}</td>
-                <td style="text-align:center">{{carModelType.YearFrom}}</td>
-                <td style="text-align:center">{{carModelType.YearTo}}</td>
-                <td style="text-align:center"><button (click)="updateCarModelType(carModelType)" class="btn btn-sm btn-outline-primary">Edit</button></td>
-                <td style="text-align:center"><button (click)="deleteCarModelType(carModelType)" class="btn btn-sm btn-outline-danger">Delete</button></td>
-              </tr>
-            </table>
-          </div>
+      </tr>
+        <tr *ngFor="let carModelType of allCarModelTypes">
+          <td style="text-align:center">{{carModelType.CarModel.CarMark.Mark}}</td>
+          <td style="text-align:center">{{carModelType.CarModel.Model}}</td>
+          <td style="text-align:center">{{carModelType.CarModelTypeName}}</td>
+          <td style="text-align:center">{{carModelType.YearFrom}}</td>
+          <td style="text-align:center">{{carModelType.YearTo}}</td>
+          <td style="text-align:center"><button (click)="updateCarModelType(carModelType)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+          <td style="text-align:center"><button (click)="deleteCarModelType(carModelType)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+        </tr>
+      </table>
+    </div>
 
-          </ng-template>
-        </ngb-tab>
+    </ng-template>
+  </ngb-tab>
 
   
-        <!-- 4. tab -->
-        <ngb-tab title="Modeli vozila" class="ngbTabTitle">
-          <ng-template ngbTabContent>
-            <!-- <h5 style="text-align:center">Marke vozila</h5> -->
-            <hr>
+  <!-- 4. tab -->
+  <ngb-tab title="Modeli vozila" class="ngbTabTitle">
+    <ng-template ngbTabContent>
+      <!-- <h5 style="text-align:center">Marke vozila</h5> -->
+      <hr>
 
-            <div class="d-flex align-content-start">
-                <button type="button" style="text-align:center" class="btn btn-primary btn-block"
-                (click)="createCarType()"> Dodaj novi tip vozila</button>
-            </div>
-            <hr>
-
-
-          <div class="col-md-12">
-            <table class="table table-striped table-hover table-bordered table-fit table-sm">
-              <tr>
-              <th style="text-align:center">Marka</th>
-              <th style="text-align:center">Tip</th>
-              <!-- <th style="text-align:center">Početak proizvodnje</th>
-              <th style="text-align:center">Kraj proizvodnje</th> -->
-              <th colspan="3" style="text-align:center">Komande</th>
-
-            </tr>
-              <tr *ngFor="let carType of allCarTypes">
-                <td style="text-align:center">{{carType.CarMark.Mark}}</td>
-                <td style="text-align:center">{{carType.Model}}</td>
-                <!-- <td style="text-align:center">{{carType.YearFrom}}</td>
-                <td style="text-align:center">{{carType.YearTo}}</td> -->
-                <td style="text-align:center"><button (click)="updateCarType(carType)" class="btn btn-sm btn-outline-primary">Edit</button></td>
-                <td style="text-align:center"><button (click)="deleteCarType(carType)" class="btn btn-sm btn-outline-danger">Delete</button></td>
-              </tr>
-            </table>
-          </div>
-
-          </ng-template>
-        </ngb-tab>
-
-                <!-- 5. tab -->
-        <ngb-tab title="Marke vozila" class="ngbTabTitle">
-          <ng-template ngbTabContent>
-            <!-- <h5 style="text-align:center">Marke vozila</h5> -->
-            <hr>
-
-            <div class="d-flex align-content-start">
-                <button type="button" style="text-align:center" class="btn btn-primary btn-block"
-                (click)="createCarMark()"> Dodaj novu marku vozila</button>
-            </div>
-            <hr>
+      <div class="d-flex align-content-start">
+          <button type="button" style="text-align:center" class="btn btn-primary btn-block"
+          (click)="createCarType()"> Dodaj novi tip vozila</button>
+      </div>
+      <hr>
 
 
-          <div class="col-md-12">
-            <table class="table table-striped table-hover table-bordered table-fit table-sm">
-              <tr>
-              <th style="text-align:center">Znak</th>
-              <th style="text-align:center">Putanja</th>
-              <th style="text-align:center">Ime</th>
-              <th colspan="3" style="text-align:center">Komande</th>
+    <div class="col-md-12">
+      <table class="table table-striped table-hover table-bordered table-fit table-sm">
+        <tr>
+        <th style="text-align:center">Marka</th>
+        <th style="text-align:center">Tip</th>
+        <!-- <th style="text-align:center">Početak proizvodnje</th>
+        <th style="text-align:center">Kraj proizvodnje</th> -->
+        <th colspan="3" style="text-align:center">Komande</th>
 
-            </tr>
-              <tr *ngFor="let carMark of allCarMarks">
-                <td style="text-align:center"><img [src]="createImagePath(carMark.Image)" style="width:40px; height:40px"></td>
-                <td style="text-align:center">{{carMark.Image}}</td>
-                <td style="text-align:center">{{carMark.Mark}}</td>
-                <td style="text-align:center"><button (click)="updateImage(carMark)" class="btn btn-sm btn-outline-primary">Change image</button></td>
-                <td style="text-align:center"><button (click)="updateCarMark(carMark)" class="btn btn-sm btn-outline-primary">Edit</button></td>
-                <td style="text-align:center"><button (click)="deleteCarMark(carMark)" class="btn btn-sm btn-outline-danger">Delete</button></td>
-              </tr>
-            </table>
-      
-          </div>
-          </ng-template>
-        </ngb-tab>
+      </tr>
+        <tr *ngFor="let carType of allCarTypes">
+          <td style="text-align:center">{{carType.CarMark.Mark}}</td>
+          <td style="text-align:center">{{carType.Model}}</td>
+          <!-- <td style="text-align:center">{{carType.YearFrom}}</td>
+          <td style="text-align:center">{{carType.YearTo}}</td> -->
+          <td style="text-align:center"><button (click)="updateCarType(carType)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+          <td style="text-align:center"><button (click)="deleteCarType(carType)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+        </tr>
+      </table>
+    </div>
 
-                <!-- 6. tab -->
-        <ngb-tab title="Tipovi delova" class="ngbTabTitle">
-          <ng-template ngbTabContent>
-            <!-- <h5 style="text-align:center">Marke vozila</h5> -->
-            <hr>
+    </ng-template>
+  </ngb-tab>
 
-            <div class="d-flex align-content-start">
-                <button type="button" style="text-align:center" class="btn btn-primary btn-block"
-                (click)="createPartType()"> Dodaj novi tip dela</button>
-            </div>
-            <hr>
+          <!-- 5. tab -->
+  <ngb-tab title="Marke vozila" class="ngbTabTitle">
+    <ng-template ngbTabContent>
+      <!-- <h5 style="text-align:center">Marke vozila</h5> -->
+      <hr>
+
+      <div class="d-flex align-content-start">
+          <button type="button" style="text-align:center" class="btn btn-primary btn-block"
+          (click)="createCarMark()"> Dodaj novu marku vozila</button>
+      </div>
+      <hr>
 
 
-          <div class="col-md-12">
-            <table class="table table-striped table-hover table-bordered table-fit table-sm">
-              <tr>
-              <th style="text-align:center">Id</th>
-              <th style="text-align:center">Slika</th>
-              <th style="text-align:center">Putanja</th>
-              <th style="text-align:center">Tip delova</th>
-              <th colspan="3" style="text-align:center">Komande</th>
+    <div class="col-md-12">
+      <table class="table table-striped table-hover table-bordered table-fit table-sm">
+        <tr>
+        <th style="text-align:center">Znak</th>
+        <th style="text-align:center">Putanja</th>
+        <th style="text-align:center">Ime</th>
+        <th colspan="3" style="text-align:center">Komande</th>
 
-            </tr>
-              <tr *ngFor="let partType of allPartTypes">
-                <td style="text-align:center">{{partType.Id}}</td>
-                <td style="text-align:center"><img [src]="createPartTypeImagePath(partType.ProductTypeImage)" style="width:40px; height:40px"></td>
-                <td style="text-align:center">{{partType.ProductTypeImage}}</td>
-                <td style="text-align:center">{{partType.ProductType}}</td>
-                <td style="text-align:center"><button (click)="updatePartTypeImage(partType)" class="btn btn-sm btn-outline-primary">Change image</button></td>
-                <td style="text-align:center"><button (click)="updatePartType(partType)" class="btn btn-sm btn-outline-primary">Edit</button></td>
-                <td style="text-align:center"><button (click)="deletePartType(partType)" class="btn btn-sm btn-outline-danger">Delete</button></td>
-              </tr>
-            </table>
-      
-          </div>
-          </ng-template>
-        </ngb-tab>
-      </ngb-tabset>
+      </tr>
+        <tr *ngFor="let carMark of allCarMarks">
+          <td style="text-align:center"><img [src]="createImagePath(carMark.Image)" style="width:40px; height:40px"></td>
+          <td style="text-align:center">{{carMark.Image}}</td>
+          <td style="text-align:center">{{carMark.Mark}}</td>
+          <td style="text-align:center"><button (click)="updateImage(carMark)" class="btn btn-sm btn-outline-primary">Change image</button></td>
+          <td style="text-align:center"><button (click)="updateCarMark(carMark)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+          <td style="text-align:center"><button (click)="deleteCarMark(carMark)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+        </tr>
+      </table>
+
+    </div>
+    </ng-template>
+  </ngb-tab>
+
+          <!-- 6. tab -->
+  <ngb-tab title="Tipovi delova" class="ngbTabTitle">
+    <ng-template ngbTabContent>
+      <!-- <h5 style="text-align:center">Marke vozila</h5> -->
+      <hr>
+
+      <div class="d-flex align-content-start">
+          <button type="button" style="text-align:center" class="btn btn-primary btn-block"
+          (click)="createPartType()"> Dodaj novi tip dela</button>
+      </div>
+      <hr>
+
+
+    <div class="col-md-12">
+      <table class="table table-striped table-hover table-bordered table-fit table-sm">
+        <tr>
+        <th style="text-align:center">Id</th>
+        <th style="text-align:center">Slika</th>
+        <th style="text-align:center">Putanja</th>
+        <th style="text-align:center">Tip delova</th>
+        <th colspan="3" style="text-align:center">Komande</th>
+
+      </tr>
+        <tr *ngFor="let partType of allPartTypes">
+          <td style="text-align:center">{{partType.Id}}</td>
+          <td style="text-align:center"><img [src]="createPartTypeImagePath(partType.ProductTypeImage)" style="width:40px; height:40px"></td>
+          <td style="text-align:center">{{partType.ProductTypeImage}}</td>
+          <td style="text-align:center">{{partType.ProductType}}</td>
+          <td style="text-align:center"><button (click)="updatePartTypeImage(partType)" class="btn btn-sm btn-outline-primary">Change image</button></td>
+          <td style="text-align:center"><button (click)="updatePartType(partType)" class="btn btn-sm btn-outline-primary">Edit</button></td>
+          <td style="text-align:center"><button (click)="deletePartType(partType)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+        </tr>
+      </table>
+
+    </div>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
       
     </article>
   </div>
@@ -411,43 +385,43 @@
 
       <div class="col-lg-12">
 
-        <!-- /.card -->
-    <div class="card-deck">
-      <div *ngFor="let carMark of allCarMarks">
-        <div class="card card-outline-secondary my-4">
-          <div class="card-header" style="text-align:center">
-            {{carMark.Mark}}
-          </div>
-          <div class="card-body">
-            <img [src]="createImagePath(carMark.Image)" style="width:250px; height:200px" alt="Click in image to edit!" (click)="updateImage()"> 
-            <hr>
-              <p style="text-align:center">
-                <button (click)="updateImage(carMark)" class="btn btn-sm btn-outline-primary">Update image</button>
-              </p>
-            <hr>
-            <p>Some text here.</p>
-            <small class="text-muted">Posted by Admin by date</small>
-            <hr>
-            <p style="text-align:center">
-              <button (click)="updateCarMark(carMark)" class="btn btn-sm btn-outline-primary">Edit</button> 
-              &nbsp;
-              <button (click)="deleteCarMark(carMark)" class="btn btn-sm btn-outline-danger">Delete</button>
-            </p>
-            <hr>
-            <div style="text-align: center">
-              <a href="#" class="btn btn-success">Leave a Review</a>
-            </div>
-          </div>
+    <!-- /.card -->
+<div class="card-deck">
+  <div *ngFor="let carMark of allCarMarks">
+    <div class="card card-outline-secondary my-4">
+      <div class="card-header" style="text-align:center">
+        {{carMark.Mark}}
+      </div>
+      <div class="card-body">
+        <img [src]="createImagePath(carMark.Image)" style="width:250px; height:200px" alt="Click in image to edit!" (click)="updateImage()"> 
+        <hr>
+          <p style="text-align:center">
+            <button (click)="updateImage(carMark)" class="btn btn-sm btn-outline-primary">Update image</button>
+          </p>
+        <hr>
+        <p>Some text here.</p>
+        <small class="text-muted">Posted by Admin by date</small>
+        <hr>
+        <p style="text-align:center">
+          <button (click)="updateCarMark(carMark)" class="btn btn-sm btn-outline-primary">Edit</button> 
+          &nbsp;
+          <button (click)="deleteCarMark(carMark)" class="btn btn-sm btn-outline-danger">Delete</button>
+        </p>
+        <hr>
+        <div style="text-align: center">
+          <a href="#" class="btn btn-success">Leave a Review</a>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-        <!-- /.card -->
-
-      </div>
-      <!-- /.col-lg-9 -->
-
-    </div>
+    <!-- /.card -->
 
   </div>
-  <!-- /.container -->
+  <!-- /.col-lg-9 -->
+
+</div>
+
+</div>
+<!-- /.container -->

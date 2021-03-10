@@ -73,6 +73,7 @@ namespace WebApiAuthCrud.Controllers
         }
 
         // POST: api/Accountings
+        [AllowAnonymous]
         [ResponseType(typeof(Accounting))]
         public async Task<IHttpActionResult> PostAccounting(Accounting accounting)
         {
@@ -82,22 +83,7 @@ namespace WebApiAuthCrud.Controllers
             }
 
             db.Accountings.Add(accounting);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (AccountingExists(accounting.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = accounting.Id }, accounting);
         }

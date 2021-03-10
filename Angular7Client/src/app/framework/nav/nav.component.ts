@@ -50,16 +50,10 @@ export class NavComponent implements OnInit {
 
     });
 
-    // this.adminSignIn = this.adminService.itsAdminSignIn;
-    // this.adminData.currentAdmin.subscribe(admin => this.admin = admin);
-    // this.itsAdmin = this.adminService.itsAdminSignIn;
-    // this.itsAdmin = JSON.parse(localStorage.getItem('userIsAdminOrNote'));
-
 
   }
   
   
-    //Filtering Product By Category/Type
 
     loadFilteredProductByType(filter: number) { 
       if (filter === 0){
@@ -100,10 +94,6 @@ export class NavComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
   
-  // signInUser(){
-  //   console.log('user-sign-in');
-  //   this.router.navigate(['/users/user-sign-in']);
-  // }
   changeUserSign() {
 
   }
@@ -134,7 +124,5 @@ export class NavComponent implements OnInit {
 
 
 
-  // writingUsername(signedInAdmin: string) {
-  // }
 
 }

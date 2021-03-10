@@ -37,8 +37,6 @@ export class ViewAllProductsComponent implements OnInit {
   allCarModelTypes: CarModelType[];
   allCarModelTypeEngines: CarModelTypeEngine[];
   product: Product;
-  //allProduct: Product[];
-  //allProductFix: Product[];
   markaValidna: boolean = true;
   tipValidan: boolean = true;
   modelTipValidan: boolean = true;
@@ -56,7 +54,6 @@ export class ViewAllProductsComponent implements OnInit {
   filteredProductsByMark: Product[];
   filteredProductsByMarkType: Product[];
   filteredProductsByMarkTypeModel: Product[];
-  //items = [];
   pageOfItems: Array<any>;
 
   setImageValue: any = null;
@@ -87,7 +84,6 @@ export class ViewAllProductsComponent implements OnInit {
 
   ngOnInit() {
       this.resetForm();
-      // this.loadAllCars();
       this.loadAllCarMarks(); 
       this.loadAllCarTypes(); 
       this.loadAllPartTypes(); 
@@ -95,13 +91,6 @@ export class ViewAllProductsComponent implements OnInit {
       this.loadAllCarModelTypeEngines();
       this.loadAllProduct();
       this.adminService.setValue(true);
-      // console.log(this.adminService.itsAdminSignIn);
-      // console.log(localStorage.getItem('userToken'));
-      // console.log(JSON.parse(localStorage.getItem('userIsAdminOrNote')));
-      // console.log(localStorage.getItem('userName'));
-      
-
-
       }
   
       // page pagination
@@ -446,113 +435,113 @@ export class ViewAllProductsComponent implements OnInit {
     }
 
 
-        loadAllCarMarks() {  
-          this.carmarkService.getAllCarMarks().subscribe(
-            result => this.allCarMarks = result,
-            error => console.log("Error :: " + error),
-            () => console.log('done!', this.allCarMarks)
-          )}; 
-    
-    
+  loadAllCarMarks() {  
+    this.carmarkService.getAllCarMarks().subscribe(
+      result => this.allCarMarks = result,
+      error => console.log("Error :: " + error),
+      () => console.log('done!', this.allCarMarks)
+    )}; 
 
-          // populateMarkForm(carMark: CarMark) {
-          //   this.imageUrl = "http://localhost:52866/image/"+carMark.Image;
-          //   this.carmarkService.carMark = Object.assign({}, carMark);
-          // }
-     
-          deleteCarMark(carMark: CarMark) {
-            this.carmarkService.removeCarMark(carMark.Id.toString()).subscribe(() => {  
-              this.loadAllCarMarks();  
-            });  
-          }
-      
-          handleFileInput(file: FileList) {
-            this.fileToUpload = file.item(0);
-        
-            //Show image preview
-            var reader = new FileReader();
-            reader.onload = (event:any) => {
-              this.imageUrl = event.target.result;
-            }
-            reader.readAsDataURL(this.fileToUpload);
-          }
 
-          public createImagePath(serverPath: string) {
-            return 'http://localhost:52866/image/'+serverPath;
-          } 
+
+    // populateMarkForm(carMark: CarMark) {
+    //   this.imageUrl = "http://localhost:52866/image/"+carMark.Image;
+    //   this.carmarkService.carMark = Object.assign({}, carMark);
+    // }
+
+    deleteCarMark(carMark: CarMark) {
+      this.carmarkService.removeCarMark(carMark.Id.toString()).subscribe(() => {  
+        this.loadAllCarMarks();  
+      });  
+    }
+
+    handleFileInput(file: FileList) {
+      this.fileToUpload = file.item(0);
+  
+      //Show image preview
+      var reader = new FileReader();
+      reader.onload = (event:any) => {
+        this.imageUrl = event.target.result;
+      }
+      reader.readAsDataURL(this.fileToUpload);
+    }
+
+    public createImagePath(serverPath: string) {
+      return 'http://localhost:52866/image/'+serverPath;
+    } 
 
 
    //working with car data
 
-        // Proizvođač samo ime CRUD
-      //Ovo radi / 
-      OnSubmit(form: NgForm) {
-        if (this.carService.car.Id == null) {
-          this.saveCar(form.value); 
-          this.loadAllCars();
-        }
-        else {
-          this.updateCar(this.carService.car);
-          this.loadAllCars();
-        }
-        if (this.carForm) {
-          this.carForm.reset();
-       }
-        //this.router.navigate(['/user-home']);
-        }
-    
-  
-      loadAllCars() {  
-        this.carService.getAllCars().subscribe(
-          result => this.allCars = result,
-          error => console.log("Error :: " + error)
-          //() => console.log('done!', this.allCars)
-        )}; 
-  
-        saveCar(car: Car) {
-          this.carService.saveCar(car).subscribe(res => {
-            this.toastr.success(
-              'Inserted succesfuly!',
-              'New record in Car base',
-               {
-                timeOut: 5000,
-                progressBar: true,
-               });
-            this.resetForm();
-         }
-        );
-        }  
-  
-        updateCar(car: Car) {  
-          this.carService.putCar(car).subscribe(res => {
-            this.toastr.success(
-              'Updated succesfuly!',
-              'The record in Car base',
-               {
-                timeOut: 5000,
-                progressBar: true,
-               });
-            this.resetForm();
-         }
-        );
-        } 
-    
-  
-      populateForm(car: Car) {
-        this.carService.car = Object.assign({}, car);
-      }
-  
-      deleteCar(car: Car) {
-        this.carService.removeCar(car.Id).subscribe(() => {  
-          this.loadAllCars();  
-        });  
-      }
-  
-      
-    signOut() {
-      localStorage.removeItem('userToken');
-      this.dataAdmin.adminSignInFunction('');
-      this.router.navigate(['/users/admin-sign-in']);
+  // Proizvođač samo ime CRUD
+//Ovo radi / 
+OnSubmit(form: NgForm) {
+  if (this.carService.car.Id == null) {
+    this.saveCar(form.value); 
+    this.loadAllCars();
+  }
+  else {
+    this.updateCar(this.carService.car);
+    this.loadAllCars();
+  }
+  if (this.carForm) {
+    this.carForm.reset();
+  }
+  //this.router.navigate(['/user-home']);
+  }
+
+
+loadAllCars() {  
+  this.carService.getAllCars().subscribe(
+    result => this.allCars = result,
+    error => console.log("Error :: " + error)
+    //() => console.log('done!', this.allCars)
+  )}; 
+
+  saveCar(car: Car) {
+    this.carService.saveCar(car).subscribe(res => {
+      this.toastr.success(
+        'Inserted succesfuly!',
+        'New record in Car base',
+          {
+          timeOut: 5000,
+          progressBar: true,
+          });
+      this.resetForm();
     }
+  );
+  }  
+
+  updateCar(car: Car) {  
+    this.carService.putCar(car).subscribe(res => {
+      this.toastr.success(
+        'Updated succesfuly!',
+        'The record in Car base',
+          {
+          timeOut: 5000,
+          progressBar: true,
+          });
+      this.resetForm();
+    }
+  );
+  } 
+    
+  
+    populateForm(car: Car) {
+      this.carService.car = Object.assign({}, car);
+    }
+
+    deleteCar(car: Car) {
+      this.carService.removeCar(car.Id).subscribe(() => {  
+        this.loadAllCars();  
+      });  
+    }
+
+    
+  signOut() {
+    localStorage.removeItem('userToken');
+    this.dataAdmin.adminSignInFunction('');
+    this.router.navigate(['/users/admin-sign-in']);
+  }
 
 }

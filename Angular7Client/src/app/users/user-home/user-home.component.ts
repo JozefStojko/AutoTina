@@ -26,6 +26,7 @@ export class UserHomeComponent implements OnInit {
   public shopList = '';
   public totalPriceValue = 0;
   public newNumberOfPiecesOfProduct: number;
+  private order: Shop;
   // public shoppingList:[] = [];
   // private counter  = 1;
   // private userString: string;
@@ -64,6 +65,22 @@ export class UserHomeComponent implements OnInit {
     this.location.back(); // <-- go back to previous location on cancel
   }
 
+  orderShopItems(){
+    let dateTime = new Date()
+    console.log(dateTime);
+    this.order = {
+      UserName: "jstojko",
+      ProductId: 3002,
+      NumberOfPiecesOfProduct: 3,
+      ProductName: "Klip",
+      Price: 3600,
+      Car: "Audi A3",
+      Date: dateTime,
+      RegularAccountNumber: "11111"
+      }
+    this.shopService.orderItems(this.order);
+  }
+
   loadAllProduct() {  
     // localStorage.setItem('userIsAdminOrNote', JSON.stringify(false));
     this.productService.getAll().subscribe(
@@ -100,7 +117,6 @@ filteredProductByCatalogeNumber() {
       product => product.Id === element.ProductId),);
         this.totalPriceValue = this.totalPriceValue + element.Price * element.NumberOfPiecesOfProduct;
     });
-    console.log(this.productShopingList);
   }else{
     this.shopList = ' je prazna.'
   }
@@ -117,12 +133,6 @@ filteredProductByCatalogeNumber() {
          progressBar: true,
         });
     } else {
-      console.log(order);
-      // if (this.shopService.shopList.find(
-      //   shopItem => shopItem.ProductId === order.ProductId)
-      // ) {
-      //   this.shopService.shopList = this.shopService.shopList.filter(element => element.ProductId !== order.ProductId);
-      // };
       let shopObj = new Shop();
       shopObj.Id = Math.floor(Math.random() * 1000000);
       shopObj.UserName = this.user; 
@@ -131,7 +141,6 @@ filteredProductByCatalogeNumber() {
       this.shopService.shopList.push(shopObj);
       localStorage.setItem("shoppingBasket", JSON.stringify(this.shopService.shopList));
       console.log(this.shopService.shopList);
-      console.log(JSON.parse(localStorage.getItem("shoppingBasket" || "[]")));
       this.toastr.success(
         'deo u korpu.',
         'Uspešno ste dodali',
@@ -149,7 +158,6 @@ onEditShopping(item){
   this.shopService.shopList.forEach((element) => {
     this.totalPriceValue = this.totalPriceValue + element.Price * element.NumberOfPiecesOfProduct;
   });
-  //this.router.navigate(['/products/view-product']);
 }
 
 deleteShopItem(shopItem){

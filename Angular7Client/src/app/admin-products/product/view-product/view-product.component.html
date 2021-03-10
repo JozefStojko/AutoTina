@@ -8,37 +8,37 @@
         <div class="col-lg-12">
   
           <!-- /.card -->
-      <div class="card-deck">
-          <div class="card card-outline-secondary my-4">
-            <div class="card-header" style="text-align:center">
-              <h4>{{productService.product.ProductName}}</h4>
+  <div class="card-deck">
+  <div class="card card-outline-secondary my-4">
+    <div class="card-header" style="text-align:center">
+      <h4>{{productService.product.ProductName}}</h4>
+    </div>
+    <div class="card-body" style="text-align:center">
+      <img  [src]="createImagePath(productService.product.Image)" style="width:250px; height:200px" alt="Click in image to edit!" (click)="updateProductImage()"> 
+      <hr>
+        <p style="text-align:center">
+          <button (click)="updateProductImage()" class="btn btn-sm btn-outline-primary">Promeni sliku</button>
+        </p>
+      <hr>
+      <div class="row">
+
+      <div class="col-md-4">
+
+      <p>{{productService.product.CatalogNumber}}</p>
+      <small class="text-muted">Kataloški broj</small>
+      </div>
+      <div class="col-md-4">
+
+        <p>{{productService.product.OnLager}} kom</p>
+        <small class="text-muted">Na stanju</small>
+        </div>
+
+        <div class="col-md-4">
+
+            <p>{{productService.product.Price}},00</p>
+            <small class="text-muted">Cena</small>
             </div>
-            <div class="card-body" style="text-align:center">
-              <img  [src]="createImagePath(productService.product.Image)" style="width:250px; height:200px" alt="Click in image to edit!" (click)="updateProductImage()"> 
-              <hr>
-                <p style="text-align:center">
-                  <button (click)="updateProductImage()" class="btn btn-sm btn-outline-primary">Promeni sliku</button>
-                </p>
-              <hr>
-              <div class="row">
-
-              <div class="col-md-4">
-
-              <p>{{productService.product.CatalogNumber}}</p>
-              <small class="text-muted">Kataloški broj</small>
-              </div>
-              <div class="col-md-4">
-
-                <p>{{productService.product.OnLager}} kom</p>
-                <small class="text-muted">Na stanju</small>
-                </div>
-
-                <div class="col-md-4">
-
-                    <p>{{productService.product.Price}},00</p>
-                    <small class="text-muted">Cena</small>
-                    </div>
-                </div>
+        </div>
 <hr>
 <div>
     <p   style="text-align:center">{{productService.product.Description}}</p>
@@ -59,19 +59,19 @@
   </p>
 </div>
       
-              <hr>
-              <p style="text-align:center">
-                <button (click)="updateProduct()" class="btn btn-sm btn-outline-success">Edit</button> 
-                &nbsp;
-                <button (click)="deleteProduct(product)" class="btn btn-sm btn-outline-danger">Delete</button>
-              </p>
-              <hr>
-              <div style="text-align: center">
-                <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
-              </div>
-            </div>
+          <hr>
+          <p style="text-align:center">
+            <button (click)="updateProduct()" class="btn btn-sm btn-outline-success">Edit</button> 
+            &nbsp;
+            <button (click)="deleteProduct(product)" class="btn btn-sm btn-outline-danger">Delete</button>
+          </p>
+          <hr>
+          <div style="text-align: center">
+            <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
+          </div>
         </div>
-      </div>
+    </div>
+  </div>
   
           <!-- /.card -->
   

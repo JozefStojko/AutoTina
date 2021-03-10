@@ -38,7 +38,7 @@ export class CarMarkService {
     );
   }
 
-  //ovo ide za prodress bar
+  //ovo ide za progress bar
   private getEventMessage(event: HttpEvent<any>, formData) {
 
     switch (event.type) {
@@ -73,7 +73,7 @@ export class CarMarkService {
     return throwError('Something bad happened. Please try again later.');
   }
 
-      // i ovo ide za prodress bar
+      // i ovo ide za progress bar
   private apiResponse(event) {
     return event.body;
   }

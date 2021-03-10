@@ -8,197 +8,197 @@
     <h5>Filtriraj po vozilu</h5>
   </div>
 </div>      
-      <!-- Page Content -->
-      <div class="container">
-          <div class="card">
-        <article class="card-body">
+<!-- Page Content -->
+<div class="container">
+    <div class="card">
+  <article class="card-body">
 
-        <div class="row">
-    
-          <!-- /.col-lg-3 -->
+  <div class="row">
 
-          <div class="col-lg-12">
+    <!-- /.col-lg-3 -->
 
-            <div class="row justify-content-center">
-    
-              <div class="col">
+    <div class="col-lg-12">
+
+      <div class="row justify-content-center">
+
+        <div class="col">
+        
+          <!-- Car mark -->
+          <div class="form-group">
+            <div>Izaberi po marku vozila</div>
+        
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+              </div>
+        
+            <select 
+            name="carMarkSelect" 
+            id="carMarkSelect" 
+            type="number" 
+            class="form-control" 
+            [(ngModel)]="carMarkSelect" 
+            (ngModelChange)="markToNumber()"> 
+              <option select  disabled value="">Izaberi marku vozila.</option>
+              <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
+            </select>
+          </div>
+          </div>
+        
+                  <!-- Car Model Type -->
+                  <div class="form-group">
+                    <div *ngIf="carTypeSelect !== ''">
+                      Izaberi po modelu vozila
+                    </div>
               
-                <!-- Car mark -->
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+                      </div>
+                
+                    <select 
+                    name="carModelTypeSelect" 
+                    id="carModelTypeSelect" 
+                    type="number" 
+                    class="form-control" 
+                    disabled="{{tipValidan}}"
+                    [(ngModel)]="carModelTypeSelect" 
+                    (ngModelChange)="modelTypeToNumber()">
+                      <option disabled value="">Izaberi model vozila.</option>
+                      <option *ngFor="let carModelType of filteredCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
+                    </select>
+                  </div>
+                  </div>
+          
+        
+          </div>
+          <div class="col">
+        
+                <!-- Car type -->
                 <div class="form-group">
-                  <div>Izaberi po marku vozila</div>
-              
+                  <div *ngIf="carTypeSelect !== ''">
+                    Izaberi po tipu modela vozila
+                  </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"> <i class="fas fa-car"></i> </span>
                     </div>
               
                   <select 
-                  name="carMarkSelect" 
-                  id="carMarkSelect" 
+                  name="carTypeSelect" 
+                  id="carTypeSelect" 
                   type="number" 
                   class="form-control" 
-                  [(ngModel)]="carMarkSelect" 
-                  (ngModelChange)="markToNumber()"> 
-                    <option select  disabled value="">Izaberi marku vozila.</option>
-                    <option *ngFor="let mark of allCarMarks" [ngValue]="mark.Id">{{mark.Mark}}</option>
-                 </select>
+                  disabled="{{markaValidna}}"
+                  [(ngModel)]="carTypeSelect" 
+                  (ngModelChange)="typeToNumber()">
+                    <option select  disabled value="">Izaberi tip vozila.</option>
+                    <option *ngFor="let carType of filteredCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
+                  </select>
                 </div>
                 </div>
-              
-                        <!-- Car Model Type -->
-                        <div class="form-group">
-                          <div *ngIf="carTypeSelect !== ''">
-                            Izaberi po modelu vozila
-                          </div>
-                    
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"> <i class="fas fa-car"></i> </span>
-                            </div>
-                      
-                          <select 
-                          name="carModelTypeSelect" 
-                          id="carModelTypeSelect" 
-                          type="number" 
-                          class="form-control" 
-                          disabled="{{tipValidan}}"
-                          [(ngModel)]="carModelTypeSelect" 
-                          (ngModelChange)="modelTypeToNumber()">
-                            <option disabled value="">Izaberi model vozila.</option>
-                            <option *ngFor="let carModelType of filteredCarModelTypes" [ngValue]="carModelType.Id">{{carModelType.CarModelTypeName}}</option>
-                         </select>
-                        </div>
-                        </div>
-                
-              
-                </div>
-                <div class="col">
-              
-                      <!-- Car type -->
-                      <div class="form-group">
-                        <div *ngIf="carTypeSelect !== ''">
-                          Izaberi po tipu modela vozila
-                        </div>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
-                          </div>
-                    
-                        <select 
-                        name="carTypeSelect" 
-                        id="carTypeSelect" 
-                        type="number" 
-                        class="form-control" 
-                        disabled="{{markaValidna}}"
-                        [(ngModel)]="carTypeSelect" 
-                        (ngModelChange)="typeToNumber()">
-                          <option select  disabled value="">Izaberi tip vozila.</option>
-                          <option *ngFor="let carType of filteredCarTypes" [ngValue]="carType.Id">{{carType.Model}}</option>
-                       </select>
-                      </div>
-                      </div>
-                  
-                
-                      <!-- Car Model Type Engine-->
-                      <div class="form-group">
-                        <div *ngIf="carModelTypeSelect !== ''">
-                          Izaberi po motoru modela vozila
-                        </div>
-                  
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fas fa-car"></i> </span>
-                          </div>
-                    
-                        <select 
-                        name="carModelTypeEngineSelect" 
-                        id="carModelTypeEngineSelect" 
-                        type="number" 
-                        class="form-control" 
-                        disabled="{{modelTipValidan}}"
-                        [(ngModel)]="carModelTypeEngineSelect" 
-                        (ngModelChange)="modelTypeEngineToNumber()">
-                          <option disabled value="">Izaberi motor vozila.</option>
-                          <option *ngFor="let carModelTypeEngine of filteredCarModelTypeEngines" [ngValue]="carModelTypeEngine.Id">{{carModelTypeEngine.CarModelTypeEngineName}}</option>
-                       </select>
-                      </div>
-                      </div>
-              </div>
-              </div>
-
-              <div class="row justify-content-center">
-    
-   
-                <div class="col">
-                  <button type="button" style="text-align:center" class="btn btn-primary btn-block"
-                  (click)="filterReset()"> Filter reset </button>
-              
-                  </div>
-              
-                </div>
+            
           
+                <!-- Car Model Type Engine-->
+                <div class="form-group">
+                  <div *ngIf="carModelTypeSelect !== ''">
+                    Izaberi po motoru modela vozila
+                  </div>
+            
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fas fa-car"></i> </span>
+                    </div>
+              
+                  <select 
+                  name="carModelTypeEngineSelect" 
+                  id="carModelTypeEngineSelect" 
+                  type="number" 
+                  class="form-control" 
+                  disabled="{{modelTipValidan}}"
+                  [(ngModel)]="carModelTypeEngineSelect" 
+                  (ngModelChange)="modelTypeEngineToNumber()">
+                    <option disabled value="">Izaberi motor vozila.</option>
+                    <option *ngFor="let carModelTypeEngine of filteredCarModelTypeEngines" [ngValue]="carModelTypeEngine.Id">{{carModelTypeEngine.CarModelTypeEngineName}}</option>
+                  </select>
+                </div>
+                </div>
+        </div>
+        </div>
+
+        <div class="row justify-content-center">
+
+
+          <div class="col">
+            <button type="button" style="text-align:center" class="btn btn-primary btn-block"
+            (click)="filterReset()"> Filter reset </button>
+        
+            </div>
+        
+          </div>
+    
 
 
             <!-- /.card -->
-        <div class="card-deck row justify-content-center">
-          <div *ngFor="let product of pageOfItems" (click)="viewProduct(product)">
-            <div class="card card-outline-secondary my-4">
-              <div class="card-header" style="text-align:center; font-size:20px;">
-                <strong>
-                {{product.ProductName}}
+    <div class="card-deck row justify-content-center">
+      <div *ngFor="let product of pageOfItems" (click)="viewProduct(product)">
+        <div class="card card-outline-secondary my-4">
+          <div class="card-header" style="text-align:center; font-size:20px;">
+            <strong>
+            {{product.ProductName}}
+          </strong>
+          </div>
+          <div class="card-body">
+            <img [src]="createProductImagePath(product.Image)" style="width:250px; height:200px"> 
+            <hr>
+            <small class="text-muted text-align:center"> Kataloški broj:</small>
+            <strong>
+                {{product.CatalogNumber}}
               </strong>
-              </div>
-              <div class="card-body">
-                <img [src]="createProductImagePath(product.Image)" style="width:250px; height:200px"> 
-                <hr>
-                <small class="text-muted text-align:center"> Kataloški broj:</small>
-                <strong>
-                   {{product.CatalogNumber}}
-                  </strong>
-                <hr>
-                <small class="text-muted text-align:center">Opis robe:</small>
-                <p   style="text-align:center">{{product.Description}}</p>
-                <hr>
-                <small class="text-muted text-align:center">Cena:</small>
-                <!-- <p   style="text-align:center"> -->
-                  <strong>
-                    {{product.Price}},00
-                  </strong> dinara.
-                <!-- </p> -->
-                <hr>
-                <small class="text-muted text-align:center">Automobilu kome odgovara deo:</small>
-                <p>
-                <strong>
-                  {{product.CarMark.Mark}}, {{product.CarModel.Model}},<br>
-                  {{product.CarModelType.CarModelTypeName}}, {{product.CarModelTypeEngine.CarModelTypeEngineName}}
-                </strong>
-                </p>
-                <hr>
-                <div style="text-align: center">
-                  <button (click)="viewProduct(product)" class="btn btn-sm btn-success">Opširnije - Naruči</button>
-                </div>
-              </div>
+            <hr>
+            <small class="text-muted text-align:center">Opis robe:</small>
+            <p   style="text-align:center">{{product.Description}}</p>
+            <hr>
+            <small class="text-muted text-align:center">Cena:</small>
+            <!-- <p   style="text-align:center"> -->
+              <strong>
+                {{product.Price}},00
+              </strong> dinara.
+            <!-- </p> -->
+            <hr>
+            <small class="text-muted text-align:center">Automobilu kome odgovara deo:</small>
+            <p>
+            <strong>
+              {{product.CarMark.Mark}}, {{product.CarModel.Model}},<br>
+              {{product.CarModelType.CarModelTypeName}}, {{product.CarModelTypeEngine.CarModelTypeEngineName}}
+            </strong>
+            </p>
+            <hr>
+            <div style="text-align: center">
+              <button (click)="viewProduct(product)" class="btn btn-sm btn-success">Opširnije - Naruči</button>
             </div>
           </div>
-    
         </div>
-        <div class="pagination justify-content-center">
-          <jw-pagination id="pagionationItem" class="pagionationItem" [items]="productService.productList" (changePage)="onChangePage($event)"></jw-pagination>
       </div>
 
-    
-            <!-- /.card -->
-    
-          </div>
-          <!-- /.col-lg-9 -->
-    
-        </div>
+    </div>
+    <div class="pagination justify-content-center">
+      <jw-pagination id="pagionationItem" class="pagionationItem" [items]="productService.productList" (changePage)="onChangePage($event)"></jw-pagination>
+  </div>
 
-      </article>
+
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
     </div>
 
-      
-      </div>
-      <!-- /.container -->
+  </article>
+</div>
+
+  
+  </div>
+  <!-- /.container -->
 
 

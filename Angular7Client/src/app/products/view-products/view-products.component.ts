@@ -56,8 +56,6 @@ filteredProductByCatalogeNumber() {
   this.productService.productList = this.productService.fixProductList.filter(
     product => product.ComparativeNumbers.toLowerCase().indexOf(filter) !== -1 )
 
-  // this.productService.productList = this.productService.fixProductList.filter(
-  //   product => product.ComparativeNumbers === product.CatalogNumber);
     this.filteredCars = this.productService.productList;
     this.filteredCars.push(this.productService.product);
     this.filteredCars = this.filteredCars.sort((a, b ) => a.CarMark.Mark < b.CarMark.Mark ? -1 : 1);
@@ -75,12 +73,6 @@ filteredProductByCatalogeNumber() {
         });
     } else {
       console.log(order);
-      // traži delo ako već ga već ima naručeno i brioše ga
-      // if (this.shopService.shopList.find(
-      //   shopItem => shopItem.ProductId === order.ProductId)
-      // ) {
-      //   this.shopService.shopList = this.shopService.shopList.filter(element => element.ProductId !== order.ProductId);
-      // };
       let shopObj = new Shop();
       shopObj.Id = Math.floor(Math.random() * 1000000);
       shopObj.UserName = this.user; 
@@ -102,23 +94,6 @@ filteredProductByCatalogeNumber() {
         });
         this.location.back(); // <-- go back to previous location on cancel
       }
-    // this.carmarkService.saveCarMark(mark.value, this.fileToUpload).subscribe(       
-    //   res => this.fileUpload = res,          // console.log('done');
-    //   err => this.error = err,
-    //   () => {
-    //     mark = '';
-    //     image = '';
-    //     this.imageUrl = "/assets/img/default-image.png";
-    //     this.toastr.success(
-    //       'Uspešan unos!',
-    //       'Unet je nova marka vozila u bazu.',
-    //          {
-    //        timeOut: 5000,
-    //        progressBar: true,
-    //       });
-    //       this.router.navigate(['/admin-products/list-products']);
-    //   }
-    // );
 }
 
 

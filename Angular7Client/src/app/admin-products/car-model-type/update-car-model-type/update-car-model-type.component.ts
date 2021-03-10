@@ -101,13 +101,7 @@ export class UpdateCarModelTypeComponent implements OnInit {
    )}; 
 
 
-  // loadAllCarTypes() {  
-  //   this.carTypeService.getAllCarTypes().subscribe(
-  //     result => this.allCarTypes = result,
-  //     error => console.log("Error :: " + error),
-  //     () => console.log('done!', this.allCarTypes)
-  //   )}; 
- 
+
   
  // Choose mark using select dropdown
  markToNumber(){

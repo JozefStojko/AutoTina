@@ -32,7 +32,6 @@
       </li>
     </ul>
 
-    <!-- *ngIf="(!adminService.itsAdminSignIn)" -->
     <ul class="navbar-nav">
 
       <li *ngIf="itsAdmin">
@@ -53,7 +52,6 @@
         data-toggle="dropdown" aria-haspopup="true">
         </button>
 
-        <!-- <a href=""><i class="fas fa-user fa-fw" style="color:white; font-size:20px"></i></a> -->
         <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" (click)="signInUser()" [routerLink]="['/users/user-sign-in']"><i class="fas fa-sign-in-alt"></i>&nbsp;Sign In</a>
           <a class="dropdown-item" (click)="signUpUser()" [routerLink]="['/users/user-sign-up']"><i class="fas fa-user-plus"></i>&nbsp;Sign Up</a>
@@ -66,12 +64,8 @@
         data-toggle="dropdown" aria-haspopup="true">
         </button>
 
-        <!-- <a href=""><i ngbDropdownToggle class="fas fa-user fa-fw" style="color:white; font-size:20px" id="navbarDropdown3"
-          data-toggle="dropdown" aria-haspopup="true"></i></a> -->
-          <!-- <a class="dropdown-item" (click)="signOut()" [routerLink]="['/home']"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{admin}}</a> -->
 
       <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-        <!-- <a class="dropdown-item" [routerLink]="['/admin-products/product/view-all-product']"><i class="fa fa-product-hunt" aria-hidden="true"></i>&nbsp;{{admin}}</a> -->
         <a class="dropdown-item" (click)="editAdmin()"><i class="fas fa-cogs"></i>&nbsp;Edit my profile</a>
         <a class="dropdown-item" (click)="signOutAdmin()"><i class="fas fa-sign-out-alt"></i>&nbsp;Sign Out</a>
       </div>
@@ -83,7 +77,6 @@
       data-toggle="dropdown" aria-haspopup="true">
       </button>
 
-      <!-- <a href=""><i class="fas fa-user fa-fw" style="color:white; font-size:20px"></i></a> -->
       <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" (click)="editUser()"><i class="fas fa-sign-in-alt"></i>&nbsp;Edit user</a>
         <a class="dropdown-item" (click)="signOutUser()"><i class="fas fa-sign-out-alt"></i>&nbsp;Sign Out</a>

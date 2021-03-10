@@ -61,16 +61,12 @@ deleteProduct(product: Product) {
 
 filteredProductByCatalogeNumber() {  
   var filter = this.productService.product.CatalogNumber.toLowerCase();
-  console.log(filter);
   this.productService.productList = this.productService.fixProductList.filter(
     product => product.ComparativeNumbers.toLowerCase().indexOf(filter) !== -1 )
 
-  // this.productService.productList = this.productService.fixProductList.filter(
-  //   product => product.ComparativeNumbers === product.CatalogNumber);
     this.filteredCars = this.productService.productList;
     this.filteredCars.push(this.productService.product);
     this.filteredCars = this.filteredCars.sort((a, b ) => a.CarMark.Mark < b.CarMark.Mark ? -1 : 1);
-   console.log(this.filteredCars);
   } 
 
 

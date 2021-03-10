@@ -80,9 +80,6 @@ namespace WebApiAuthCrud.Controllers
             //Create custom filename
             if (postedFile != null)
             {
-                //delete image
-                //var filePath = HttpContext.Current.Server.MapPath("~/image/" + imageNameFromDb);
-                //File.Delete(filePath);
 
                 imageName = new String(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
                 imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
@@ -99,8 +96,6 @@ namespace WebApiAuthCrud.Controllers
 
             CarMark carMark = new CarMark()
             {
-                //Mark = httpRequest["mark"],
-                //Id = (int)Int64.Parse(httpRequest.Params["carMarkId"]),
                 Id = idName,
                 Mark = markName,
                 Image = imageName
@@ -113,9 +108,6 @@ namespace WebApiAuthCrud.Controllers
             }
 
 
-
-            //db.CarMarks.Add(carMark);
-            //await db.SaveChangesAsync();
 
 
             db.Entry(carMark).State = EntityState.Modified;
@@ -141,39 +133,6 @@ namespace WebApiAuthCrud.Controllers
 
 
 
-        //[ResponseType(typeof(void))]
-        //public async Task<IHttpActionResult> PutCarMark(int id, CarMark carMark)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (id != carMark.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(carMark).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await db.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!CarMarkExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
 
         // POST: api/CarMarks
         [ResponseType(typeof(CarMark))]
@@ -210,13 +169,6 @@ namespace WebApiAuthCrud.Controllers
             db.CarMarks.Add(carMark);
             await db.SaveChangesAsync();
 
-            //Save to DB
-            //using (DBModel db = new DBModel())
-            //{
-
-            //db.Images.Add(image);
-            //db.SaveChanges();
-            //}
 
             return CreatedAtRoute("DefaultApi", new { id = carMark.Id }, carMark);
         }

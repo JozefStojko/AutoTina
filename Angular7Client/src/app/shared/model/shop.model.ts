@@ -6,5 +6,12 @@ export class Shop {
     ProductName: string;
     Price: number;
     Car: string;
-
+    Date?: Date;
+    RegularAccountNumber: string;
+    AmountOfBase?: number;
+    AmountOfVAT?: number;
+    PaymentAamount?: number;
+    TaxRatess?: any;
+    ProductModels?: any;
+    AccountModels?: any;
 }

@@ -68,11 +68,5 @@ export class AdminHomeComponent implements OnInit {
 
   }
     
-    
-  // signOut() {
-  //   localStorage.removeItem('userToken');
-  //   this.dataAdmin.adminSignInFunction('');
-  //   this.router.navigate(['/admin']);
-  // }
 
 }

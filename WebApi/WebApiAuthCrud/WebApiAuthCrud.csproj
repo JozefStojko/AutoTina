@@ -229,6 +229,7 @@
     <Compile Include="Controllers\CarModelTypeEnginesController.cs" />
     <Compile Include="Controllers\CarModelTypesController.cs" />
     <Compile Include="Controllers\CarsController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductTypeModelsController.cs" />
@@ -381,6 +382,14 @@
     <Compile Include="Migrations\202101261320059_Removing CarModelTypeId.Designer.cs">
       <DependentUpon>202101261320059_Removing CarModelTypeId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103101531048_Change AccounModel.cs" />
+    <Compile Include="Migrations\202103101531048_Change AccounModel.Designer.cs">
+      <DependentUpon>202103101531048_Change AccounModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103101641124_change Accountin model - 2.cs" />
+    <Compile Include="Migrations\202103101641124_change Accountin model - 2.Designer.cs">
+      <DependentUpon>202103101641124_change Accountin model - 2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounting.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -388,6 +397,7 @@
     <Compile Include="Models\CarMark.cs" />
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\CarModelTypeEngine.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\CarModelType.cs" />
     <Compile Include="Models\ProductModel.cs" />
@@ -589,6 +599,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101261320059_Removing CarModelTypeId.resx">
       <DependentUpon>202101261320059_Removing CarModelTypeId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103101531048_Change AccounModel.resx">
+      <DependentUpon>202103101531048_Change AccounModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103101641124_change Accountin model - 2.resx">
+      <DependentUpon>202103101641124_change Accountin model - 2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

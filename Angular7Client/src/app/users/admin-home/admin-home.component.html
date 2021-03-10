@@ -6,310 +6,310 @@
   <div class="row justify-content-center">
     <div class="col-md-12">
   
-      <form name="form" (ngSubmit)="adminForm.form.valid && onUpdateAdmin(
-        userName.value, 
-        firstName.value, 
-        lastName.value,
-        city.value,
-        address.value,
-        zipCode.value,
-        phone.value,
-        email.value
-        )" #adminForm="ngForm" novalidate>
+  <form name="form" (ngSubmit)="adminForm.form.valid && onUpdateAdmin(
+    userName.value, 
+    firstName.value, 
+    lastName.value,
+    city.value,
+    address.value,
+    zipCode.value,
+    phone.value,
+    email.value
+    )" #adminForm="ngForm" novalidate>
+
   
-      
-        <!-- UserName -->
-        <div class="form-group">
-          <h5>Korisničko ime administratora</h5>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fas fa-user"></i> </span>
-            </div>
-      
-                  <!-- [(ngModel)]="carTypeService.carType.Type"  -->
-
-            <input 
-            id="userName" 
-            name="userName" 
-            class="form-control" 
-            required minlength="3" 
-            ngModel 
-            [(ngModel)]="adminService.admin.UserName"
-            #userName="ngModel"
-            placeholder={{adminService.admin.UserName}} type="text" />
-      
-          </div>
-          <div class="form-group">
-            <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="alert alert-danger">
-              <div *ngIf="userName?.errors.required">
-                Mora se uneti tip delova.
-              </div>
-              <div *ngIf="userName?.errors.minlength">
-                Tip mora imati minimalno 3 karaktera.
-              </div>
-            </div>
-          </div>
+    <!-- UserName -->
+    <div class="form-group">
+      <h5>Korisničko ime administratora</h5>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-user"></i> </span>
         </div>
+  
+              <!-- [(ngModel)]="carTypeService.carType.Type"  -->
 
-        <div class="row justify-content-center form-group">
-          <div class="col ">
-        <!-- FirstName -->
-        <div class="form-group">
-          <h5>Ime</h5>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fas fa-user"></i> </span>
-            </div>
-      
-                  <!-- [(ngModel)]="carTypeService.carType.Type"  -->
-
-            <input 
-            id="firstName" 
-            name="firstName" 
-            class="form-control" 
-            required minlength="3" 
-            ngModel 
-            [(ngModel)]="adminService.admin.FirstName"
-            #firstName="ngModel"
-            placeholder={{adminService.admin.FirstName}} type="text" />
-      
-          </div>
-          <div class="form-group">
-            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
-              <div *ngIf="firstName?.errors.required">
-                Mora se uneti tip delova.
-              </div>
-              <div *ngIf="firstName?.errors.minlength">
-                Tip mora imati minimalno 3 karaktera.
-              </div>
-            </div>
-          </div>
-        </div>
-
-              <!-- City -->
-        <div class="form-group">
-          <h5>Grad</h5>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fas fa-city"></i> </span>
-            </div>
-      
-                  <!-- [(ngModel)]="carTypeService.carType.Type"  -->
-
-            <input 
-            id="city" 
-            name="city" 
-            class="form-control" 
-            required minlength="3" 
-            ngModel 
-            [(ngModel)]="adminService.admin.City"
-            #city="ngModel"
-            placeholder={{adminService.admin.City}} type="text" />
-      
-          </div>
-          <div class="form-group">
-            <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
-              <div *ngIf="city?.errors.required">
-                Mora se uneti tip delova.
-              </div>
-              <div *ngIf="city?.errors.minlength">
-                Tip mora imati minimalno 3 karaktera.
-              </div>
-            </div>
-          </div>
-        </div>
-
-          </div>
-          
-          <div class="col">
-        <!-- LastName -->
-        <div class="form-group">
-          <h5>Prezime</h5>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fas fa-user"></i> </span>
-            </div>
-      
-                  <!-- [(ngModel)]="carTypeService.carType.Type"  -->
-
-            <input 
-            id="lastName" 
-            name="lastName" 
-            class="form-control" 
-            required minlength="3" 
-            ngModel 
-            [(ngModel)]="adminService.admin.LastName"
-            #lastName="ngModel"
-            placeholder={{adminService.admin.LastName}} type="text" />
-      
-          </div>
-          <div class="form-group">
-            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
-              <div *ngIf="lastName?.errors.required">
-                Mora se uneti tip delova.
-              </div>
-              <div *ngIf="lastName?.errors.minlength">
-                Tip mora imati minimalno 3 karaktera.
-              </div>
-            </div>
-          </div>
-        </div>
-
-              <!-- Address -->
-              <div class="form-group">
-                <h5>Ulica i broj</h5>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fas fa-road"></i> </span>
-                  </div>
-            
-                        <!-- [(ngModel)]="carTypeService.carType.Type"  -->
-      
-                  <input 
-                  id="address" 
-                  name="address" 
-                  class="form-control" 
-                  required minlength="3" 
-                  ngModel 
-                  [(ngModel)]="adminService.admin.Address"
-                  #address="ngModel"
-                  placeholder={{adminService.admin.Address}} type="text" />
-            
-                </div>
-                <div class="form-group">
-                  <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
-                    <div *ngIf="address?.errors.required">
-                      Mora se uneti tip delova.
-                    </div>
-                    <div *ngIf="address?.errors.minlength">
-                      Tip mora imati minimalno 3 karaktera.
-                    </div>
-                  </div>
-                </div>
-              </div>
-      
-          </div>
-        </div>
-
-        <div class="row justify-content-center form-group">
-          <div class="col ">
-              <!-- ZipCode -->
-              <div class="form-group">
-                <h5>Poštanski broj</h5>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fas fa-map-pin"></i> </span>
-                  </div>
-            
-                        <!-- [(ngModel)]="carTypeService.carType.Type"  -->
-      
-                  <input 
-                  id="zipCode" 
-                  name="zipCode" 
-                  class="form-control" 
-                  required minlength="3" 
-                  ngModel 
-                  [(ngModel)]="adminService.admin.ZipCode"
-                  #zipCode="ngModel"
-                  placeholder={{adminService.admin.ZipCode}} type="text" />
-            
-                </div>
-                <div class="form-group">
-                  <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)" class="alert alert-danger">
-                    <div *ngIf="zipCode?.errors.required">
-                      Mora se uneti tip delova.
-                    </div>
-                    <div *ngIf="zipCode?.errors.minlength">
-                      Tip mora imati minimalno 3 karaktera.
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="col">
-              <!-- Phone -->
-              <div class="form-group">
-                <h5>Telefonski broj</h5>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fas fa-phone"></i> </span>
-                  </div>
-            
-                        <!-- [(ngModel)]="carTypeService.carType.Type"  -->
-      
-                  <input 
-                  id="phone" 
-                  name="phone" 
-                  class="form-control" 
-                  required minlength="3" 
-                  ngModel 
-                  [(ngModel)]="adminService.admin.Phone"
-                  #phone="ngModel"
-                  placeholder={{adminService.admin.Phone}} type="text" />
-            
-                </div>
-                <div class="form-group">
-                  <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
-                    <div *ngIf="phone?.errors.required">
-                      Mora se uneti tip delova.
-                    </div>
-                    <div *ngIf="phone?.errors.minlength">
-                      Tip mora imati minimalno 3 karaktera.
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="col">
-              <!-- Email -->
-              <div class="form-group">
-                <h5>Email</h5>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fas fa-envelope"></i> </span>
-                  </div>
-            
-                        <!-- [(ngModel)]="carTypeService.carType.Type"  -->
-      
-                  <input 
-                  id="email" 
-                  name="email" 
-                  class="form-control" 
-                  required minlength="3" 
-                  ngModel 
-                  [(ngModel)]="adminService.admin.Email"
-                  #email="ngModel"
-                  placeholder={{adminService.admin.Email}} type="text" />
-            
-                </div>
-                <div class="form-group">
-                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-                    <div *ngIf="email?.errors.required">
-                      Mora se uneti tip delova.
-                    </div>
-                    <div *ngIf="email?.errors.minlength">
-                      Tip mora imati minimalno 3 karaktera.
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-
-      
-        <div class="row justify-content-center form-group">
-          <div class="col ">
-          <button type="submit" class="btn btn-success btn-block"
-            [disabled]="adminForm.form.invalid || buttondisabled"> Promeni podatke administratora </button>
-          </div>
-          <div class="col">
-            <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
-          </div>
-        </div>
-    
-      
-      </form>
+        <input 
+        id="userName" 
+        name="userName" 
+        class="form-control" 
+        required minlength="3" 
+        ngModel 
+        [(ngModel)]="adminService.admin.UserName"
+        #userName="ngModel"
+        placeholder={{adminService.admin.UserName}} type="text" />
+  
       </div>
+      <div class="form-group">
+        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="alert alert-danger">
+          <div *ngIf="userName?.errors.required">
+            Mora se uneti tip delova.
+          </div>
+          <div *ngIf="userName?.errors.minlength">
+            Tip mora imati minimalno 3 karaktera.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center form-group">
+      <div class="col ">
+    <!-- FirstName -->
+    <div class="form-group">
+      <h5>Ime</h5>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+        </div>
+  
+              <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+
+        <input 
+        id="firstName" 
+        name="firstName" 
+        class="form-control" 
+        required minlength="3" 
+        ngModel 
+        [(ngModel)]="adminService.admin.FirstName"
+        #firstName="ngModel"
+        placeholder={{adminService.admin.FirstName}} type="text" />
+  
+      </div>
+      <div class="form-group">
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+          <div *ngIf="firstName?.errors.required">
+            Mora se uneti tip delova.
+          </div>
+          <div *ngIf="firstName?.errors.minlength">
+            Tip mora imati minimalno 3 karaktera.
+          </div>
+        </div>
+      </div>
+    </div>
+
+          <!-- City -->
+    <div class="form-group">
+      <h5>Grad</h5>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-city"></i> </span>
+        </div>
+  
+              <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+
+        <input 
+        id="city" 
+        name="city" 
+        class="form-control" 
+        required minlength="3" 
+        ngModel 
+        [(ngModel)]="adminService.admin.City"
+        #city="ngModel"
+        placeholder={{adminService.admin.City}} type="text" />
+  
+      </div>
+      <div class="form-group">
+        <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+          <div *ngIf="city?.errors.required">
+            Mora se uneti tip delova.
+          </div>
+          <div *ngIf="city?.errors.minlength">
+            Tip mora imati minimalno 3 karaktera.
+          </div>
+        </div>
+      </div>
+    </div>
+
+      </div>
+      
+      <div class="col">
+    <!-- LastName -->
+    <div class="form-group">
+      <h5>Prezime</h5>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+        </div>
+  
+              <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+
+        <input 
+        id="lastName" 
+        name="lastName" 
+        class="form-control" 
+        required minlength="3" 
+        ngModel 
+        [(ngModel)]="adminService.admin.LastName"
+        #lastName="ngModel"
+        placeholder={{adminService.admin.LastName}} type="text" />
+  
+      </div>
+      <div class="form-group">
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+          <div *ngIf="lastName?.errors.required">
+            Mora se uneti tip delova.
+          </div>
+          <div *ngIf="lastName?.errors.minlength">
+            Tip mora imati minimalno 3 karaktera.
+          </div>
+        </div>
+      </div>
+    </div>
+
+          <!-- Address -->
+          <div class="form-group">
+            <h5>Ulica i broj</h5>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fas fa-road"></i> </span>
+              </div>
+        
+                    <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+  
+              <input 
+              id="address" 
+              name="address" 
+              class="form-control" 
+              required minlength="3" 
+              ngModel 
+              [(ngModel)]="adminService.admin.Address"
+              #address="ngModel"
+              placeholder={{adminService.admin.Address}} type="text" />
+        
+            </div>
+            <div class="form-group">
+              <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+                <div *ngIf="address?.errors.required">
+                  Mora se uneti tip delova.
+                </div>
+                <div *ngIf="address?.errors.minlength">
+                  Tip mora imati minimalno 3 karaktera.
+                </div>
+              </div>
+            </div>
+          </div>
+  
+      </div>
+    </div>
+
+    <div class="row justify-content-center form-group">
+      <div class="col ">
+          <!-- ZipCode -->
+          <div class="form-group">
+            <h5>Poštanski broj</h5>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fas fa-map-pin"></i> </span>
+              </div>
+        
+                    <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+  
+              <input 
+              id="zipCode" 
+              name="zipCode" 
+              class="form-control" 
+              required minlength="3" 
+              ngModel 
+              [(ngModel)]="adminService.admin.ZipCode"
+              #zipCode="ngModel"
+              placeholder={{adminService.admin.ZipCode}} type="text" />
+        
+            </div>
+            <div class="form-group">
+              <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)" class="alert alert-danger">
+                <div *ngIf="zipCode?.errors.required">
+                  Mora se uneti tip delova.
+                </div>
+                <div *ngIf="zipCode?.errors.minlength">
+                  Tip mora imati minimalno 3 karaktera.
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col">
+          <!-- Phone -->
+          <div class="form-group">
+            <h5>Telefonski broj</h5>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fas fa-phone"></i> </span>
+              </div>
+        
+                    <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+  
+              <input 
+              id="phone" 
+              name="phone" 
+              class="form-control" 
+              required minlength="3" 
+              ngModel 
+              [(ngModel)]="adminService.admin.Phone"
+              #phone="ngModel"
+              placeholder={{adminService.admin.Phone}} type="text" />
+        
+            </div>
+            <div class="form-group">
+              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+                <div *ngIf="phone?.errors.required">
+                  Mora se uneti tip delova.
+                </div>
+                <div *ngIf="phone?.errors.minlength">
+                  Tip mora imati minimalno 3 karaktera.
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col">
+          <!-- Email -->
+          <div class="form-group">
+            <h5>Email</h5>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fas fa-envelope"></i> </span>
+              </div>
+        
+                    <!-- [(ngModel)]="carTypeService.carType.Type"  -->
+  
+              <input 
+              id="email" 
+              name="email" 
+              class="form-control" 
+              required minlength="3" 
+              ngModel 
+              [(ngModel)]="adminService.admin.Email"
+              #email="ngModel"
+              placeholder={{adminService.admin.Email}} type="text" />
+        
+            </div>
+            <div class="form-group">
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                <div *ngIf="email?.errors.required">
+                  Mora se uneti tip delova.
+                </div>
+                <div *ngIf="email?.errors.minlength">
+                  Tip mora imati minimalno 3 karaktera.
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  
+    <div class="row justify-content-center form-group">
+      <div class="col ">
+      <button type="submit" class="btn btn-success btn-block"
+        [disabled]="adminForm.form.invalid || buttondisabled"> Promeni podatke administratora </button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-danger btn-block" (click)="goBack()"> Nazad </button>
+      </div>
+    </div>
+
+  
+  </form>
+  </div>
   </div>
   </div>
 

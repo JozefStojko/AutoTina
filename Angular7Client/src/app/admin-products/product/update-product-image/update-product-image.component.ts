@@ -20,8 +20,6 @@ export class UpdateProductImageComponent implements OnInit {
   error: string;
   buttondisabled: boolean = false;
 
-
-
  
   constructor(
     private router: Router,

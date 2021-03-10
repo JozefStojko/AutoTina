@@ -32,9 +32,6 @@ export class PartTypeService {
     );
   }
 
-  //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
-  //   return this.http.post(this.rootUrl + '/api/producttypemodels/', partType, httpOptions);
-  // }
 
     //ovo ide za progress bar
     private getEventMessage(event: HttpEvent<any>, formData) {
@@ -98,10 +95,6 @@ export class PartTypeService {
     return this.http.put(this.rootUrl + '/api/producttypemodels/' + partTypeId, formData);
   }  
 
-  // putPartType(partType: PartType) {  
-  //   console.log(partType);
-  //   return this.http.put(this.rootUrl + '/api/producttypemodels/' + partType.Id, partType);
-  // }  
 
   removePartType(id: string) {
     return this.http.delete(this.rootUrl + '/api/producttypemodels/' + id);

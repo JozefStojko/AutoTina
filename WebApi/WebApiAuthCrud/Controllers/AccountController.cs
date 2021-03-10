@@ -123,35 +123,6 @@ namespace WebApiAuthCrud.Controllers
         }
 
 
-        //// GET: api/GetOneUserClaims
-        //[Route("api/GetOneUserClaims")]
-        //[HttpGet]
-        //[AllowAnonymous]
-        //[ResponseType(typeof(AccountModel))]
-        //public async Task<IHttpActionResult> GetOneUserClaims()
-        //{
-        //    bool isAdmin = false;
-        //    var identityClaims = (ClaimsIdentity)User.Identity;
-        //    IEnumerable<Claim> claims = identityClaims.Claims;
-        //    if (Convert.ToBoolean(identityClaims.FindFirst("IsAdmin").Value) == true) //ez működik
-        //    {
-        //        isAdmin = true;
-        //    }
-
-        //    AccountModel model = new AccountModel()
-        //    {
-        //        UserName = identityClaims.FindFirst("Username").Value,
-        //        Email = identityClaims.FindFirst("Email").Value,
-        //        FirstName = identityClaims.FindFirst("FirstName").Value,
-        //        LastName = identityClaims.FindFirst("LastName").Value,
-        //        LoggedOn = identityClaims.FindFirst("LoggedOn").Value,
-        //        IsAdmin = isAdmin
-        //    };
-
-        //    return Ok(model);
-        //}
-
-
 
     }
 }

@@ -23,7 +23,6 @@ export class AdminSignInComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    // private adminData: AdminService,
     public adminService: AdminService
        ) { }
 
@@ -64,7 +63,6 @@ export class AdminSignInComponent implements OnInit {
    (err: HttpErrorResponse) => {
      this.isLoginError = true;
    });
-  //  this.router.navigate(['admin-products/list-products']);
  }
 
 

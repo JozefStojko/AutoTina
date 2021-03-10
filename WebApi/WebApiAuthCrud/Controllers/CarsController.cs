@@ -76,24 +76,6 @@ namespace WebApiAuthCrud.Controllers
         }
 
 
-        //// POST: api/Cars
-        //[AllowAnonymous]
-        //[ResponseType(typeof(Car))]
-        //public async Task<IHttpActionResult> PostCar(Car model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    var Car = new Car() { CarName = model.CarName };
-
-        //    db.Cars.Add(Car);
-        //    await db.SaveChangesAsync();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = model.Id }, model);
-        //}
-
-
 
         // POST: api/Cars
         //[AllowAnonymous]
