@@ -11,7 +11,7 @@ export class Shop {
     AmountOfBase?: number;
     AmountOfVAT?: number;
     PaymentAamount?: number;
-    TaxRatess?: any;
+    //TaxRatess?: any;
     ProductModels?: any;
     AccountModels?: any;
 }

@@ -9,6 +9,7 @@ import { AdminSignInComponent } from './admin-sign-in/admin-sign-in.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserSuccessShopComponent } from './user-success-shop/user-success-shop.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserSignInComponent,
     AdminSignInComponent,
     AdminHomeComponent,
+    UserSuccessShopComponent,
   ],
   imports: [
     CommonModule,

@@ -174,7 +174,7 @@
             </strong>
             </p>
             <hr>
-            <div style="text-align: center">
+            <div *ngIf="itsUser" style="text-align: center">
               <button (click)="viewProduct(product)" class="btn btn-sm btn-success">Opširnije - Naruči</button>
             </div>
           </div>

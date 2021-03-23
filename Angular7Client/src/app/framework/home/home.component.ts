@@ -53,6 +53,8 @@ export class HomeComponent implements OnInit {
   filteredProductsByMark: Product[];
   filteredProductsByMarkType: Product[];
   filteredProductsByMarkTypeModel: Product[];
+  public itsUser: boolean;
+
 
   
 
@@ -85,6 +87,7 @@ export class HomeComponent implements OnInit {
 
     if (localStorage.getItem('userName') != ''){
       this.userService.setValue(true);
+      this.itsUser = true;
     }
     if (localStorage.getItem('adminName') != ''){
       this.adminService.setValue(true);

@@ -1,0 +1,106 @@
+﻿@model WebApiAuthCrud.Models.Accounting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Accounting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfPiecesOfProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfPiecesOfProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegularAccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegularAccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountOfBase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountOfBase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountOfVAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountOfVAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentAamount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentAamount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

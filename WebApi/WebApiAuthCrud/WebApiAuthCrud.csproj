@@ -390,6 +390,10 @@
     <Compile Include="Migrations\202103101641124_change Accountin model - 2.Designer.cs">
       <DependentUpon>202103101641124_change Accountin model - 2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103221107540_change Account model.cs" />
+    <Compile Include="Migrations\202103221107540_change Account model.Designer.cs">
+      <DependentUpon>202103221107540_change Account model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounting.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -456,10 +460,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\AccountingsNew\Create.cshtml" />
+    <Content Include="Views\AccountingsNew\Delete.cshtml" />
+    <Content Include="Views\AccountingsNew\Details.cshtml" />
+    <Content Include="Views\AccountingsNew\Edit.cshtml" />
+    <Content Include="Views\AccountingsNew\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Image\" />
+    <Folder Include="Views\Accounting\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
@@ -605,6 +615,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103101641124_change Accountin model - 2.resx">
       <DependentUpon>202103101641124_change Accountin model - 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221107540_change Account model.resx">
+      <DependentUpon>202103221107540_change Account model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

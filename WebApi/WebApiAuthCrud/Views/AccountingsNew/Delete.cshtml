@@ -1,0 +1,112 @@
+﻿@model WebApiAuthCrud.Models.Accounting
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Accounting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfPiecesOfProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfPiecesOfProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegularAccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegularAccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountOfBase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountOfBase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountOfVAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountOfVAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentAamount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentAamount)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

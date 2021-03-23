@@ -120,6 +120,7 @@ export class NavComponent implements OnInit {
     this.userService.setValue(false);
     localStorage.setItem('userName', '');
     this.router.navigate(['/home']);
+    window.location.reload();
   }
 
 

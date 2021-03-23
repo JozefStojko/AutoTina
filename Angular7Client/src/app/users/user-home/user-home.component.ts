@@ -66,19 +66,8 @@ export class UserHomeComponent implements OnInit {
   }
 
   orderShopItems(){
-    let dateTime = new Date()
-    console.log(dateTime);
-    this.order = {
-      UserName: "jstojko",
-      ProductId: 3002,
-      NumberOfPiecesOfProduct: 3,
-      ProductName: "Klip",
-      Price: 3600,
-      Car: "Audi A3",
-      Date: dateTime,
-      RegularAccountNumber: "11111"
-      }
-    this.shopService.orderItems(this.order);
+    this.shopService.orderItems();
+    this.router.navigate(['users/user-success-shop']);
   }
 
   loadAllProduct() {  
@@ -154,7 +143,6 @@ filteredProductByCatalogeNumber() {
 
 onEditShopping(item){
   this.totalPriceValue = 0;
-  console.log('helo', item);
   this.shopService.shopList.forEach((element) => {
     this.totalPriceValue = this.totalPriceValue + element.Price * element.NumberOfPiecesOfProduct;
   });
