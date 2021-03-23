@@ -118,10 +118,6 @@ namespace WebApiAuthCrud.Controllers
             //IQueryable<AccountModel> accountmodels = db.AccountModels;
             //AccountModel account = accountmodels.FirstOrDefault(a => a.UserName == user);
             
-            //if (account == null)
-            //{
-            //    return NotFound();
-            //}
 
             //string emailAddress = account.Email;
 
