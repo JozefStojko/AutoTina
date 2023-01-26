@@ -1,0 +1,3 @@
+   
+
+            return db.Users.SingleOrDefault(x => x.UserName == userName && x.PasswordHash == password);

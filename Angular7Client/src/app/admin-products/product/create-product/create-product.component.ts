@@ -63,7 +63,7 @@ export class CreateProductComponent implements OnInit {
 
   goBack() {
     this.location.back(); // <-- go back to previous location on cancel
-  }
+  } 
 
 
   OnSubmitCreateProduct(carMarkSelect, carTypeSelect, productTypeSelect, carModelTypeSelect, carModelTypeEngineSelect, catalogNumber, productName, onLager, price, image, description, comparativeNumbers) {

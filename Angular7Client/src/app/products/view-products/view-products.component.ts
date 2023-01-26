@@ -72,7 +72,7 @@ filteredProductByCatalogeNumber() {
          progressBar: true,
         });
     } else {
-      console.log(order);
+      // console.log(order);
       let shopObj = new Shop();
       shopObj.Id = Math.floor(Math.random() * 1000000);
       shopObj.UserName = this.user; 
@@ -83,8 +83,8 @@ filteredProductByCatalogeNumber() {
       shopObj.NumberOfPiecesOfProduct = order;
       this.shopService.shopList.push(shopObj);
       localStorage.setItem("shoppingBasket", JSON.stringify(this.shopService.shopList));
-      console.log(this.shopService.shopList);
-      console.log(JSON.parse(localStorage.getItem("shoppingBasket" || "[]")));
+      // console.log(this.shopService.shopList);
+      // console.log(JSON.parse(localStorage.getItem("shoppingBasket" || "[]")));
       this.toastr.success(
         'deo u korpu.',
         'Uspešno ste dodali',
