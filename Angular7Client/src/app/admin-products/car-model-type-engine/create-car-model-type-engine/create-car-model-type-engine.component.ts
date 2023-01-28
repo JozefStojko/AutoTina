@@ -64,7 +64,6 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
       CarModelTypeEngineName: carModelTypeEngineName,
       CarModelTypeId: carModelTypeId
     }
-    console.log('carModelTypeEngine: ', this.carModelTypeEngine);
     this.carModelTypeEngineService.saveCarModelTypeEngine(this.carModelTypeEngine).subscribe(       
       res => console.log('done'), //this.fileUpload = res,
       err => console.log('err'), // this.error = err,
@@ -109,7 +108,6 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
    // Choose mark using select dropdown
    markToNumber(){
     this.carMarkId = +this.carMarkId;
-    console.log(this.carMarkId);
     this.loadCarMarkIdTypes(this.carMarkId);
     this.markaValidna = false;
     this.typeValidan = true;
@@ -118,7 +116,6 @@ export class CreateCarModelTypeEngineComponent implements OnInit {
      // Choose type using select dropdown
      carTypeToNumber(){
       this.carTypeId = +this.carTypeId;
-      console.log(this.carTypeId);
       this.loadCarModelIdTypes(this.carTypeId); 
       this.typeValidan = false;
 

@@ -17,18 +17,12 @@ export class CarMarkService {
   constructor(private http: HttpClient) { }
 
 
-  //ova metoda RADI
-  // saveCarMark(carMark: CarMark) {
-  //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
-    //return this.http.post(this.rootUrl + '/api/carmarks/', carMark, httpOptions);
-  // }
 
   // ovo radi bez progress bar
   saveCarMark(mark: string, fileToUpload: File) {
     var formCarMark: FormData = new FormData();
     formCarMark.set('mark', JSON.stringify(mark));
     formCarMark.set('image', fileToUpload, fileToUpload.name);
-    console.log(formCarMark.getAll('mark'));
     return this.http.post(this.rootUrl + '/api/carmarks/', formCarMark, {
         reportProgress: true,
         observe: 'events'
@@ -101,10 +95,6 @@ export class CarMarkService {
     return this.http.put(this.rootUrl + '/api/carmarks/' + carMarkId, formData);
   }  
 
-
-  // putCarMark(carMark: CarMark) {  
-  //   return this.http.put(this.rootUrl + '/api/carmarks/' + carMark.Id, carMark);
-  // }  
 
   removeCarMark(id: string) {
     return this.http.delete(this.rootUrl + '/api/carmarks/' + id);

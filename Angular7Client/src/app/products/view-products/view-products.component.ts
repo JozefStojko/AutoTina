@@ -52,14 +52,12 @@ export class ViewProductsComponent implements OnInit {
 
 filteredProductByCatalogeNumber() {  
   var filter = this.productService.product.CatalogNumber.toLowerCase();
-  console.log(filter);
   this.productService.productList = this.productService.fixProductList.filter(
     product => product.ComparativeNumbers.toLowerCase().indexOf(filter) !== -1 )
 
     this.filteredCars = this.productService.productList;
     this.filteredCars.push(this.productService.product);
     this.filteredCars = this.filteredCars.sort((a, b ) => a.CarMark.Mark < b.CarMark.Mark ? -1 : 1);
-   console.log(this.filteredCars);
   } 
 
   onSubmitOrder(order) {
@@ -72,7 +70,6 @@ filteredProductByCatalogeNumber() {
          progressBar: true,
         });
     } else {
-      // console.log(order);
       let shopObj = new Shop();
       shopObj.Id = Math.floor(Math.random() * 1000000);
       shopObj.UserName = this.user; 
@@ -83,8 +80,6 @@ filteredProductByCatalogeNumber() {
       shopObj.NumberOfPiecesOfProduct = order;
       this.shopService.shopList.push(shopObj);
       localStorage.setItem("shoppingBasket", JSON.stringify(this.shopService.shopList));
-      // console.log(this.shopService.shopList);
-      // console.log(JSON.parse(localStorage.getItem("shoppingBasket" || "[]")));
       this.toastr.success(
         'deo u korpu.',
         'Uspešno ste dodali',

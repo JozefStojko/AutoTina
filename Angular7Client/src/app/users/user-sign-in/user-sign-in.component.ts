@@ -44,7 +44,6 @@ export class UserSignInComponent implements OnInit {
   }
 
   OnSubmit(userName, password) {
-    console.log(userName, password);
     this.userService.userAuthentication(userName, password).subscribe((user: any) => {
      localStorage.setItem('userToken', user.access_token);
      this.userService.getUserClaims().subscribe((data: any) => {
@@ -66,7 +65,6 @@ export class UserSignInComponent implements OnInit {
       PIB: data.PIB,
       CompanyName: data.CompanyName
     }
-      console.log(this.userService.user);
       
       this.userService.user.Id = data.Id;
       localStorage.setItem('userName', data.UserName);

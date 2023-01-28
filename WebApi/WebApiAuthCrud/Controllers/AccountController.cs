@@ -83,20 +83,45 @@ namespace WebApiAuthCrud.Controllers
         }
 
         // PUT: api/account/5
+        [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(int id, AccountModel accountModel)
+        public async Task<IHttpActionResult> PutUser(string id, ApplicationUser model)
         {
+            //var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            //var manager = new UserManager<ApplicationUser>(userStore);
+
+
+            //var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
+            //AccountModel model = new AccountModel()
+            //{
+            //    Id = id,
+            //    UserName = userModel.UserName,
+            //    Password = userModel.Password,
+            //    CompanyName = userModel.CompanyName,
+            //    PIB = userModel.PIB,
+            //    IdNumber = userModel.IdNumber,
+            //    Email = userModel.Email,
+            //    Phone = userModel.Phone,
+            //    FirstName = userModel.FirstName,
+            //    LastName = userModel.LastName,
+            //    ZipCode = userModel.ZipCode,
+            //    City = userModel.City,
+            //    Address = userModel.Address,
+            //    IsAdmin = false,
+            //    LoggedOn = userModel.LoggedOn
+            //};
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
+             }
 
-            if (id.ToString() != accountModel.Id)
+            if (id != model.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(accountModel).State = EntityState.Modified;
+            db.Entry(model).State = EntityState.Modified;
 
             try
             {
@@ -104,7 +129,7 @@ namespace WebApiAuthCrud.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountModelExists(id))
+                if (accountexists(id) == 0)
                 {
                     return NotFound();
                 }
@@ -115,12 +140,54 @@ namespace WebApiAuthCrud.Controllers
             }
 
             return StatusCode(HttpStatusCode.NoContent);
-        }
+            }
 
-        private bool AccountModelExists(int id)
-        {
-            return db.AccountModels.Count(e => e.Id == id.ToString()) > 0;
-        }
+            private int accountexists(string id)
+            {
+                return db.Users.Count(e => e.Id == id);
+            }
+
+        // PUT: api/account/5
+        //[HttpPut]
+        //[ResponseType(typeof(void))]
+        //public async Task<IHttpActionResult> PutUser(int id, AccountModel accountModel)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    if (id.ToString() != accountModel.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    db.Entry(accountModel).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!AccountModelExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
+
+        //private bool AccountModelExists(int id)
+        //{
+        //    return db.AccountModels.Count(e => e.Id == id.ToString()) > 0;
+        //}
+
 
 
 

@@ -93,7 +93,7 @@ export class CreateProductComponent implements OnInit {
       this.fileToUpload,
       description,
       comparativeNumbers).subscribe(   
-      res => this.fileUpload = res,          // console.log('done');
+      res => this.fileUpload = res,        
       err => this.error = err,
       () => {
         carMarkSelect  = null;
@@ -125,7 +125,6 @@ export class CreateProductComponent implements OnInit {
     this.carMarkSelect = +this.carMarkSelect;
     this.loadCarTypeIdMarks(this.carMarkSelect); 
     this.markaValidna = false;
-    console.log(this.carMarkSelect);
     this.tipValidan = true;
     this.modelTipValidan = true;
 
@@ -135,7 +134,6 @@ export class CreateProductComponent implements OnInit {
  typeToNumber(){
   this.carTypeSelect = +this.carTypeSelect;
   this.loadCarModelTypeIdModel(this.carTypeSelect); 
-  console.log(this.carTypeSelect);
   this.tipValidan = false;
   this.modelTipValidan = true;
 }
@@ -144,13 +142,11 @@ export class CreateProductComponent implements OnInit {
  modelTypeToNumber(){
   this.carModelTypeSelect = +this.carModelTypeSelect;
   this.loadCarModelTypeEngineIdModelType(this.carModelTypeSelect); 
-  console.log(this.carModelTypeSelect);
   this.modelTipValidan = false;
 }
 
   productTypeToNumber(){
     this.productTypeSelect = +this.productTypeSelect;
-    console.log(this.productTypeSelect);
   }
   
   loadAllCarMarks() {  

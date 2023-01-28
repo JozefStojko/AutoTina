@@ -42,7 +42,6 @@ export class CreateCarTypeComponent implements OnInit {
       CarMarkId: markId,
       Model: type
     }
-    console.log('carType: ', this.carType);
     this.carTypeService.saveCarType(this.carType).subscribe(       
       res => console.log('done'), //this.fileUpload = res,
       err => console.log('err'), // this.error = err,
@@ -70,11 +69,7 @@ export class CreateCarTypeComponent implements OnInit {
  // Choose mark using select dropdown
   markToNumber(){
   this.carMarkId = +this.carMarkId;
-  console.log(this.carMarkId);
 }
 
-
-  
-   
 
 }

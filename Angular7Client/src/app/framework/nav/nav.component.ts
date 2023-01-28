@@ -39,22 +39,13 @@ export class NavComponent implements OnInit {
     this.adminService.getValue().subscribe((value) => {
       this.itsAdmin = value;
       this.admin = localStorage.getItem('adminName');
-      console.log(this.itsAdmin);
     });
     this.userService.getValue().subscribe((value) => {
       this.itsUser = value;
       this.user = localStorage.getItem('userName');
-      console.log(this.itsUser);
-      // localStorage.removeItem("shoppingBasket");
-      
-
     });
-
-
   }
   
-  
-
     loadFilteredProductByType(filter: number) { 
       if (filter === 0){
         this.productService.productList = this.productService.fixProductList;
@@ -110,7 +101,6 @@ export class NavComponent implements OnInit {
   }
 
   editUser() {
-    // this.userService.user = Object.assign({}, user);
     this.router.navigate(['users/user-edit']);
   }
 

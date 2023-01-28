@@ -55,8 +55,6 @@ export class UpdateProductComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.productService.product);
-
     this.product = {
       Id: this.productService.product.Id,
       ProductTypeModelId: this.productService.product.ProductTypeModelId,
@@ -162,7 +160,6 @@ export class UpdateProductComponent implements OnInit {
     this.carMarkSelect = +this.carMarkSelect;
     this.loadCarTypeIdMarks(this.carMarkSelect); 
     this.markaValidna = false;
-    console.log(this.carMarkSelect);
     this.tipValidan = true;
     this.modelTipValidan = true;
 
@@ -172,7 +169,6 @@ export class UpdateProductComponent implements OnInit {
  typeToNumber(){
   this.carTypeSelect = +this.carTypeSelect;
   this.loadCarModelTypeIdModel(this.carTypeSelect); 
-  console.log(this.carTypeSelect);
   this.tipValidan = false;
   this.modelTipValidan = true;
 }
@@ -181,13 +177,11 @@ export class UpdateProductComponent implements OnInit {
  modelTypeToNumber(){
   this.carModelTypeSelect = +this.carModelTypeSelect;
   this.loadCarModelTypeEngineIdModelType(this.carModelTypeSelect); 
-  console.log(this.carModelTypeSelect);
   this.modelTipValidan = false;
 }
 
   productTypeToNumber(){
     this.productTypeSelect = +this.productTypeSelect;
-    console.log(this.productTypeSelect);
   }
   
   loadAllCarMarks() {  

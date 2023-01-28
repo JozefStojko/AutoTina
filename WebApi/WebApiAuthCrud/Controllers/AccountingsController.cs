@@ -122,14 +122,14 @@ namespace WebApiAuthCrud.Controllers
             //string emailAddress = account.Email;
 
 
-            var client = new System.Net.Mail.SmtpClient("smtp.gmail.com", 111);
+            var client = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
             client.UseDefaultCredentials = false;
             client.EnableSsl = true;
 
-            client.Credentials = new System.Net.NetworkCredential("autotinawebshop", "shopwebtinaauto");
+            client.Credentials = new System.Net.NetworkCredential("autotinawebshopf@gmail.com", "autotinawebshoppassword");
 
             var mailMessage = new System.Net.Mail.MailMessage();
-            mailMessage.From = new System.Net.Mail.MailAddress("autotinawehop@google.com");
+            mailMessage.From = new System.Net.Mail.MailAddress("autotinawebshop@gmail.com");
 
             //mailMessage.To.Add(emailAddress);
             mailMessage.To.Add("sztojko.jozsef@gmail.com");
@@ -141,7 +141,7 @@ namespace WebApiAuthCrud.Controllers
 
             mailMessage.Body = message;
 
-            mailMessage.Subject = "Uspešno ste završili kupovinu na sajtu Auti Tina web shop.";
+            mailMessage.Subject = "Uspešno ste završili kupovinu na sajtu Auto Tina web shop.";
 
             mailMessage.BodyEncoding = System.Text.Encoding.UTF8;
             mailMessage.SubjectEncoding = System.Text.Encoding.UTF8;

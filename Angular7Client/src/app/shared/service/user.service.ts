@@ -39,7 +39,7 @@ export class UserService {
   // Ovo ne radi pošto je Id usera string a ne integer, treba promeniti tip ID Usera u modelu na int
   putUser(user: User) {  
     console.log(user);
-    return this.http.put(this.rootUrl + '/api/account/' + user.Id, user);
+    return this.http.put(this.rootUrl + '/api/Account/' + user.Id, user);
   }  
   
   setValue(newValue): void {

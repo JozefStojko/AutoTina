@@ -88,14 +88,12 @@ export class UserHomeComponent implements OnInit {
 
 filteredProductByCatalogeNumber() {  
   var filter = this.productService.product.CatalogNumber.toLowerCase();
-  console.log(filter);
   this.productService.productList = this.productService.fixProductList.filter(
     product => product.ComparativeNumbers.toLowerCase().indexOf(filter) !== -1 )
 
     this.filteredCars = this.productService.productList;
     this.filteredCars.push(this.productService.product);
     this.filteredCars = this.filteredCars.sort((a, b ) => a.CarMark.Mark < b.CarMark.Mark ? -1 : 1);
-   console.log(this.filteredCars);
   } 
 
   // popunjava listu delova za korpu
@@ -129,7 +127,6 @@ filteredProductByCatalogeNumber() {
       shopObj.NumberOfPiecesOfProduct = order;
       this.shopService.shopList.push(shopObj);
       localStorage.setItem("shoppingBasket", JSON.stringify(this.shopService.shopList));
-      console.log(this.shopService.shopList);
       this.toastr.success(
         'deo u korpu.',
         'Uspešno ste dodali',

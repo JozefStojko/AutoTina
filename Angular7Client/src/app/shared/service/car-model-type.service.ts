@@ -31,7 +31,6 @@ export class CarModelTypeService {
   }  
 
   putCarModelType(carModelType: CarModelType) {  
-    console.log(carModelType);
     return this.http.put(this.rootUrl + '/api/carmodeltypes/' + carModelType.Id, carModelType);
   }  
 

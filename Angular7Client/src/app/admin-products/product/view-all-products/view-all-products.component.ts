@@ -202,7 +202,6 @@ export class ViewAllProductsComponent implements OnInit {
 
     productTypeToNumber(){
       this.productTypeSelect = +this.productTypeSelect;
-      console.log(this.productTypeSelect);
     }
  
     filterProductByTypeToNumber(){
@@ -285,7 +284,6 @@ export class ViewAllProductsComponent implements OnInit {
 }
 
   deleteProduct(product: Product) {
-    console.log(product.Id);
     this.productService.remove(product.Id).subscribe(() => {  
       this.loadAllProduct();  
     });  
@@ -386,9 +384,6 @@ export class ViewAllProductsComponent implements OnInit {
       return 'http://localhost:52866/image/'+serverPath;
     } 
 
-  
-
-
 
     //working with carType data (car models)
 
@@ -413,11 +408,7 @@ export class ViewAllProductsComponent implements OnInit {
       this.loadAllCarTypes();  
     });  
   }
-
-  
-
-
-    //working with carMark data
+  //working with carMark data
 
 
     createCarMark() {
@@ -442,12 +433,6 @@ export class ViewAllProductsComponent implements OnInit {
       () => console.log('done!', this.allCarMarks)
     )}; 
 
-
-
-    // populateMarkForm(carMark: CarMark) {
-    //   this.imageUrl = "http://localhost:52866/image/"+carMark.Image;
-    //   this.carmarkService.carMark = Object.assign({}, carMark);
-    // }
 
     deleteCarMark(carMark: CarMark) {
       this.carmarkService.removeCarMark(carMark.Id.toString()).subscribe(() => {  
@@ -495,7 +480,6 @@ loadAllCars() {
   this.carService.getAllCars().subscribe(
     result => this.allCars = result,
     error => console.log("Error :: " + error)
-    //() => console.log('done!', this.allCars)
   )}; 
 
   saveCar(car: Car) {
