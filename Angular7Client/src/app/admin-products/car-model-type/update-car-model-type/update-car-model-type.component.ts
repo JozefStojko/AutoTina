@@ -49,7 +49,6 @@ export class UpdateCarModelTypeComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.carModelTypeService.carModelType.CarModelTypeName);
 
     this.carModelType = {
       Id: this.carModelTypeService.carModelType.Id,
@@ -62,7 +61,6 @@ export class UpdateCarModelTypeComponent implements OnInit {
     };
     this.loadAllCarMarks(); 
     this.godinaPocetkaProizvodnje = this.carModelType.YearFrom;
-    console.log(this.carModelType);
   }
 
   goBack() {
@@ -108,13 +106,11 @@ export class UpdateCarModelTypeComponent implements OnInit {
   this.carMarkId = +this.carMarkId;
   this.loadCarTypeIdMarks(this.carMarkId); 
   this.markaValidna = false;
-  console.log(this.carMarkId);
 }
 
  // Choose mark using select dropdown
  typeToNumber(){
   this.carTypeId = +this.carTypeId;
-  console.log(this.carTypeId);
 }
 
 loadCarTypeIdMarks(carMarkId: number) {  
@@ -135,7 +131,6 @@ onKeyYearFrom(event: any) { // without type info
     this.godinaProizvodnjeOdValidnaDisabled = false;
   }
   this.godinaPocetkaProizvodnje = event.target.value
-  console.log(event.target.value);
 }
 
 onKeyYearTo(event: any) { // without type info
@@ -145,7 +140,6 @@ onKeyYearTo(event: any) { // without type info
   else {
     this.godinaProizvodnjeDoValidna = true;
   }
-  console.log(event.target.value);
 }
 
 stripText(event) {

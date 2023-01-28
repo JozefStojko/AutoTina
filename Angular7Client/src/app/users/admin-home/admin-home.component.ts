@@ -22,11 +22,7 @@ export class AdminHomeComponent implements OnInit {
     private toastr: ToastrService,
     public adminService: AdminService,
     private location: Location
-
     ) { }
-
-    
-    
 
   ngOnInit() {
     this.admin = this.adminService.admin;

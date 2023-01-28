@@ -80,7 +80,6 @@ export class UpdateCarTypeComponent implements OnInit {
  // Choose mark using select dropdown
  markToNumber(){
   this.carMarkId = +this.carMarkId;
-  console.log(this.carMarkId);
 }
 
 

@@ -18,11 +18,6 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-
-  // getAll(): Observable<Product[]> {
-  //   return this.http.get<Product[]>(this.rootUrl + '/api/products');
-  // }
-
   getAll(): Observable<Product[]> {
     const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
     return this.http.get<Product[]>(this.rootUrl + '/api/products', { headers: reqHeader });
@@ -169,13 +164,11 @@ export class ProductService {
     formProduct.set('Description', description);
     formProduct.set('ComparativeNumbers', comparativeNumbers);
     formProduct.set('ProductImage', JSON.stringify(productImage));
-    console.log(formProduct);
     return this.http.put(this.rootUrl + '/api/products/' + productId, formProduct);
   }  
 
 
   remove(id: number) {
-    console.log('id from remove function in service: ' + id);
     return this.http.delete(this.rootUrl + '/api/products/' + id );
   }
 

@@ -31,7 +31,6 @@ export class UpdateProductImageComponent implements OnInit {
     //@ViewChild('mark') mark;
 
   ngOnInit() {
-    console.log(this.productService.product);
     this.product = {
       Id: this.productService.product.Id,
       ProductTypeModelId: this.productService.product.ProductTypeModelId,
@@ -52,7 +51,6 @@ export class UpdateProductImageComponent implements OnInit {
       CarMark: this.productService.product.CarMark,
       ProductTypeModel: this.productService.product.ProductTypeModel
     };
-    console.log(this.product);
   }
 
   goBack() {
@@ -62,8 +60,6 @@ export class UpdateProductImageComponent implements OnInit {
 
 
   OnUpdateProduct(image) {
-    console.log(this.fileToUpload);
-    console.log(this.product);
     this.productService.putProduct(
       this.product.Id,
       this.product.CarMarkId,

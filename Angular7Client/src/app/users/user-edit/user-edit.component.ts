@@ -16,7 +16,7 @@ export class UserEditComponent implements OnInit {
 
   public user: User
   error: any;
-
+  
   constructor(
     private location: Location,
     public userService: UserService,
@@ -26,7 +26,7 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit() {
     // this.userService.user = Object.assign({}, carType);
-    console.log(this.userService.user);
+    this.user = this.userService.user;
 
   }
 

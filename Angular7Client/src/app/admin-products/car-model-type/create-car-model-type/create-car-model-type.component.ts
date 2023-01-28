@@ -57,7 +57,6 @@ export class CreateCarModelTypeComponent implements OnInit {
       YearFrom: yearFrom,
       YearTo: yearTo
     }
-    console.log('carModelType: ', this.carModelType);
     this.carModelTypeService.saveCarModelType(this.carModelType).subscribe(       
       res => console.log('done'), //this.fileUpload = res,
       err => console.log('err'), // this.error = err,
@@ -103,7 +102,6 @@ export class CreateCarModelTypeComponent implements OnInit {
      // Choose type using select dropdown
      typeToNumber(){
       this.carTypeId = +this.carTypeId;
-      console.log(this.carTypeId);
     }
   
   
@@ -117,7 +115,6 @@ export class CreateCarModelTypeComponent implements OnInit {
       this.godinaProizvodnjeOdValidnaDisabled = false;
     }
     this.godinaPocetkaProizvodnje = event.target.value
-    console.log(event.target.value);
   }
   
   onKeyYearTo(event: any) { // without type info
@@ -127,7 +124,6 @@ export class CreateCarModelTypeComponent implements OnInit {
     else {
       this.godinaProizvodnjeDoValidna = true;
     }
-    console.log(event.target.value);
   }
   
   stripText(event) {

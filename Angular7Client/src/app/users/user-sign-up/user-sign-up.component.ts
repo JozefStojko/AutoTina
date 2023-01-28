@@ -70,15 +70,12 @@ export class UserSignUpComponent implements OnInit {
     }
     this.userService.userRegister(this.user).subscribe(
       (userData: User) => {
-        console.log(userData);
         this.userService.user = this.user;
         this.userService.userAuthentication(userName, password).subscribe((user: any) => {
           localStorage.setItem('userToken', user.access_token); //postavlja token admina u lokalnu promenljivu
           this.userService.getUserClaims().subscribe((data: any) => {
           this.userService.user = data;
           this.router.navigate(['users/user-home']);
-          console.log(this.userService.user);
-          console.log(localStorage.getItem('userToken'));
   
           this.userService.setValue(true);
           // localStorage.setItem('user', data.FirstName);

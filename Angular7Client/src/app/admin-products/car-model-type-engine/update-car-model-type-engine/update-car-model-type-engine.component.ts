@@ -48,8 +48,6 @@ export class UpdateCarModelTypeEngineComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.carModelTypeEngineService.carModelTypeEngine);
-
     this.carModelTypeEngine = {
       Id: this.carModelTypeEngineService.carModelTypeEngine.Id,
       CarModelTypeEngineName: this.carModelTypeEngineService.carModelTypeEngine.CarModelTypeEngineName,
@@ -60,7 +58,6 @@ export class UpdateCarModelTypeEngineComponent implements OnInit {
     };
 
     this.loadAllCarMarks(); 
-    console.log(this.carModelTypeEngine);
   }
 
   goBack() {
@@ -105,7 +102,6 @@ export class UpdateCarModelTypeEngineComponent implements OnInit {
   this.carMarkId = +this.carMarkId;
   this.loadCarTypeIdMarks(this.carMarkId); 
   this.markaValidna = false;
-  console.log(this.carMarkId);
   this.tipValidan = true;
 }
 
@@ -113,14 +109,12 @@ export class UpdateCarModelTypeEngineComponent implements OnInit {
  typeToNumber(){
   this.carTypeId = +this.carTypeId;
   this.loadCarModelTypeIdModel(this.carTypeId); 
-  console.log(this.carTypeId);
   this.tipValidan = false;
 }
 
  // Choose model type using select dropdown
  modelTypeToNumber(){
   this.carModelTypeId = +this.carModelTypeId;
-  console.log(this.carModelTypeId);
   this.tipValidan = false;
 }
 

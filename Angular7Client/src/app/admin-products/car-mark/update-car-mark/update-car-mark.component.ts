@@ -33,7 +33,6 @@ export class UpdateCarMarkComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.carmarkService.carMark);
     this.carMark = {
       Id: this.carmarkService.carMark.Id,
       Mark: this.carmarkService.carMark.Mark,

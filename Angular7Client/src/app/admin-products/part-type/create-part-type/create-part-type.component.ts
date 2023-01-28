@@ -44,7 +44,7 @@ export class CreatePartTypeComponent implements OnInit {
 
   OnSubmitPartType(partTypeName, image) {
       this.partTypeService.savePartType(partTypeName.value, this.fileToUpload).subscribe(       
-        res => this.fileUpload = res,          // console.log('done');
+        res => this.fileUpload = res,         
         err => this.error = err,
         () => {
           partTypeName = '';

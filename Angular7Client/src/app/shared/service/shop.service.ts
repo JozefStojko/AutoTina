@@ -23,7 +23,6 @@ export class ShopService {
   orderItems(){
 
     this.orders = JSON.parse(localStorage.getItem("shoppingBasket" || "[]"));
-    console.log(this.orders);
     localStorage.removeItem("shoppingBasket" || "[]");
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
     return this.http.post<Shop[]>(this.rootUrl + '/api/Accountings/', this.orders, httpOptions)

@@ -31,12 +31,10 @@ export class CarModelTypeEngineService {
   }  
 
   putCarModelTypeEngine(carModelTypeEngine: CarModelTypeEngine) {  
-    console.log(carModelTypeEngine);
     return this.http.put(this.rootUrl + '/api/carmodeltypeengines/' + carModelTypeEngine.Id, carModelTypeEngine);
   }  
 
   removeCarModelTypeEngine(id: number) {
-    console.log(id);
     return this.http.delete(this.rootUrl + '/api/carmodeltypeengines/' + id);
   }
 

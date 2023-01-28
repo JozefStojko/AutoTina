@@ -29,7 +29,6 @@ export class UpdatePartTypeComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.partTypeService.partType);
 
     this.partType = {
       Id: this.partTypeService.partType.Id,

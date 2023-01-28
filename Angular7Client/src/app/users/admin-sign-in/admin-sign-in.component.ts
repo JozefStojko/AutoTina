@@ -42,15 +42,12 @@ export class AdminSignInComponent implements OnInit {
   }
 
   OnSubmit(userName, password) {
-    console.log(userName, password);
     this.adminService.adminAuthentication(userName, password).subscribe((user: any) => {
      localStorage.setItem('userToken', user.access_token); //postavlja token admina u lokalnu promenljivu
      this.adminService.getUserClaims().subscribe((data: any) => {
      this.adminClaims = data;
      this.adminService.admin = data;
      this.adminService.setValue(true);
-     console.log(this.adminService.admin);
-     console.log(localStorage.getItem('userToken'));
      this.resetForm();
      if (data.IsAdmin) {
       localStorage.setItem('adminName', data.UserName);

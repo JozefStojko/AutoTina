@@ -36,7 +36,6 @@ export class UpdateImageComponent implements OnInit {
     //@ViewChild('mark') mark;
 
   ngOnInit() {
-    console.log(this.carmarkService.carMark);
     this.carMark = {
       Id: this.carmarkService.carMark.Id,
       Mark: this.carmarkService.carMark.Mark,
@@ -51,8 +50,6 @@ export class UpdateImageComponent implements OnInit {
 
 
   OnUpdateCarMark(image) {
-    console.log(this.fileToUpload);
-    console.log(this.carMark);
     this.carmarkService.putCarMark(this.carMark.Id.toString(), this.carMark.Mark, this.fileToUpload).subscribe(
       res => console.log('done'),
       err => this.error = err,
